@@ -14,7 +14,7 @@
 
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card h-100">
-                            <img src="images/popular-products1.jpg"  class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/popular-products1.jpg')}}"  class="card-img-top product_image" alt="...">
                             <div class="card-body">
                               <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                               
@@ -40,7 +40,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                            <img src="images/popular-products2.png" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/popular-products2.png')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                               <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                               
@@ -68,7 +68,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                            <img src="images/popular-products3.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/popular-products3.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                               <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                               
@@ -95,7 +95,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                                <img src="images/popular-products4.jpg" class="card-img-top product_image" alt="...">
+                                <img src="{{asset('Frontend/images/popular-products4.jpg')}}" class="card-img-top product_image" alt="...">
                                 <div class="card-body">
                                   <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   <p><span class="product-tittle-color">$55</span></p>
@@ -124,7 +124,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                                <img src="images/popular-products1.jpg" class="card-img-top product_image" alt="...">
+                                <img src="{{asset('Frontend/images/popular-products1.jpg')}}" class="card-img-top product_image" alt="...">
                                 <div class="card-body">
                                   <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -152,7 +152,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                                <img src="images/popular-products2.png" class="card-img-top product_image" alt="...">
+                                <img src="{{asset('Frontend/images/popular-products2.png')}}" class="card-img-top product_image" alt="...">
                                 <div class="card-body">
                                   <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -180,7 +180,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                                <img src="images/popular-products3.jpg" class="card-img-top product_image" alt="...">
+                                <img src="{{asset('Frontend/images/popular-products3.jpg')}}" class="card-img-top product_image" alt="...">
                                 <div class="card-body">
                                   <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -208,7 +208,7 @@
                     <div class="popular_product">
                         <a href="singleProduct.html" class="text-decoration-none text-dark">
                             <div class="card">
-                                <img src="images/popular-products4.jpg" class="card-img-top product_image" alt="...">
+                                <img src="{{asset('Frontend/images/popular-products4.jpg')}}" class="card-img-top product_image" alt="...">
                                 <div class="card-body">
                                   <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   <p><span class="product-tittle-color">$55</span></p>
@@ -248,7 +248,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/26.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/26.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -273,7 +273,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/ladygown3.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/ladygown3.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -299,7 +299,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/lady4.jpg" class="card-img-top product_image " alt="...">
+                            <img src="{{asset('Frontend/images/lady4.jpg')}}" class="card-img-top product_image " alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -324,7 +324,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/25.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/25.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -352,7 +352,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/24.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/24.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -378,7 +378,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/popular-products5.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/popular-products5.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -404,7 +404,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/popular-products2.png" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/popular-products2.png')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -430,7 +430,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/popular-products1.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/popular-products1.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -470,7 +470,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/kidscat.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/kidscat.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -495,7 +495,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/shirt3.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/shirt3.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   
@@ -520,7 +520,7 @@
                 <div class="col-md-3 col-sm-6 mb-3">
                     <a href="singleProduct.html" class="text-decoration-none text-dark">
                         <div class="card h-100">
-                            <img src="images/newproducts5.jpg" class="card-img-top product_image" alt="...">
+                            <img src="{{asset('Frontend/images/newproducts5.jpg')}}" class="card-img-top product_image" alt="...">
                             <div class="card-body">
                                 <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
                                   

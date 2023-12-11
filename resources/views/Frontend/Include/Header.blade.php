@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-2 mb-sm-3">
                     <div class="header_logo">
-                        <img src="images/header_logo.png" width="150px" href="index.html"/>
+                        <img src="{{asset('Frontend/images/header_logo.png')}}" width="150px" href="index.html"/>
                     </div>
 
                 </div>
