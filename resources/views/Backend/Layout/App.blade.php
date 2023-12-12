@@ -7,11 +7,8 @@
 
 
     <!-- Twitter -->
-    <meta name="twitter:site" content="@themepixels">
-    <meta name="twitter:creator" content="@themepixels">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bracket Plus">
-    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+ 
     <meta name="twitter:image" content="http://themepixels.me/bracketplus/img/bracketplus-social.png">
 
     <!-- Facebook -->
@@ -34,11 +31,12 @@
     <!-- vendor css -->
     <link href="{{asset('Backend/lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
     <link href="{{asset('Backend/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('Backend/lib/rickshaw/rickshaw.min.css')}}" rel="stylesheet">
+     <link href="{{asset('Backend/lib/rickshaw/rickshaw.min.css')}}" rel="stylesheet"> 
     <link href="{{asset('Backend/lib/select2/css/select2.min.css')}}" rel="stylesheet">
 
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{asset('Backend/css/bracket.css')}}">
+    @yield('style')
   </head>
 
   <body>
@@ -57,19 +55,19 @@
 
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="br-mainpanel">
-      <div class="br-pagetitle">
+      <!-- <div class="br-pagetitle">
         <i class="icon ion-ios-home-outline"></i>
         <div>
           <h4>Dashboard</h4>
           <p class="mg-b-0">Do bigger things with Bracket plus, the responsive bootstrap 4 admin template.</p>
         </div>
-      </div>
+      </div> -->
 
       <div class="br-pagebody">
         @yield('content')
 
       </div><!-- br-pagebody -->
-      @include('Backend.Include.Footer')
+      <!-- @include('Backend.Include.Footer') -->
     </div><!-- br-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
 

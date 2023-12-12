@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('brand_name');
             $table->string('brand_image')->nullable();
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->integer('status');
             $table->timestamps();
         });
