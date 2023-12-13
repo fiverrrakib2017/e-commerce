@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\Product\productBrandController;
 use App\Http\Controllers\Backend\Product\productCategoryController;
+use App\Http\Controllers\Backend\Product\productSubCateogryController;
 use App\Http\Controllers\Frontend\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +38,11 @@ Route::post('admin/category/store',[productCategoryController::class,'store'])->
 Route::post('admin/category/delete',[productCategoryController::class,'delete'])->name('admin.category.delete');
 Route::get('admin/category/edit/{id}',[productCategoryController::class,'edit'])->name('admin.category.edit');
 Route::post('admin/category/update',[productCategoryController::class,'update'])->name('admin.category.update');
+
+
+/* Sub Category Route*/
+Route::get('admin/sub-category',[productSubCateogryController::class,'index'])->name('admin.subcategory.index');
+Route::post('admin/sub-category/store',[productSubCateogryController::class,'store'])->name('admin.subcategory.store');
+Route::get('admin/sub-category/edit/{id}',[productSubCateogryController::class,'edit'])->name('admin.subcategory.edit');
+Route::post('admin/sub-category/delete',[productSubCateogryController::class,'delete'])->name('admin.subcategory.delete');
+Route::post('admin/sub-category/update/{id}',[productSubCateogryController::class,'update'])->name('admin.subcategory.update');

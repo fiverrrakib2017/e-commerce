@@ -24,7 +24,7 @@
           <ul class="br-menu-sub" >
             <li class="sub-item"><a href="{{route('admin.brand.index')}}" class="sub-link {{ Route::is('admin.brand.index') ? 'active' : '' }}">Brand</a></li>
             <li class="sub-item"><a href="{{route('admin.category.index')}}" class="sub-link {{ Route::is('admin.category.index') ? 'active' : '' }}">Category</a></li>
-            <li class="sub-item"><a href="#" class="sub-link">Sub Category</a></li>
+            <li class="sub-item"><a href="{{route('admin.subcategory.index')}}" class="sub-link {{ Route::is('admin.category.index') ? 'active' : '' }}">Sub Category</a></li>
             <li class="sub-item"><a href="#" class="sub-link">Child Category</a></li>
             <li class="sub-item"><a href="#" class="sub-link">Add Product</a></li>
             <li class="sub-item"><a href="#" class="sub-link">Product Management</a></li>
