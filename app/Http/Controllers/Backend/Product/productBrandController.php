@@ -45,7 +45,7 @@ class productBrandController extends Controller
         // Save the brand to the database
         $brand->save();
          // Redirect or return a response as needed
-         return redirect()->route('admin.brand.index')->with('success', 'Brand added successfully');
+        return redirect()->route('admin.brand.index')->with('success','Add Successfully');
     }
     public function edit($id){
          $data = Product_Brand::findOrFail($id);

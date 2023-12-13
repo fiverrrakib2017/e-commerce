@@ -144,4 +144,23 @@
       });
     </script>
 
+
+  @if(session('success'))
+    <script>
+        toastr.success("{{ session('success') }}");
+    </script>
+    @elseif(session('error'))
+    <script>
+        toastr.error("{{ session('error') }}");
+    </script>
+    @endif
+    
+    <!-- @if(session("errors"))
+        <script>
+            var errors = @json(session('errors'));
+            errors.forEach(function(error) {
+              toastr.error(error);
+            });
+        </script>
+    @endif  -->
 @endsection

@@ -83,27 +83,3 @@
   </script>
 @endsection
 
-@section('script')
-    @if(session('success'))
-    <script>
-        alert('{{ session('success') }}');
-    </script>
-    @elseif(session('error'))
-    <script>
-        alert('{{ session('error') }}');
-    </script>
-    @endif
-
-
-
-    @if(session('errors'))
-        <script>
-            var errors = @json(session('errors'));
-            errors.forEach(function(error) {
-              alert(error);
-            });
-        </script>
-    @endif
-
-
-@endsection

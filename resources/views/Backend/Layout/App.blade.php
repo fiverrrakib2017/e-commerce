@@ -14,6 +14,7 @@
     <link href="{{asset('Backend/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
      <link href="{{asset('Backend/lib/rickshaw/rickshaw.min.css')}}" rel="stylesheet"> 
     <link href="{{asset('Backend/lib/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('Backend/css/toastr.min.css')}}" rel="stylesheet">
 
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{asset('Backend/css/bracket.css')}}">
@@ -76,6 +77,7 @@
     <script src="{{asset('Backend/js/ResizeSensor.js')}}"></script>
      <script src="{{asset('Backend/js/dashboard.js')}}"></script>
     <script src="{{asset('Backend/js/bracket.js')}}"></script>
+    <script src="{{asset('Backend/js/toastr.min.js')}}"></script>
     @yield('script')
     <script>
       $(function(){
