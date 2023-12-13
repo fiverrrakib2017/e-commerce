@@ -34,3 +34,6 @@ Route::post('admin/brand/update',[productBrandController::class,'update'])->name
 Route::get('admin/category',[productCategoryController::class,'index'])->name('admin.category.index');
 Route::get('admin/category/create',[productCategoryController::class,'create'])->name('admin.category.create');
 Route::post('admin/category/store',[productCategoryController::class,'store'])->name('admin.category.store');
+Route::post('admin/category/delete',[productCategoryController::class,'delete'])->name('admin.category.delete');
+Route::get('admin/category/edit/{id}',[productCategoryController::class,'edit'])->name('admin.category.edit');
+Route::post('admin/category/update',[productCategoryController::class,'update'])->name('admin.category.update');

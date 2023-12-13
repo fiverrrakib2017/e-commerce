@@ -65,10 +65,39 @@
                  <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td> 
                 <td>
                     <!-- Add your action buttons here -->
-                    <a class="btn btn-primary btn-sm mr-3" href="{{route('admin.brand.edit', $item->id)}}"><i class="fa fa-edit"></i></a>
-                    <a onclick="return confirm('Are you sure')" class="btn btn-danger btn-sm mr-3" href="{{route('admin.brand.delete', $item->id)}}"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-primary btn-sm mr-3" href="{{route('admin.category.edit', $item->id)}}"><i class="fa fa-edit"></i></a>
+                    <button data-toggle="modal" data-target="#deleteModal{{$item->id}}" class="btn btn-danger btn-sm mr-3"><i class="fa fa-trash"></i></button>
                 </td>
             </tr>
+
+
+
+
+            <!--Start Delete MODAL ---->
+          <div id="deleteModal{{$item->id}}" class="modal fade">
+              <div class="modal-dialog modal-dialog-top" role="document">
+                  <div class="modal-content tx-size-sm">
+                  <div class="modal-body tx-center pd-y-20 pd-x-20">
+                      <form action="{{route('admin.category.delete')}}" method="post" enctype="multipart/form-data">
+                          @csrf
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                          <i class="icon icon ion-ios-close-outline tx-60 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                          <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
+                          <input type="hidden" name="id" value="{{$item->id}}">
+                          <button type="submit" class="btn btn-danger mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
+                              yes
+                          </button>
+                          <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                              No
+                          </button>
+                      </form>
+                  </div><!-- modal-body -->
+                  </div><!-- modal-content -->
+              </div>
+          </div>
+          <!--End Delete MODAL ---->
           @endforeach
       </tbody>
     </table>
@@ -78,31 +107,7 @@
   </div><!-- table-wrapper -->
 </div><!-- br-section-wrapper -->
 
-<!--Start Delete MODAL ---->
-<div id="homeDeleteBlog" class="modal fade">
-    <div class="modal-dialog modal-dialog-top" role="document">
-        <div class="modal-content tx-size-sm">
-        <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="" method="post" enctype="multipart/form-data">
-                @csrf
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <i class="icon icon ion-ios-close-outline tx-60 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
-                <input type="hidden" name="blog_id" id="blog_id">
-                <button type="submit" class="btn btn-danger mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
-                    yes
-                </button>
-                <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
-                    No
-                </button>
-            </form>
-        </div><!-- modal-body -->
-        </div><!-- modal-content -->
-    </div>
-</div>
-<!--End Delete MODAL ---->
+
 @endsection
 
 @section('script')

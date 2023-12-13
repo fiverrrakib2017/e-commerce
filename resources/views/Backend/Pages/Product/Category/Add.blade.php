@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
           <label for="">Category Image</label>
-          <input accept="image/*" type="file" name="brand_image" class="form-control" id="imageInput"><br>
+          <input accept="image/*" type="file" name="category_image" class="form-control" id="imageInput"><br>
           <img class="img-fluid rounded" width="100px" height="50px" id="showImage" src="{{asset('Backend/images/default.jpg')}}" alt="">
         </div>
         <div class="form-group">

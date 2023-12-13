@@ -16,7 +16,6 @@ class productBrandController extends Controller
         return view('Backend.Pages.Product.Brand.Add');
     }
     public function store(Request $request){
-      //  return $request->all();
          //Validate the form data
         $rules = [
             'brand_name' => 'required|string',
