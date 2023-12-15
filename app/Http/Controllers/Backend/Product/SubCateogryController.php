@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class productSubCateogryController extends Controller
+class SubCateogryController extends Controller
 {
     public function index(){
         $category=Product_Category::latest()->get();

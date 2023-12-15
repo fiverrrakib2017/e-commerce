@@ -16,12 +16,14 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('sub_category_id');
-            $table->unsignedBigInteger('child_category_id');
+            $table->unsignedBigInteger('sub_category_id')->nullable();
+            $table->unsignedBigInteger('child_category_id')->nullable();
 
             $table->string('slug');
             $table->double('price', 10,2)->nullable();
             $table->text('description')->nullable();
+            $table->text('short_description')->nullable();
+            $table->text('shipping_returns')->nullable();
             $table->string('sku');
             $table->string('barcode')->nullable();
             $table->enum('track_qty', ['Yes', 'No'])->default('Yes');

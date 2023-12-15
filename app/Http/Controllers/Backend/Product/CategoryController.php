@@ -7,7 +7,7 @@ use App\Models\Product_Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
-class productCategoryController extends Controller
+class CategoryController extends Controller
 {
     public function index(){
         $data=Product_Category::latest()->get();

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('sub_cat_id');
             $table->string('name');
+            $table->integer('status');
             $table->timestamps();
 
             $table->foreign('category_id')

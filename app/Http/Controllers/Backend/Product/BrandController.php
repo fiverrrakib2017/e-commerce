@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class productBrandController extends Controller
+class BrandController extends Controller
 {
     public function index(){
         $data=Product_Brand::latest()->get();
