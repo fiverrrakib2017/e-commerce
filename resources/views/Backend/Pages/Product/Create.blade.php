@@ -182,19 +182,21 @@
       <h6>Add New Product</h6>
     </div>
     <div class="card-body">
-        <form method="post" action="{{ route('admin.brand.store') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.products.store') }}" id="productForm" enctype="multipart/form-data">
           @csrf
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Product Name</label>
-                <input type="text" class="form-control" name="product_name" placeholder="Enter Brand Name" required>
+                <input type="text"  class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name" required>
+                <p class="ierr"></p>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Product Slug</label>
-                <input type="text" class="form-control" name="slug" placeholder="Enter Slug">
+                <input type="text"  class="form-control" name="slug" id="slug" value="">
+                <p class="ierr"></p>
             </div>
             </div>
           </div>
@@ -213,19 +215,157 @@
               </div>
             </div>
           </div>
-          
-          <div class="form-group">
-            <label for="">Slug</label>
-            <input type="text" class="form-control" name="slug" placeholder="Enter Slug">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Brand</label>
+                <select type="text" class="form-control select2" name="brand_id" id="brand_id" required>                 
+                  <option value="">---Select---</option>
+                  @if (count($brand) > 0)
+
+                    @foreach($brand as $item)
+                    <option value="{{$item->id}}">{{ $item->brand_name }}</option>
+                    @endforeach
+
+                  @else
+                    <option value="">No Brand</option>
+                  @endif
+                </select>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Category</label>
+                <select type="text" onchange="load_sub_category()" class="form-control select2" name="category_id" id="category_id" required>
+                  <option value="">Select</option>
+                  @if (count($category) > 0)
+
+                    @foreach($category as $item)
+                    <option value="{{$item->id}}">{{ $item->category_name }}</option>
+                    @endforeach
+
+                  @else
+                    <option value="">No Product</option>
+                  @endif
+                  
+                </select>
+                <p class="ierr"></p>
+            </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="">Status</label>
-            <select type="text" class="form-control" name="status" required>
-                <option value="">Select</option>
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
-            </select>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Sub Category</label>
+                <select type="text" onchange="load_child_category()" class="form-control select2" name="sub_cat_id" id="sub_cat_id">
+                  <option value="">Select</option>
+                </select>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Child Category</label>
+                <select type="text" class="form-control select2" name="child_cat_id" id="child_cat_id">
+                  <option value="">Select</option>
+                </select>
+                <p class="ierr"></p>
+            </div>
+            </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Short Description</label>
+                <textarea type="text" class="form-control" name="short_description" id="short_description"   placeholder="Enter Your Short Description "></textarea>
+                <p class="ierr"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Description</label>
+                <textarea type="text" class="form-control"  name="description" placeholder="Enter Your Description "></textarea>
+                <p class="ierr"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Shipping & Returns</label>
+                <textarea type="text" class="form-control" name="shipping_returns"></textarea>
+                <p class="ierr"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" class="form-control" id="price"  name="price" placeholder="Enter Your Price" required/>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Sku</label>
+                <input type="text" class="form-control" name="sku" id="sku" required/>
+                <p class="ierr"></p>
+            </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Barcode</label>
+                <input type="text" class="form-control"  name="barcode" id="barcode" required/>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+              <label for="qty" class="label">Quantity</label>
+              <input type="number" name="qty" class="form-control" id="qty" placeholder="Enter Quantity" required>
+              <p class="ierr"></p>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Status</label>
+                <select type="text" class="form-control select2" name="status" id="status" required>
+                  <option value="">Select</option>
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                </select>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Track Quantity</label><br>
+                  <div class="br-toggle br-toggle-rounded br-toggle-primary on">
+                    <div class="br-toggle-switch"></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        
+
+
           <div class="form-group">
             <button type="submit" class="btn btn-success">Add Now</button>
           </div>
@@ -240,10 +380,45 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.tiny.cloud/1/h2axwpnzfh7k1agff20oqbrdvqd0hpov0jv1oc3q8gb14mqi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
   <script type="text/javascript">
+    /** Create Automatic Slug **/
+    $("#product_name").on('keyup',function(){
+        var inputString=$(this).val();
+        var result= inputString.replace(/\s+/g, '-').toLowerCase();
+       
+        $("#slug").val(result);
+    });
+
+
+
+
+      /** Toggles **/
+        $('.br-toggle').on('click', function(e){
+          e.preventDefault();
+          $(this).toggleClass('on');
+        })
+
+       /** Editor **/
+      tinymce.init({
+        selector: '#description',
+        plugins: 'lists link image',
+        toolbar: "undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | outdent indent",
+        height: 300, // Specify the height of the editor
+      });
+
+      tinymce.init({
+        selector: '#shipping_returns',
+        plugins: 'lists link image',
+        toolbar: 'undo redo | bold italic | bullist numlist | link image',
+        height: 200, // Specify the height of the editor
+      });
+
+
+    /** Drag And Drop Image Upload **/
       Dropzone.autoDiscover = false;    
-    const dropzone = $("#image").dropzone({ 
+      const dropzone = $("#image").dropzone({ 
 
         url:  "{{ route('temp-image.create') }}",
         maxFiles: 10,
@@ -253,8 +428,6 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }, success: function(file, response){
-            // console.log(response.message);
-            // $("#image_id").val(response.image_id);
             var html = `
             <div id="image-row-${response.image_id}">
                 <input type="text" name="image_array[]" value="${response.image_id}" hidden>
@@ -272,11 +445,84 @@
             console.log(error);
         }
     });
-
+    /** Drag And Drop Image Upload **/
 
     function deleteImage(id){
-        $('#image-row-' +id).remove();
+      $('#image-row-' +id).remove();
     }
+    /* Load Sub Category */
+    function load_sub_category(){
+      var category_id = document.getElementById('category_id').value;
+        var sub_category_Dropdown = document.getElementById('sub_cat_id');
+        sub_category_Dropdown.innerHTML = ''; // Clear previous options
+        if (category_id) {
+            // Send an AJAX request 
+            fetch('/get-sub_category/' + category_id)
+              .then(response => response.json())
+              .then(data => {
+                data.forEach(data => {
+                  var option = document.createElement('option');
+                  option.value = data.id;
+                  option.text = data.name;
+                  sub_category_Dropdown.add(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+    /* Load Child Category */
+    function load_child_category(){
+      var sub_category_id = document.getElementById('sub_cat_id').value;
+        var child_category_Dropdown = document.getElementById('child_cat_id');
+        child_category_Dropdown.innerHTML = ''; // Clear previous options
+        if (sub_category_id) {
+            // Send an AJAX request 
+            fetch('/get-child_category/' + sub_category_id)
+              .then(response => response.json())
+              .then(data => {
+                data.forEach(data => {
+                  var option = document.createElement('option');
+                  option.value = data.id;
+                  option.text = data.name;
+                  child_category_Dropdown.add(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+    /** Product Add  **/
+    $('#productForm').submit(function (e) {
+      $('button[type=submit]').html(`<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>`);
+        e.preventDefault();
+        var formArray = $(this).serializeArray();
+        $('button[type=submit]').prop('disabled', true);
+        $.ajax({
+            url: '{{ route("admin.products.store") }}',
+            type: 'post',
+            data: formArray,
+            dataType: 'json',
+            success: function (response) {
+                $('button[type=submit]').prop('disabled', false);
+                if (response.status == true) {
+                    window.location.href = "{{ route('admin.products.index') }}";
+                } else {
+                    var errors = response.errors;
+                    $('.errText').html('');
+                    $('input, select').removeClass('invalid');
+                    $.each(errors, function (key, value) {
+                        $(`#${key}`).addClass('invalid')
+                            .siblings('p')
+                            .addClass('errText')
+                            .html(value);
+                    });
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+     /** Product Add  **/
   </script>
 @endsection
 

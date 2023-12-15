@@ -17,6 +17,10 @@ class ChildCategoryController extends Controller
         $child_category=Product_child_category::latest()->with('category','sub_category')->get();
         return view('Backend.Pages.Product.Child-Category.index',compact('category','sub_category','child_category'));
     }
+    public function get_child_category($id){
+        $data=Product_child_category::where(['sub_cat_id'=>$id])->get();
+        return response()->json($data);
+    }
     public function edit($id){
         $category=Product_Category::latest()->get();
         $sub_category=Product_sub_category::latest()->get();

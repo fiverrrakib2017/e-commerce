@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Discount_Coupon extends Model
 {
     use HasFactory;
-    public function product_image(){
-        return $this->hasMany(Product_image::class);
-    }
 }

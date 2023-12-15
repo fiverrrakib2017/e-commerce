@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\Product\BrandController;
 use App\Http\Controllers\Backend\Product\CategoryController;
 use App\Http\Controllers\Backend\Product\ChildCategoryController;
+use App\Http\Controllers\Backend\Product\DiscountController;
 use App\Http\Controllers\Backend\Product\ProductController;
 use App\Http\Controllers\Backend\Product\SubCateogryController;
 use App\Http\Controllers\Backend\Product\TempImageController;
@@ -49,6 +50,8 @@ Route::post('admin/sub-category/store',[SubCateogryController::class,'store'])->
 Route::get('admin/sub-category/edit/{id}',[SubCateogryController::class,'edit'])->name('admin.subcategory.edit');
 Route::post('admin/sub-category/delete',[SubCateogryController::class,'delete'])->name('admin.subcategory.delete');
 Route::post('admin/sub-category/update/{id}',[SubCateogryController::class,'update'])->name('admin.subcategory.update');
+/*Get Sub Category*/
+Route::get('/get-sub_category/{id}',[SubCateogryController::class,'get_sub_category']);
 
 
 /* Child Category Route*/
@@ -58,7 +61,20 @@ Route::get('admin/child-category/edit/{id}',[ChildCategoryController::class,'edi
 Route::post('admin/child-category/delete',[ChildCategoryController::class,'delete'])->name('admin.childcategory.delete');
 Route::post('admin/child-category/update/{id}',[ChildCategoryController::class,'update'])->name('admin.childcategory.update');
 
+/*Get child Category*/
+Route::get('/get-child_category/{id}',[ChildCategoryController::class,'get_child_category']);
+
+
+
+
+
 /* Product Route*/
 Route::get('/admin/product/all',[ProductController::class,'index'])->name('admin.products.index');
 Route::get('/admin/product/create',[ProductController::class,'create'])->name('admin.products.create');
 Route::post('/upload-temp-image', [TempImageController::class, 'create'])->name('temp-image.create');
+Route::post('/admin/product/store',[ProductController::class,'store'])->name('admin.products.store');
+Route::post('/admin/product/delete',[ProductController::class,'delete'])->name('admin.products.delete');
+
+
+/* Product Route*/
+Route::get('/admin/product/discount/all',[DiscountController::class,'index'])->name('admin.discount.index');

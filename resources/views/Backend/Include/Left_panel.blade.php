@@ -27,6 +27,7 @@
             <li class="sub-item"><a href="{{route('admin.subcategory.index')}}" class="sub-link {{ Route::is('admin.subcategory.index') ? 'active' : '' }}">Sub Category</a></li>
             <li class="sub-item"><a href="{{route('admin.childcategory.index')}}" class="sub-link {{ Route::is('admin.childcategory.index') ? 'active' : '' }}">Child Category</a></li>
             <li class="sub-item"><a href="{{route('admin.products.create')}}" class="sub-link {{ Route::is('admin.products.create') ? 'active' : '' }}">Add Product</a></li>
+            <li class="sub-item"><a href="{{route('admin.discount.index')}}" class="sub-link {{ Route::is('admin.discount.index') ? 'active' : '' }}">Discount Product</a></li>
             <li class="sub-item"><a href="{{route('admin.products.index')}}" class="sub-link {{ Route::is('admin.products.index') ? 'active' : '' }}">Product Management</a></li>
           </ul>
         </li>

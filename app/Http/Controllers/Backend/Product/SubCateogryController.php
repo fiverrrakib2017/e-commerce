@@ -16,6 +16,10 @@ class SubCateogryController extends Controller
         $data=Product_sub_category::latest()->with('category')->get();
         return view('Backend.Pages.Product.Sub-Category.index',compact('data','category'));
     }
+    public function get_sub_category($id){
+        $data=Product_sub_category::where(['category_id'=>$id])->get();
+        return response()->json($data);
+    }
     public function edit($id){
         $category=Product_Category::latest()->get();
         $sub_category=Product_sub_category::find($id);
