@@ -81,3 +81,4 @@ Route::get('/admin/discount/all',[DiscountController::class,'index'])->name('adm
 Route::get('/admin/discount/get_data',[DiscountController::class,'get_all_data'])->name('admin.discount.all_data');
 Route::get('/admin/discount/edit/{id}',[DiscountController::class,'edit'])->name('admin.discount,edit');
 Route::post('/admin/discount/delete',[DiscountController::class,'delete'])->name('admin.discount.delete');
+Route::post('/admin/discount/store',[DiscountController::class,'store'])->name('admin.discount.store');

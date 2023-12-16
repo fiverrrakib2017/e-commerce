@@ -23,7 +23,7 @@
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <a  href="{{route('admin.category.create')}}" class="btn btn btn-success">Add New Discount</a>
+        <button  type="button" class="btn btn btn-success"  data-toggle="modal" data-target="#addModal">Add Discount Coupon</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">
@@ -77,7 +77,115 @@
     </div>
 </div>
 <!--End Delete MODAL ---->
+<div id="addModal" class="modal fade effect-scale">
+        <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
+            <div class="modal-content tx-size-sm">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Discount Coupon</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <!----- Start Add  Form ------->
+        <form action="{{route('admin.discount.store')}}" method="post">
+        @csrf
 
+        <div class="modal-body ">
+            <!----- Start Add  Form input ------->
+            <div class="col-xl-12">
+                <div class="form-layout form-layout-4">
+
+                    <div class="row mb-4 mt-4">
+                        <label class="col-sm-3 form-control-label">Code <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="text" name="code" class="form-control" placeholder="Enter Code" required>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Name: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="text" name="name" class="form-control" placeholder="Enter  Name" required>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Description: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <textarea type="text" name="description" class="form-control" placeholder="Enter  Name" ></textarea>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Maximum Usage: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="number" name="max_use" class="form-control" placeholder="Enter  Maximum Usage" required/>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4 mt-4">
+                        <label class="col-sm-3 form-control-label">Type: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                            <select class="form-control " name="type" required>
+                                <option value="">---Select---</option>
+                                <option value="fixed">Fixed</option>
+                                <option value="parcent">Parcent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Discount Amount: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="number" name="discount_amount" class="form-control" placeholder="Enter Discount Amount" required/>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Minimum Amount: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="number" name="min_amount" class="form-control" placeholder="Enter Minimum Amount" required/>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Start Date: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="date" name="start_date" class="form-control" />
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Expire Date: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="date" name="expire_date" class="form-control" />
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4 mt-4">
+                        <label class="col-sm-3 form-control-label">Status: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                            <select class="form-control " name="status" required>
+                                <option value="">---Select---</option>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success tx-size-xs">Save changes</button>
+            <button type="button" class="btn btn-danger tx-size-xs" data-dismiss="modal">Close</button>
+        </div>
+
+        </form>
+        <!----- End Add Form ------->
+        </div>
+    </div>
+    </div>
 @endsection
 
 @section('script')
@@ -92,6 +200,7 @@
      
       var table=$("#datatable1").DataTable({
         "processing":true,
+        "responsive": true,
         "serverSide":true,
         ajax: "{{ route('admin.discount.all_data') }}",
         language: {
@@ -122,7 +231,14 @@
             "data":"expires_at"
           },
           {
-            "data":"status"
+            "data":"status",
+            render:function(data,type,row){
+              if (row.status==1) {
+                return '<span class="badge badge-success">Active</span>';
+              }else{
+                return '<span class="badge badge-secondary">Inactive</span>';
+              }
+            }
           },
           {
             "data":"created_at"
@@ -155,6 +271,9 @@
     console.log("Delete ID: " + id);
     var value_input = $("input[name*='id']").val(id);
   });
+
+
+  
   /** Handle form submission for delete **/
   $('#deleteModal form').submit(function(e){
     e.preventDefault();
@@ -177,8 +296,45 @@
           // Handle potential success messages
           toastr.error("Error!!!");
         }
+      },
 
-       
+      error: function (xhr, status, error) {
+        // Handle errors if needed
+        console.error(xhr.responseText);
+      }
+    });
+  });
+
+
+
+
+  /** Store The data from the database table **/
+  $('#addModal form').submit(function(e){
+    e.preventDefault();
+
+    var form = $(this);
+    var url = form.attr('action');
+    var formData = form.serialize();
+    /** Use Ajax to send the delete request **/
+    $.ajax({
+      type:'POST',
+      'url':url,
+      data: formData,
+      success: function (response) {
+        $('#addModal').modal('hide');
+        $('#addModal form')[0].reset();
+        if (response.success) {
+          toastr.success(response.success);
+          $('#datatable1').DataTable().ajax.reload( null , false);
+        } else {
+          // Handle validation errors
+          if (response.errors) {
+              var errorMessages = response.errors.join('<br>');
+              toastr.error(errorMessages);
+          }else {
+            toastr.error("Error!!!");
+          }
+        }
       },
 
       error: function (xhr, status, error) {
@@ -199,13 +355,5 @@
         toastr.error("{{ session('error') }}");
     </script>
     @endif
-    
-    <!-- @if(session("errors"))
-        <script>
-            var errors = @json(session('errors'));
-            errors.forEach(function(error) {
-              toastr.error(error);
-            });
-        </script>
-    @endif  -->
+  
 @endsection
