@@ -76,5 +76,8 @@ Route::post('/admin/product/store',[ProductController::class,'store'])->name('ad
 Route::post('/admin/product/delete',[ProductController::class,'delete'])->name('admin.products.delete');
 
 
-/* Product Route*/
-Route::get('/admin/product/discount/all',[DiscountController::class,'index'])->name('admin.discount.index');
+/* Discount Coupon Route*/
+Route::get('/admin/discount/all',[DiscountController::class,'index'])->name('admin.discount.index');
+Route::get('/admin/discount/get_data',[DiscountController::class,'get_all_data'])->name('admin.discount.all_data');
+Route::get('/admin/discount/edit/{id}',[DiscountController::class,'edit'])->name('admin.discount,edit');
+Route::post('/admin/discount/delete',[DiscountController::class,'delete'])->name('admin.discount.delete');
