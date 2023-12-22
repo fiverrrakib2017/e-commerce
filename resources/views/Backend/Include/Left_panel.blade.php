@@ -1,41 +1,151 @@
+@php 
+$route = Route::currentRouteName()
+@endphp
 <div class="br-logo"><a href=""><span>[</span>Pointsoft <i>plus</i><span>]</span></a></div>
     <div class="br-sideleft sideleft-scrollbar">
-      <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
+      
       <ul class="br-sideleft-menu">
+
         <li class="br-menu-item">
           <a href="{{ route('admin.dashboard') }}" class="br-menu-link  {{ Route::is('admin.dashboard') ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
             <span class="menu-item-label">Dashboard</span>
-          </a><!-- br-menu-link -->
-        </li><!-- br-menu-item -->
-
-        <!-- <li class="br-menu-item">
-          <a href="mailbox.html" class="br-menu-link ">
-            <i class="menu-item-icon icon ion-ios-email-outline tx-24"></i>
-            <span class="menu-item-label">Mailbox</span>
           </a>
-        </li> -->
-
+        </li>
+        <!----------Customer  Menu-------------->
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Products</span>
-          </a><!-- br-menu-link -->
+            <span class="menu-item-label">Customer </span>
+          </a>
           <ul class="br-menu-sub" >
-            <li class="sub-item"><a href="{{route('admin.brand.index')}}" class="sub-link {{ Route::is('admin.brand.index') ? 'active' : '' }}">Brand</a></li>
-            <li class="sub-item"><a href="{{route('admin.category.index')}}" class="sub-link {{ Route::is('admin.category.index') ? 'active' : '' }}">Category</a></li>
-            <li class="sub-item"><a href="{{route('admin.subcategory.index')}}" class="sub-link {{ Route::is('admin.subcategory.index') ? 'active' : '' }}">Sub Category</a></li>
-            <li class="sub-item"><a href="{{route('admin.childcategory.index')}}" class="sub-link {{ Route::is('admin.childcategory.index') ? 'active' : '' }}">Child Category</a></li>
-            <li class="sub-item"><a href="{{route('admin.products.create')}}" class="sub-link {{ Route::is('admin.products.create') ? 'active' : '' }}">Add Product</a></li>
-            <li class="sub-item"><a href="{{route('admin.discount.index')}}" class="sub-link {{ Route::is('admin.discount.index') ? 'active' : '' }}">Discount Product</a></li>
-            <li class="sub-item"><a href="{{route('admin.products.index')}}" class="sub-link {{ Route::is('admin.products.index') ? 'active' : '' }}">Product Management</a></li>
+            
+          <li class="sub-item"><a href="#" class="sub-link ">Add Customer</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link">Customer List</a></li>
+            <li class="sub-item"><a href="#" class="sub-link">Customer Invoice</a></li>
+
+            
+          </ul>
+        </li>
+        <!----------Blog  Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Blog </span>
+          </a>
+          <ul class="br-menu-sub" >
+            <li class="sub-item"><a href="#" class="sub-link">Category Add</a></li>
+            <li class="sub-item"><a href="#" class="sub-link">Category List</a></li>
+            <li class="sub-item"><a href="#" class="sub-link ">Add Blog</a></li>
+            <li class="sub-item"><a href="#" class="sub-link ">Blog List</a></li>
+          </ul>
+        </li>
+        <!----------Address  Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Address </span>
+          </a>
+          <ul class="br-menu-sub" >
+            <li class="sub-item"><a href="#" class="sub-link">Country List</a></li>
+            <li class="sub-item"><a href="#" class="sub-link">State List</a></li>
+            <li class="sub-item"><a href="#" class="sub-link">City List</a></li> 
+            <li class="sub-item"><a href="#" class="sub-link ">Add Address</a></li>            
+          </ul>
+        </li>
+        <!----------Product Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/product')?'show-sub':''}}">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Products</span>
+          </a>
+          <ul class="br-menu-sub" >
+            
+          <li class="sub-item"><a href="{{route('admin.brand.index')}}" class="sub-link {{ ($route == 'admin.brand.index' || $route == 'admin.brand.edit' || $route == 'admin.brand.update')? 'active':'' }}">Brand</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.category.index')}}" class="sub-link {{ ($route == 'admin.category.index' || $route == 'admin.category.edit' || $route == 'admin.category.update')? 'active':'' }}">Category</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.subcategory.index')}}" class="sub-link {{ ($route == 'admin.subcategory.index' || $route == 'admin.subcategory.edit' || $route == 'admin.subcategory.update')? 'active':'' }}">Sub Category</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.childcategory.index')}}" class="sub-link {{ ($route == 'admin.childcategory.index' || $route == 'admin.childcategory.edit' || $route == 'admin.childcategory.update')? 'active':'' }}">Child Category</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.products.create')}}" class="sub-link  {{ ( $route == 'admin.products.create')? 'active':'' }}">Add Product</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.shipping.index')}}" class="sub-link {{ ($route == 'admin.shipping.index' || $route == 'admin.discount.edit' || $route == 'admin.discount.update')? 'active':'' }}">Shipping Charge</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.discount.index')}}" class="sub-link {{ ($route == 'admin.discount.index' || $route == 'admin.discount.edit' || $route == 'admin.discount.update')? 'active':'' }}">Discount Product</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.products.index')}}" class="sub-link {{ ($route == 'admin.products.index' || $route == 'admin.products.edit' || $route == 'admin.products.update')? 'active':'' }}">Product Management</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link">Product Review</a></li>
           </ul>
         </li>
 
-        
+
+        <!---------- Orders Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link ">
+            <i class="menu-item-icon icon ion-ios-medkit-outline tx-24"></i>
+            <span class="menu-item-label">Orders </span>
+          </a>
+        </li>
+
+
+        <!----------Saller Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/seller')?'show-sub':''}}">
+            <i class="menu-item-icon icon ion-person-stalker tx-20"></i>
+            <span class="menu-item-label">Seller </span>
+          </a>
+          <ul class="br-menu-sub" >
+            
+          <li class="sub-item"><a href="{{route('admin.seller.create')}}" class="sub-link {{ ($route == 'admin.seller.create')? 'active':'' }}">Seller Add</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.category.index')}}" class="sub-link {{ ($route == 'admin.category.index' || $route == 'admin.category.edit' || $route == 'admin.category.update')? 'active':'' }}">Seller List</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link ">Withdraw Request</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link ">Withdraw Approved</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link ">Withdraw Reject</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link ">Seller Invoice</a></li>
+
+          </ul>
+        </li>
+        <!----------Shop Management Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub ">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Shop </span>
+          </a>
+          <ul class="br-menu-sub" >
+            
+          <li class="sub-item"><a href="#" class="sub-link">Shop Add</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link">Shop List</a></li>
+
+            
+          </ul>
+        </li>
+        <!---------- Subscriber Menu-------------->
+        <li class="br-menu-item">
+          <a href="{{ route('admin.dashboard') }}" class="br-menu-link  {{ Route::is('admin.dashboard') ? 'active' : '' }}">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
+            <span class="menu-item-label">Subscriber </span>
+          </a>
+        </li>
+         <!---------- Settings Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link ">
+            <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
+            <span class="menu-item-label">Business Settings</span>
+          </a>
+        </li>
       </ul><!-- br-sideleft-menu -->
 
-      <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Information Summary</label>
+      <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-success">System Information</label>
 
       <div class="info-list">
         <div class="info-list-item">

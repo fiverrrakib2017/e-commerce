@@ -1,3 +1,9 @@
+@php
+
+   $prefix= Request::route()->getPrefix();
+   $route=Route::current()->getname();
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
   <head>

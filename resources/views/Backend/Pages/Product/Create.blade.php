@@ -457,7 +457,7 @@
         sub_category_Dropdown.innerHTML = ''; // Clear previous options
         if (category_id) {
             // Send an AJAX request 
-            fetch('/get-sub_category/' + category_id)
+            fetch('/admin/product/get-sub_category/' + category_id)
               .then(response => response.json())
               .then(data => {
                 data.forEach(data => {
@@ -477,7 +477,7 @@
         child_category_Dropdown.innerHTML = ''; // Clear previous options
         if (sub_category_id) {
             // Send an AJAX request 
-            fetch('/get-child_category/' + sub_category_id)
+            fetch('/admin/product/get-child_category/' + sub_category_id)
               .then(response => response.json())
               .then(data => {
                 data.forEach(data => {

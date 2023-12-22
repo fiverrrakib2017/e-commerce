@@ -378,7 +378,7 @@
       var id = $(this).data('id');
       $.ajax({
           type: 'GET',
-          url: '/admin/product/discount/edit/' + id,
+          url: '/admin/discount/edit/' + id,
           success: function (response) {
               if (response.success) {
                 $('#editModal').modal('show');

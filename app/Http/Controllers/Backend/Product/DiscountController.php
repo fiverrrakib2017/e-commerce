@@ -31,7 +31,8 @@ class DiscountController extends Controller
     	]);
     }
     public function edit($id){
-        return $id;
+        $discount = Discount_Coupon::findOrFail($id);
+        return response()->json(['success' => true, 'data' => $discount]);
     }
     public function delete(Request $request){
         $coupon = Discount_Coupon::find($request->id);
@@ -76,7 +77,40 @@ class DiscountController extends Controller
         $discount->expires_at=$request->expire_date;
         $discount->save();
         return response()->json(['success'=>'Coupon Added successfully']);
-
     }
+    public function update(Request $request){
+        // Validate the form data
+        $ruls=[
+            'code' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'max_use' => 'required|integer',
+            'type' => 'required|in:fixed,parcent',
+            'discount_amount' => 'required|numeric',
+            'min_amount' => 'required|numeric',
+            'start_date' => 'required|date',
+            'expire_date' => 'required|date|after:start_date',
+            'status' => 'required|in:0,1',
+        ];
+        $validator = Validator::make($request->all(), $ruls);
+        if ($validator->fails()) {
+            return redirect()->back()->with('errors', $validator->errors()->all())->withInput();
+        }
+        $discount =Discount_Coupon::find($request->id);
+        $discount->code=$request->code;
+        $discount->name=$request->name;
+        $discount->description=$request->description;
+        $discount->max_use=$request->max_use;
+        $discount->type=$request->type;
+        $discount->discount_amount=$request->discount_amount;
+        $discount->min_amount=$request->min_amount;
+        $discount->status=$request->status;
+        $discount->starts_at=$request->start_date;
+        $discount->expires_at=$request->expire_date;
+        $discount->update();
+        return response()->json(['success'=>'Coupon Update successfully']);
+    }
+    
+
     
 }
