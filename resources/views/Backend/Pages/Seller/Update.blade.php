@@ -24,22 +24,22 @@
     <div class="col-md-6 m-auto">
     <div class="card">
     <div class="card-header bg-info text-white">
-      <h6>Add New Seller</h6>
+      <h6>Update Seller</h6>
     </div>
     <div class="card-body">
-    <form method="post" action="{{route('admin.seller.store')}}" id="productForm" enctype="multipart/form-data">   
+    <form method="post" action="{{route('admin.seller.update',$data->id)}}" id="productForm" enctype="multipart/form-data">   
       @csrf     
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Full Name</label>
-                <input type="text"  class="form-control" name="fullname"  placeholder="Enter Full Name" required>
+                <input type="text"  class="form-control" name="fullname"  placeholder="Enter Full Name" value="{{$data->fullname}}" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Email Address</label>
-                <input type="email"  class="form-control" name="email_address">
+                <input type="email"  class="form-control" name="email_address" value="{{$data->email_address}}">
             </div>
             </div>
           </div>
@@ -49,13 +49,21 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Profile Image</label>
-                <input type="file"  class="form-control" name="profile_image" >
+                <input type="file"  class="form-control" name="profile_image" ><br>
+
+                @if (!empty($data->profile_image))
+                    <img src="{{ asset('Backend/images/seller/' . $data->profile_image) }}" height="90px" width="150px" alt="">
+                @else 
+                    <img src="{{ asset('Backend/images/default.jpg') }}" height="90px" width="150px" alt="">
+                @endif
+
+              
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Phone Number</label>
-                <input type="text"  class="form-control" name="phone_number">
+                <input type="text"  class="form-control" name="phone_number" value="{{$data->phone_number}}">
             </div>
             </div>
           </div>
@@ -65,13 +73,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Emergency Contract</label>
-                <input type="text"  class="form-control" name="e_contract" placeholder="Enter Emergency Contract">
+                <input type="text"  class="form-control" name="e_contract" placeholder="Enter Emergency Contract" value="{{ $data->emergency_contract }}">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">City</label>
-                <input type="text"  class="form-control" name="city">
+                <input type="text"  class="form-control" name="city" value="{{$data->city}}">
             </div>
             </div>
           </div>
@@ -80,13 +88,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">State</label>
-                <input type="text"  class="form-control" name="state" placeholder="Enter State">
+                <input type="text"  class="form-control" name="state" placeholder="Enter State" value="{{$data->state}}">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Address</label>
-                <input type="text"  class="form-control" name="address" placeholder="Enter Address">
+                <input type="text"  class="form-control" name="address" placeholder="Enter Address" value="{{$data->address}}">
             </div>
             </div>
           </div>
@@ -96,15 +104,15 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Date Of Birth</label>
-                <input type="date"  class="form-control" name="date_of_birth">
+                <input type="date"  class="form-control" name="date_of_birth" value="{{$data->dob}}">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Gender</label>
                 <select type="text"  class="form-control" name="gender">
-                    <option value="1">Male</option>
-                    <option value="0">Female</option>
+                    <option value="1" {{ $data->gender == 1 ? 'selected' : '' }}>Male</option>
+                    <option value="0" {{ $data->gender == 0 ? 'selected' : '' }}>Female</option>
                 </select>
             </div>
             </div>
@@ -112,9 +120,9 @@
               <div class="form-group">
                 <label for="">Marital Status</label>
                 <select type="text"  class="form-control" name="marital_status">
-                    <option value="1">Single</option>
-                    <option value="2">Married</option>
-                    <option value="3">Devorce</option>
+                    <option value="1" {{ $data->marital_status == 1 ? 'selected' : '' }}>Single</option>
+                    <option value="2" {{ $data->marital_status == 2 ? 'selected' : '' }}>Married</option>
+                    <option value="3" {{ $data->marital_status == 3 ? 'selected' : '' }}>Devorce</option>
                 </select>
             </div>
             </div>
@@ -125,15 +133,15 @@
               <div class="form-group">
                 <label for="">Varification Status</label>
                 <select type="text"  class="form-control" name="verification_status">
-                    <option value="1">Completed</option>
-                    <option value="2">Panding</option>
+                    <option value="1" {{ $data->verification_status == 1 ? 'selected' : '' }}>Completed</option>
+                    <option value="2" {{ $data->verification_status == 2 ? 'selected' : '' }}>Panding</option>
                 </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Verification Info</label>
-                <textarea type="text"  class="form-control" name="verification_info" placeholder="Enter Verification Info"></textarea>
+                <textarea type="text"  class="form-control" name="verification_info" placeholder="Enter Verification Info">{{ $data->verification_info}}</textarea>
             </div>
             </div>
           </div>
@@ -143,19 +151,19 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Opening Balance</label>
-                <input type="number"  class="form-control" name="opening_balance" placeholder="Enter Amount">
+                <input type="number"  class="form-control" name="opening_balance" placeholder="Enter Amount" value="{{$data->opening_balance}}">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Bank Name</label>
-                <input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name">
+                <input type="text" class="form-control" name="bank_name" placeholder="Enter Bank Name" value="{{$data->bank_name}}">
             </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Bank Account Name</label>
-                <input type="text" class="form-control" name="bank_account_name" placeholder="Enter Bank Account Name">
+                <input type="text" class="form-control" name="bank_account_name" placeholder="Enter Bank Account Name" value="{{$data->bank_acc_name}}">
             </div>
             </div>
           </div>
@@ -165,22 +173,22 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Bank Account Number</label>
-                <input type="number"  class="form-control" name="bank_acc_no" placeholder="Enter Bank Account Number">
+                <input type="number"  class="form-control" name="bank_acc_no" placeholder="Enter Bank Account Number" value="{{$data->bank_acc_no}}">
               </div>
             </div>
 
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Bank Routing Number</label>
-                <input type="number"  class="form-control" name="bank_routing_no" placeholder="Enter Bank Routing Number">
+                <input type="number"  class="form-control" name="bank_routing_no" placeholder="Enter Bank Routing Number" value="{{$data->bank_routing_no}}">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Bank Payment Status</label>
                 <select type="text"  class="form-control" name="bank_payment_status">
-                    <option value="1">Completed</option>
-                    <option value="2">Panding</option>
+                    <option value="1"{{ $data->bank_payment_status == 1 ? 'selected' : '' }}>Completed</option>
+                    <option value="2" {{ $data->bank_payment_status == 2 ? 'selected' : '' }}>Panding</option>
                 </select>
             </div>
             </div>
@@ -189,6 +197,7 @@
 
           <div class="form-group">
             <button type="submit" class="btn btn-success">Add Now</button>
+            
             <button onclick="history.back();" type="button" class="btn btn-danger">Back</button>
           </div>
         </form>
@@ -214,23 +223,5 @@
   </script>
 
 
-@if(session('success'))
-    <script>
-        toastr.success("{{ session('success') }}");
-    </script>
-    @elseif(session('error'))
-    <script>
-        toastr.error("{{ session('error') }}");
-    </script>
-    @endif
-    
-    <!-- @if(session("errors"))
-        <script>
-            var errors = @json(session('errors'));
-            errors.forEach(function(error) {
-              toastr.error(error);
-            });
-        </script>
-    @endif  -->
-@endsection
+
 

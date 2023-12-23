@@ -107,5 +107,8 @@ Route::get('create',[SellerController::class,'create'])->name('admin.seller.crea
 Route::post('store',[SellerController::class,'store'])->name('admin.seller.store');
 Route::get('all',[SellerController::class,'index'])->name('admin.seller.index');
 Route::get('/all_data',[SellerController::class,'get_all_data'])->name('admin.seller.all_data');
+Route::post('/delete',[SellerController::class,'delete'])->name('admin.seller.delete');
+Route::get('/edit/{id}',[SellerController::class,'edit'])->name('admin.seller.edit');
+Route::post('/update/{id}',[SellerController::class,'update'])->name('admin.seller.update');
 });
 

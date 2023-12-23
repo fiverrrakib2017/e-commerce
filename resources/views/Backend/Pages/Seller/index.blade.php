@@ -57,7 +57,7 @@
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="{{route('admin.discount.delete')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.seller.delete')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -156,10 +156,13 @@
             "data":"created_at"
           },
           {
-            render:function(data,type,row){
-              return `<button class="btn btn-primary btn-sm mr-3 edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></button>
-                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`
-            }
+            render: function (data, type, row) {
+              var editUrl = "{{ route('admin.seller.edit', ':id') }}".replace(':id', row.id);
+              
+              return `<a href="${editUrl}" class="btn btn-primary btn-sm mr-3 edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></a>
+              <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`;
+            } 
+
           },
         ],
         order:[
@@ -180,7 +183,6 @@
   $('#datatable1 tbody').on('click', '.delete-btn', function () {
     var id = $(this).data('id');
     $('#deleteModal').modal('show');
-    console.log("Delete ID: " + id);
     var value_input = $("input[name*='id']").val(id);
   });
 
