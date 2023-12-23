@@ -12,6 +12,24 @@ class SellerController extends Controller
     public function create(){
         return view('Backend.Pages.Seller.Create');
     }
+    public function get_all_data(Request $request){
+        $search=$request->search['value'];
+        $columnsForOrderBy=['id','fullname','email_address','profile_image','phone_number','emergency_contract','city','state'];
+        $orderByColumn=$request->order[0]['column'];
+        $orderDirectection=$request->order[0]['dir'];
+
+        $coupon=Seller::when($search,function($query)use($search){
+            $query->where('fullname','like',"%$search%");
+        })->orderBy($columnsForOrderBy[$orderByColumn],$orderDirectection);
+        $total=$coupon->count();
+        $item=$coupon->skip($request->start)->take($request->length)->get();
+        return response()->json([
+    		'draw'=>$request->draw,
+    		'recordsTotal'=>$total,
+    		'recordsFiltered'=>$total,
+    		'data' => $item
+    	]);
+    }
     public function store(Request $request)
 {
     // Validate the form data

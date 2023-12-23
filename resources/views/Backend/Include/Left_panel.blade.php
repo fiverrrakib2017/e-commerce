@@ -102,7 +102,7 @@ $route = Route::currentRouteName()
             
           <li class="sub-item"><a href="{{route('admin.seller.create')}}" class="sub-link {{ ($route == 'admin.seller.create')? 'active':'' }}">Seller Add</a></li>
 
-            <li class="sub-item"><a href="{{route('admin.category.index')}}" class="sub-link {{ ($route == 'admin.category.index' || $route == 'admin.category.edit' || $route == 'admin.category.update')? 'active':'' }}">Seller List</a></li>
+            <li class="sub-item"><a href="{{route('admin.seller.index')}}" class="sub-link {{ ($route == 'admin.seller.index' || $route == 'admin.category.edit')? 'active':'' }}">Seller List</a></li>
 
             <li class="sub-item"><a href="#" class="sub-link ">Withdraw Request</a></li>
 

@@ -14,15 +14,15 @@
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
           <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
-          <a class="breadcrumb-item" href="{{route('admin.products.index')}}">Product</a>
-          <span class="breadcrumb-item active">Discount Coupon</span>
+          <a class="breadcrumb-item" href="{{route('admin.seller.index')}}">Seller</a>
+          <span class="breadcrumb-item active">List</span>
         </nav>
       </div><!-- br-pageheader -->
 <div class="br-section-wrapper" style="padding: 0px !important;"> 
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <button  type="button" class="btn btn btn-success"  data-toggle="modal" data-target="#addModal">Add Discount Coupon</a>
+        <a href="{{route('admin.seller.create')}}" class="btn btn btn-success">Add New Seller</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">
@@ -37,7 +37,7 @@
           <th class="">Address</th>
           <th class="">Opening Balance</th>
           <th class="">Bank Payment Status</th>
-          <th class="">Status</th>
+          <th class="">Verification Status</th>
           <th class="">Create Date</th>
           <th class="">Action</th>
         </tr>
@@ -93,7 +93,7 @@
         "serverSide":true,
         beforeSend: function () {
         },
-        ajax: "{{ route('admin.discount.all_data') }}",
+        ajax: "{{ route('admin.seller.all_data') }}",
         language: {
           searchPlaceholder: 'Search...',
           sSearch: '',
@@ -104,27 +104,48 @@
             "data":"id"
           },
           {
-            "data":"code"
+            "data":"profile_image",
+            render:function(data,type,row){             
+
+              if(row.profile_image.length!==0){
+                return '<img src="{{ asset("Backend/images/seller") }}/' + row.profile_image + '" width="100px" height="90px" class="img-fluid">';
+              }else{
+                return '<img src="{{ asset("Backend/images/default.jpg") }}" width="100px" height="90px" class="img-fluid">';
+              }
+            }
           },
           {
-            "data":"name"
+            "data":"fullname"
           },
           {
-            "data":"max_use"
+            "data":"phone_number"
           },
           {
-            "data":"discount_amount"
+            "data":"city"
           },
           {
-            "data":"min_amount"
+            "data":"state"
           },
           {
-            "data":"expires_at"
+            "data":"address"
           },
           {
-            "data":"status",
+            "data":"opening_balance"
+          },
+          {
+            "data":"bank_payment_status",
             render:function(data,type,row){
-              if (row.status==1) {
+              if (row.bank_payment_status==1) {
+                return '<span class="badge badge-success">Active</span>';
+              }else{
+                return '<span class="badge badge-secondary">Inactive</span>';
+              }
+            }
+          },
+          {
+            "data":"verification_status",
+            render:function(data,type,row){
+              if (row.verification_status==1) {
                 return '<span class="badge badge-success">Active</span>';
               }else{
                 return '<span class="badge badge-secondary">Inactive</span>';
@@ -151,39 +172,7 @@
 
 
 
-    /** Handle edit button click**/
-    $('#datatable1 tbody').on('click', '.edit-btn', function () {
-      var id = $(this).data('id');
-      $.ajax({
-          type: 'GET',
-          url: '/admin/product/discount/edit/' + id,
-          success: function (response) {
-              if (response.success) {
-                $('#editModal').modal('show');
-                $('#editModal input[name="id"]').val(response.data.id);
-                $('#editModal input[name="code"]').val(response.data.code);
-                $('#editModal input[name="name"]').val(response.data.name);
-                $('#editModal textarea[name="description"]').val(response.data.description);
-                $('#editModal input[name="max_use"]').val(response.data.max_use);
-                $('#editModal select[name="type"]').val(response.data.type);
-                $('#editModal input[name="discount_amount"]').val(response.data.discount_amount);
-                $('#editModal input[name="min_amount"]').val(response.data.min_amount);
-                var startDate = new Date(response.data.starts_at);
-                var expireDate = new Date(response.data.expires_at);
-                $('#editModal input[name="start_date"]').val(startDate.toISOString().split('T')[0]);
-                $('#editModal input[name="expire_date"]').val(expireDate.toISOString().split('T')[0]);
-                $('#editModal select[name="status"]').val(response.data.status);
-              } else {
-                toastr.error("Error fetching data for edit!");
-              }
-          },
-          error: function (xhr, status, error) {
-            console.error(xhr.responseText);
-            toastr.error("Error fetching data for edit!");
-          }
-      });
-    });
-
+   
 
 
 

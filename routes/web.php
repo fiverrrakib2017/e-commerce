@@ -106,6 +106,6 @@ Route::prefix('admin/seller')->group(function(){
 Route::get('create',[SellerController::class,'create'])->name('admin.seller.create');
 Route::post('store',[SellerController::class,'store'])->name('admin.seller.store');
 Route::get('all',[SellerController::class,'index'])->name('admin.seller.index');
-
+Route::get('/all_data',[SellerController::class,'get_all_data'])->name('admin.seller.all_data');
 });
 

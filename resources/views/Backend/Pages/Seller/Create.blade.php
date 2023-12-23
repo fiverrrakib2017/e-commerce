@@ -189,7 +189,7 @@
 
           <div class="form-group">
             <button type="submit" class="btn btn-success">Add Now</button>
-            <button type="button" class="btn btn-danger">Back</button>
+            <button onclick="history.back();" type="button" class="btn btn-danger">Back</button>
           </div>
         </form>
     </div>
