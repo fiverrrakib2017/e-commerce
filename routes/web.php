@@ -102,7 +102,7 @@ Route::post('/discount/update',[DiscountController::class,'update'])->name('admi
 
 /** Seller Route **/
 Route::prefix('admin/seller')->group(function(){
-
+/** Seller Route **/
 Route::get('create',[SellerController::class,'create'])->name('admin.seller.create');
 Route::post('store',[SellerController::class,'store'])->name('admin.seller.store');
 Route::get('all',[SellerController::class,'index'])->name('admin.seller.index');
@@ -110,5 +110,14 @@ Route::get('/all_data',[SellerController::class,'get_all_data'])->name('admin.se
 Route::post('/delete',[SellerController::class,'delete'])->name('admin.seller.delete');
 Route::get('/edit/{id}',[SellerController::class,'edit'])->name('admin.seller.edit');
 Route::post('/update/{id}',[SellerController::class,'update'])->name('admin.seller.update');
+/** Seller Withdraw Route **/
+
+Route::get('/withdraw/index',[SellerController::class,'seller_withdraw_index'])->name('admin.seller.withdraw.index');
+Route::get('/withdraw/all_data',[SellerController::class,'get_all_withdraw_data'])->name('admin.seller.withdraw.all_data');
+Route::get('/withdraw/get/seller/name/{id}',[SellerController::class,'get_all_withdraw_seller_name'])->name('admin.seller.withdraw.get_seller_name');
+Route::get('/withdraw/edit/{id}',[SellerController::class,'seller_withdraw_edit'])->name('admin.seller.withdraw.edit');
+Route::post('/withdraw/update/',[SellerController::class,'seller_withdraw_update'])->name('admin.seller.withdraw.update');
+Route::post('/withdraw/add/',[SellerController::class,'seller_withdraw_add'])->name('admin.seller.withdraw.add');
+Route::post('/withdraw/delete/',[SellerController::class,'seller_withdraw_delete'])->name('admin.seller.withdraw.delete');
 });
 
