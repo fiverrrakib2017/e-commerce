@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Product\ShippingController;
 use App\Http\Controllers\Backend\Product\SubCateogryController;
 use App\Http\Controllers\Backend\Product\TempImageController;
 use App\Http\Controllers\Backend\Seller\SellerController;
+use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Frontend\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -127,6 +128,14 @@ Route::get('/withdraw/approve/all',[SellerController::class,'seller_withdraw_app
 /** Seller  Withdraw Reject Route **/
 Route::get('/withdraw/reject/all',[SellerController::class,'seller_withdraw_reject'])->name('admin.seller.withdraw.reject.index');
 
+/** Seller Review Route **/
+Route::get('/review/all',[SellerController::class,'seller_review'])->name('admin.seller.review.index');
 
 });
 
+/** Shop  Route **/
+Route::prefix('admin/shop')->group(function(){
+    Route::get('/list',[ShopController::class,'index'])->name('admin.shop.index');
+    Route::get('/create',[ShopController::class,'create'])->name('admin.shop.create');
+    Route::post('/store',[ShopController::class,'store'])->name('admin.shop.store');
+});

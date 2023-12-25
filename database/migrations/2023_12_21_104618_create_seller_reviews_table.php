@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('seller_id');
             $table->text('comment');
+            $table->text('rating');
             $table->text('photo')->nullable();
+            $table->integer('status');
             $table->timestamps();
         
             $table->foreign('seller_id')

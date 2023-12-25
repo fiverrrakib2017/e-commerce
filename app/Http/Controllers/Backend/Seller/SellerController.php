@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Models\Seller;
+use App\Models\Seller_review;
 use App\Models\Seller_withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -316,6 +317,11 @@ class SellerController extends Controller
     public function seller_withdraw_reject(){
         $data=Seller_withdraw::with('seller')->where(['status'=>'3'])->get();
         return view('Backend.Pages.Seller.Withdraw.Reject', compact('data'));
+    }
+    public function seller_review(){
+        $data=Seller_review::with('seller')->latest()->get();
+        return view('Backend.Pages.Seller.Review', compact('data'));
+
     }
 
 }

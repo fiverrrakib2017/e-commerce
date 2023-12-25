@@ -110,7 +110,7 @@ $route = Route::currentRouteName()
 
             <li class="sub-item"><a href="{{route('admin.seller.withdraw.reject.index')}}" class="sub-link {{ ($route == 'admin.seller.withdraw.reject.index')? 'active':'' }}">Withdraw Reject</a></li>
             
-            <li class="sub-item"><a href="#" class="sub-link ">Seller Review</a></li>
+            <li class="sub-item"><a href="{{route('admin.seller.review.index')}}" class="sub-link {{ ($route == 'admin.seller.review.index')? 'active':'' }}">Seller Review</a></li>
 
             <li class="sub-item"><a href="#" class="sub-link ">Seller Invoice</a></li>
 
@@ -118,15 +118,15 @@ $route = Route::currentRouteName()
         </li>
         <!----------Shop Management Menu-------------->
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub ">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/shop')?'show-sub':''}}">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
             <span class="menu-item-label">Shop </span>
           </a>
           <ul class="br-menu-sub" >
             
-          <li class="sub-item"><a href="#" class="sub-link">Shop Add</a></li>
+          <li class="sub-item"><a href="{{route('admin.shop.create')}}" class="sub-link {{ ($route == 'admin.shop.create')? 'active':'' }}">Shop Add</a></li>
 
-            <li class="sub-item"><a href="#" class="sub-link">Shop List</a></li>
+            <li class="sub-item"><a href="{{route('admin.shop.index')}}" class="sub-link {{ ($route == 'admin.shop.index')? 'active':'' }}">Shop Management</a></li>
 
             
           </ul>
