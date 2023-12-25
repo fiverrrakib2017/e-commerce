@@ -123,8 +123,12 @@ $route = Route::currentRouteName()
             <span class="menu-item-label">Shop </span>
           </a>
           <ul class="br-menu-sub" >
-            
-          <li class="sub-item"><a href="{{route('admin.shop.create')}}" class="sub-link {{ ($route == 'admin.shop.create')? 'active':'' }}">Shop Add</a></li>
+
+            <li class="sub-item"><a href="#" class="sub-link ">Pickup Point</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.staff.index')}}" class="sub-link {{ ($route == 'admin.staff.index')? 'active':'' }}">Staff List</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.shop.create')}}" class="sub-link {{ ($route == 'admin.shop.create')? 'active':'' }}">Shop Add</a></li>
 
             <li class="sub-item"><a href="{{route('admin.shop.index')}}" class="sub-link {{ ($route == 'admin.shop.index')? 'active':'' }}">Shop Management</a></li>
 

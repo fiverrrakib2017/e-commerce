@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Product\SubCateogryController;
 use App\Http\Controllers\Backend\Product\TempImageController;
 use App\Http\Controllers\Backend\Seller\SellerController;
 use App\Http\Controllers\Backend\Shop\ShopController;
+use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Frontend\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -138,4 +139,12 @@ Route::prefix('admin/shop')->group(function(){
     Route::get('/list',[ShopController::class,'index'])->name('admin.shop.index');
     Route::get('/create',[ShopController::class,'create'])->name('admin.shop.create');
     Route::post('/store',[ShopController::class,'store'])->name('admin.shop.store');
+    /** Staff  Route **/
+    Route::get('/staff/list',[StaffController::class,'index'])->name('admin.staff.index');
+    Route::get('/staff/all_data',[StaffController::class,'all_data'])->name('admin.staff.all_data');
+    Route::post('/staff/store',[StaffController::class,'store'])->name('admin.staff.store');
+    Route::get('/staff/edit/{id}',[StaffController::class,'edit'])->name('admin.staff.edit');
+    Route::post('/staff/update/',[StaffController::class,'update'])->name('admin.staff.update');
+    Route::post('/staff/delete/',[StaffController::class,'delete'])->name('admin.staff.delete');
+
 });
