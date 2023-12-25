@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('email_address');
-            $table->text('profile_image');
+            $table->text('profile_image')->nullable();
             $table->string('phone_number');
             $table->string('emergency_contract');
             $table->string('city');

@@ -7,7 +7,7 @@ use App\Models\Seller;
 use App\Models\Seller_withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\Validator;
 class SellerController extends Controller
 {
     public function create()
@@ -35,28 +35,34 @@ class SellerController extends Controller
     }
     public function store(Request $request)
     {
+       //return  $request->all(); exit;
         // Validate the form data
-        $request->validate([
+        $rules=[
             'fullname' => 'required|string',
             'email_address' => 'required|email',
             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'phone_number' => 'nullable|string',
-            'e_contract' => 'nullable|string',
-            'city' => 'nullable|string',
-            'state' => 'nullable|string',
-            'address' => 'nullable|string',
-            'date_of_birth' => 'nullable|date',
-            'gender' => 'nullable|in:1,0',
-            'marital_status' => 'nullable|in:1,2,3',
-            'verification_status' => 'nullable|in:1,2',
+            'phone_number' => 'required|string',
+            'e_contract' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'address' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|in:1,0',
+            'marital_status' => 'required|in:1,2,3',
+            'verification_status' => 'required|in:1,2',
             'verification_info' => 'nullable|string',
             'opening_balance' => 'nullable|numeric',
-            'bank_name' => 'nullable|string',
-            'bank_account_name' => 'nullable|string',
-            'bank_acc_no' => 'nullable|string',
-            'bank_routing_no' => 'nullable|numeric',
-            'bank_payment_status' => 'nullable|in:1,2',
-        ]);
+            'bank_name' => 'required|string',
+            'bank_account_name' => 'required|string',
+            'bank_acc_no' => 'required|string',
+            'bank_routing_no' => 'required|numeric',
+            'bank_payment_status' => 'required|in:1,2',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('errors', $validator->errors()->all())->withInput();
+        }
 
         // Handle file upload
         if ($request->hasFile('profile_image')) {
@@ -64,7 +70,7 @@ class SellerController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('Backend/images/seller'), $imageName);
         } else {
-            $imageName = null;
+            $imageName = '';
         }
 
         // Create a new seller
@@ -302,6 +308,14 @@ class SellerController extends Controller
         $object=Seller_withdraw::find($request->id);
         $object->delete();
         return response()->json(['success'=>'Delete Successful']);
+    }
+    public function seller_withdraw_approve(){
+        $data=Seller_withdraw::with('seller')->where(['status'=>'1'])->get();
+        return view('Backend.Pages.Seller.Withdraw.Approve', compact('data'));
+    }
+    public function seller_withdraw_reject(){
+        $data=Seller_withdraw::with('seller')->where(['status'=>'3'])->get();
+        return view('Backend.Pages.Seller.Withdraw.Reject', compact('data'));
     }
 
 }

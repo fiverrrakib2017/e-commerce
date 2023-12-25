@@ -56,8 +56,9 @@
           <label for="">Status</label>
           <select type="text" class="form-control" name="status">
               <option value="">Select</option>
-              <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>Active</option>
-              <option value="0" {{ $data->status == 0 ? 'selected' : '' }}>Inactive</option>
+              <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>Approve</option>
+              <option value="2" {{ $data->status == 2 ? 'selected' : '' }}>Pending</option>
+              <option value="3" {{ $data->status == 3 ? 'selected' : '' }}>Reject</option>
           </select>
         </div>
             </div>

@@ -106,9 +106,9 @@ $route = Route::currentRouteName()
 
             <li class="sub-item"><a href="{{route('admin.seller.withdraw.index')}}" class="sub-link {{ ($route == 'admin.seller.withdraw.index'||$route == 'admin.seller.withdraw.edit')? 'active':'' }}">Withdraw Request</a></li>
 
-            <li class="sub-item"><a href="#" class="sub-link ">Withdraw Approved</a></li>
+            <li class="sub-item"><a href="{{route('admin.seller.withdraw.approve.index')}}" class="sub-link {{ ($route == 'admin.seller.withdraw.approve.index')? 'active':'' }}">Withdraw Approved</a></li>
 
-            <li class="sub-item"><a href="#" class="sub-link ">Withdraw Reject</a></li>
+            <li class="sub-item"><a href="{{route('admin.seller.withdraw.reject.index')}}" class="sub-link {{ ($route == 'admin.seller.withdraw.reject.index')? 'active':'' }}">Withdraw Reject</a></li>
             
             <li class="sub-item"><a href="#" class="sub-link ">Seller Review</a></li>
 

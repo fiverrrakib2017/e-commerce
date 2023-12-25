@@ -110,6 +110,7 @@ Route::get('/all_data',[SellerController::class,'get_all_data'])->name('admin.se
 Route::post('/delete',[SellerController::class,'delete'])->name('admin.seller.delete');
 Route::get('/edit/{id}',[SellerController::class,'edit'])->name('admin.seller.edit');
 Route::post('/update/{id}',[SellerController::class,'update'])->name('admin.seller.update');
+
 /** Seller Withdraw Route **/
 
 Route::get('/withdraw/index',[SellerController::class,'seller_withdraw_index'])->name('admin.seller.withdraw.index');
@@ -119,5 +120,13 @@ Route::get('/withdraw/edit/{id}',[SellerController::class,'seller_withdraw_edit'
 Route::post('/withdraw/update/',[SellerController::class,'seller_withdraw_update'])->name('admin.seller.withdraw.update');
 Route::post('/withdraw/add/',[SellerController::class,'seller_withdraw_add'])->name('admin.seller.withdraw.add');
 Route::post('/withdraw/delete/',[SellerController::class,'seller_withdraw_delete'])->name('admin.seller.withdraw.delete');
+
+/** Seller  Withdraw Approve Route **/
+Route::get('/withdraw/approve/all',[SellerController::class,'seller_withdraw_approve'])->name('admin.seller.withdraw.approve.index');
+
+/** Seller  Withdraw Reject Route **/
+Route::get('/withdraw/reject/all',[SellerController::class,'seller_withdraw_reject'])->name('admin.seller.withdraw.reject.index');
+
+
 });
 

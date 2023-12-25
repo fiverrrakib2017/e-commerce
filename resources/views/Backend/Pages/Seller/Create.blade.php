@@ -65,7 +65,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Emergency Contract</label>
-                <input type="text"  class="form-control" name="e_contract" placeholder="Enter Emergency Contract">
+                <input type="number"  class="form-control" name="e_contract" placeholder="Enter Emergency Contract">
               </div>
             </div>
             <div class="col-md-6">
@@ -224,13 +224,13 @@
     </script>
     @endif
     
-    <!-- @if(session("errors"))
+     @if(session("errors"))
         <script>
             var errors = @json(session('errors'));
             errors.forEach(function(error) {
               toastr.error(error);
             });
         </script>
-    @endif  -->
+    @endif  
 @endsection
 

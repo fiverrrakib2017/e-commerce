@@ -107,7 +107,7 @@
             "data":"profile_image",
             render:function(data,type,row){             
 
-              if(row.profile_image.length!==0){
+              if(row.profile_image!==null){
                 return '<img src="{{ asset("Backend/images/seller") }}/' + row.profile_image + '" width="100px" height="90px" class="img-fluid">';
               }else{
                 return '<img src="{{ asset("Backend/images/default.jpg") }}" width="100px" height="90px" class="img-fluid">';
