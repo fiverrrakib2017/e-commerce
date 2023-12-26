@@ -124,7 +124,7 @@ $route = Route::currentRouteName()
           </a>
           <ul class="br-menu-sub" >
 
-            <li class="sub-item"><a href="#" class="sub-link ">Pickup Point</a></li>
+            <li class="sub-item"><a href="{{route('admin.pickup.index')}}" class="sub-link {{ ($route == 'admin.pickup.index')? 'active':'' }}">Pickup Point</a></li>
 
             <li class="sub-item"><a href="{{route('admin.staff.index')}}" class="sub-link {{ ($route == 'admin.staff.index')? 'active':'' }}">Staff List</a></li>
 

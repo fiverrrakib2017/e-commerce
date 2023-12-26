@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Product\ShippingController;
 use App\Http\Controllers\Backend\Product\SubCateogryController;
 use App\Http\Controllers\Backend\Product\TempImageController;
 use App\Http\Controllers\Backend\Seller\SellerController;
+use App\Http\Controllers\Backend\Shop\pickupController;
 use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Frontend\homeController;
@@ -146,5 +147,12 @@ Route::prefix('admin/shop')->group(function(){
     Route::get('/staff/edit/{id}',[StaffController::class,'edit'])->name('admin.staff.edit');
     Route::post('/staff/update/',[StaffController::class,'update'])->name('admin.staff.update');
     Route::post('/staff/delete/',[StaffController::class,'delete'])->name('admin.staff.delete');
+
+    Route::get('/pickup-point',[pickupController::class,'index'])->name('admin.pickup.index');
+    Route::get('/pickup-point/all/data',[pickupController::class,'get_all_data'])->name('admin.pickup.all_data');
+    Route::post('/pickup-point/store',[pickupController::class,'store'])->name('admin.pickup.store');
+    Route::post('/pickup-point/delete',[pickupController::class,'delete'])->name('admin.pickup.delete');
+    Route::get('/pickup-point/edit/{id}',[pickupController::class,'edit'])->name('admin.pickup.edit');
+    Route::post('/pickup-point/update/',[pickupController::class,'update'])->name('admin.pickup.update');
 
 });

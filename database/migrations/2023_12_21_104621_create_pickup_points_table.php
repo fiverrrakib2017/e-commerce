@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pickup_points', function (Blueprint $table) {
             $table->id();
-            $table->integer('staff_id');
+            $table->unsignedBigInteger('staff_id');
             $table->string('name');
             $table->text('address');
             $table->integer('phone');
@@ -21,10 +21,10 @@ return new class extends Migration
             $table->integer('cash_on_pickup_status')->nullable();
             $table->timestamps();
 
-            // $table->foreign('staff_id')
-            // ->on('staff')
-            // ->references('on')
-            // ->onDelete('cascade');
+            $table->foreign('staff_id')
+            ->references('id') 
+            ->on('staff')
+            ->onDelete('cascade');
         });
     }
 
