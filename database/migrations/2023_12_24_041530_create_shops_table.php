@@ -18,9 +18,10 @@ return new class extends Migration
             $table->text('logo');
             $table->text('slider');
             $table->text('top_banner');
-            $table->text('banner_full_width_1')->nullable();
-            $table->text('banners_half_width')->nullable();
+            $table->text('banner_full_width_1')->nullable(); 
             $table->text('banner_full_width_2')->nullable();
+            $table->text('banner_half_width')->nullable();
+           
             $table->integer('product_upload_limit')->nullable();
             $table->integer('verification_status');
             $table->text('verification_info')->nullable();

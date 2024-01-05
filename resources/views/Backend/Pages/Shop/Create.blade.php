@@ -47,7 +47,10 @@
               <div class="form-group">
                 <label for="">Seller Name</label>
                 <select type="text"  class="form-control" name="seller_id">
-
+                  <option value="">---Select---</option>
+                    @foreach ($seller as $item)
+                      <option value="{{$item->id}}">{{ $item->fullname }}</option>
+                    @endforeach
                 </select>
             </div>
             </div>
@@ -205,7 +208,10 @@
               <div class="form-group">
                 <label for="">Pickup Point</label>
                 <select type="text"  class="form-control" name="pickup_point_id">
-
+                <option value="">---Select---</option>
+                    @foreach ($pickup_point as $item)
+                      <option value="{{$item->id}}">{{ $item->name }}</option>
+                    @endforeach
                 </select>
               </div>
             </div>
