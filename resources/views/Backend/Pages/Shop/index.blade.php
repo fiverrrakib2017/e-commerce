@@ -22,28 +22,51 @@
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <a href="{{route('admin.seller.create')}}" class="btn btn btn-success">Add New Shop</a>
+        <a href="{{route('admin.shop.create')}}" class="btn btn btn-success">Add New Shop</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">
       <thead>
         <tr>
           <th class="">No.</th>
-          <th class="">Shop Name</th>
           <th class="">Logo</th>
+          <th class="">Shop Name</th>
+          <th class="">Seller Name</th>
           <th class="">Product Upload Limit</th>
-          <th class="">City</th>
-          <th class="">State</th>
-          <th class="">Address</th>
+          <th class="">Shipping Cost</th>
           <th class="">Opening Balance</th>
-          <th class="">Bank Payment Status</th>
           <th class="">Verification Status</th>
           <th class="">Create Date</th>
           <th class="">Action</th>
         </tr>
       </thead>
       <tbody>
+      @foreach($data as $key => $shop)
+        <tr>
+            <td>{{ $key + 1 }}</td>
+            <td>
+                <img src="{{ asset('Backend/images/shop/' . $shop->logo) }}" alt="Logo" width="50">
+            </td>
+            <td>{{ $shop->name }}</td>
+            <td>{{ $shop->seller->fullname }}</td>
+            <td>{{ $shop->product_upload_limit }}</td>
+            <td>{{ $shop->shipping_cost }}</td>
+            <td>{{ $shop->admin_to_pay }}</td>
+            <td>
+              @if ($shop->verification_status==1)
+                <span class="badge badge-success">Active</span>
+              @else
+                <span class="badge badge-danger">inActive</span>
+              @endif
+            </td>
 
+            <td>{{ $shop->created_at }}</td>
+            <td>
+            <a href="#" class="btn btn-primary btn-sm mr-3 edit-btn"><i class="fa fa-edit"></i></a>
+            <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="{{$shop->id}}"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+      @endforeach 
       </tbody>
     </table>
       </div>
@@ -57,7 +80,7 @@
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="{{route('admin.seller.delete')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.shop.delete')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -87,89 +110,7 @@
   <script type="text/javascript">
     $(document).ready(function(){
      
-      var table=$("#datatable1").DataTable({
-         "processing":true,
-        "responsive": true,
-        "serverSide":true,
-        beforeSend: function () {
-        },
-        ajax: "{{ route('admin.seller.all_data') }}",
-        language: {
-          searchPlaceholder: 'Search...',
-          sSearch: '',
-          lengthMenu: '_MENU_ items/page',
-        },
-        "columns":[
-          {
-            "data":"id"
-          },
-          {
-            "data":"profile_image",
-            render:function(data,type,row){             
-
-              if(row.profile_image!==null){
-                return '<img src="{{ asset("Backend/images/seller") }}/' + row.profile_image + '" width="100px" height="90px" class="img-fluid">';
-              }else{
-                return '<img src="{{ asset("Backend/images/default.jpg") }}" width="100px" height="90px" class="img-fluid">';
-              }
-            }
-          },
-          {
-            "data":"fullname"
-          },
-          {
-            "data":"phone_number"
-          },
-          {
-            "data":"city"
-          },
-          {
-            "data":"state"
-          },
-          {
-            "data":"address"
-          },
-          {
-            "data":"opening_balance"
-          },
-          {
-            "data":"bank_payment_status",
-            render:function(data,type,row){
-              if (row.bank_payment_status==1) {
-                return '<span class="badge badge-success">Active</span>';
-              }else{
-                return '<span class="badge badge-secondary">Inactive</span>';
-              }
-            }
-          },
-          {
-            "data":"verification_status",
-            render:function(data,type,row){
-              if (row.verification_status==1) {
-                return '<span class="badge badge-success">Active</span>';
-              }else{
-                return '<span class="badge badge-secondary">Inactive</span>';
-              }
-            }
-          },
-          {
-            "data":"created_at"
-          },
-          {
-            render: function (data, type, row) {
-              var editUrl = "{{ route('admin.seller.edit', ':id') }}".replace(':id', row.id);
-              
-              return `<a href="${editUrl}" class="btn btn-primary btn-sm mr-3 edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></a>
-              <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`;
-            } 
-
-          },
-        ],
-        order:[
-          [0, "desc"]
-        ],
-
-      });
+      var table=$("#datatable1").DataTable();
       $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
     });
 

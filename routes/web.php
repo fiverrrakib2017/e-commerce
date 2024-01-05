@@ -140,6 +140,8 @@ Route::prefix('admin/shop')->group(function(){
     Route::get('/list',[ShopController::class,'index'])->name('admin.shop.index');
     Route::get('/create',[ShopController::class,'create'])->name('admin.shop.create');
     Route::post('/store',[ShopController::class,'store'])->name('admin.shop.store');
+    Route::get('/all_data',[ShopController::class,'get_all_data'])->name('admin.shop.all_data');
+    Route::post('/delete',[ShopController::class,'delete'])->name('admin.shop.delete');
     /** Staff  Route **/
     Route::get('/staff/list',[StaffController::class,'index'])->name('admin.staff.index');
     Route::get('/staff/all_data',[StaffController::class,'all_data'])->name('admin.staff.all_data');

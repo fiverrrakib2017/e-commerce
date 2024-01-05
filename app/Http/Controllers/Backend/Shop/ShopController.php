@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     public function index(){
-        
-        return view('Backend.Pages.Shop.index');
+         $data=Shop::with('seller')->latest()->get();
+        return view('Backend.Pages.Shop.index',compact('data'));
     }
     public function create(){
         $seller=Seller::latest()->get();
@@ -22,7 +22,6 @@ class ShopController extends Controller
         return view('Backend.Pages.Shop.Create',compact('seller','pickup_point'));
     }
     public function store(Request $request){
-        //return $request->all(); exit; 
         // Validate the form data
         $ruls=[
             'fullname' => 'required|string|max:255',
@@ -71,6 +70,11 @@ class ShopController extends Controller
         $object->delivery_pickup_longitude=$request->delivery_pickup_longitude;
 
         $object->save();
-        return redirect()->back()->with('success','Shop Add Successfully');
+        return redirect()->route('admin.shop.index')->with('success','Shop Add Successfully');
+    }
+    public function delete(Request $request){
+        $object=Shop::find($request->id);
+        $object->delete();
+        return response()->json(['success'=>'Delete Successful']);
     }
 }
