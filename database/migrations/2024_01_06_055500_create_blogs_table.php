@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('short_description')->nullable();
             $table->text('description');
             $table->text('image');
+            $table->integer('status');
             $table->timestamps();
 
 

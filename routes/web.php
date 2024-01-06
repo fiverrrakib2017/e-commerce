@@ -177,5 +177,7 @@ Route::prefix('admin/blog')->group(function(){
 
     Route::post('/category/update/',[blogCategory::class,'update'])->name('admin.blog.category.update');
     /** Blog  Route **/
-
+    Route::get('/list',[BlogController::class,'index'])->name('admin.blog.index');
+    Route::get('/all-data',[BlogController::class,'get_all_data'])->name('admin.blog.all_data');
+    Route::post('/store/data',[BlogController::class,'store'])->name('admin.blog.store');
 });

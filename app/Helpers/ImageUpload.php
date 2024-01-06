@@ -19,6 +19,22 @@ class ImageUpload{
             $object->$property = '';
         }
     }
+    public static function upload($request, $fieldName, $object, $property, $folder_path){
+        if ($request->hasFile($fieldName)) {
+            $image = $request->file($fieldName);
+            $originalName = $image->getClientOriginalName();
+            $extension = $image->getClientOriginalExtension();
+            $uniqueFilename = md5(uniqid() . $originalName) . '.' . $extension;
+            
+            // Move the file to the destination
+            $image->move(public_path($folder_path), $uniqueFilename);
+
+            // Save the unique filename to the object
+            $object->$property = $uniqueFilename;
+        } else {
+            $object->$property = 'abc.png';
+        }
+    }
 }
 
 
