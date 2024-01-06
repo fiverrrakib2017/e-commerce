@@ -142,6 +142,8 @@ Route::prefix('admin/shop')->group(function(){
     Route::post('/store',[ShopController::class,'store'])->name('admin.shop.store');
     Route::get('/all_data',[ShopController::class,'get_all_data'])->name('admin.shop.all_data');
     Route::post('/delete',[ShopController::class,'delete'])->name('admin.shop.delete');
+    Route::get('/edit/{id}',[ShopController::class,'edit'])->name('admin.shop.edit');
+    Route::post('/update',[ShopController::class,'update'])->name('admin.shop.update');
     /** Staff  Route **/
     Route::get('/staff/list',[StaffController::class,'index'])->name('admin.staff.index');
     Route::get('/staff/all_data',[StaffController::class,'all_data'])->name('admin.staff.all_data');
@@ -149,7 +151,8 @@ Route::prefix('admin/shop')->group(function(){
     Route::get('/staff/edit/{id}',[StaffController::class,'edit'])->name('admin.staff.edit');
     Route::post('/staff/update/',[StaffController::class,'update'])->name('admin.staff.update');
     Route::post('/staff/delete/',[StaffController::class,'delete'])->name('admin.staff.delete');
-
+    
+    /** Pick up Point  Route **/
     Route::get('/pickup-point',[pickupController::class,'index'])->name('admin.pickup.index');
     Route::get('/pickup-point/all/data',[pickupController::class,'get_all_data'])->name('admin.pickup.all_data');
     Route::post('/pickup-point/store',[pickupController::class,'store'])->name('admin.pickup.store');

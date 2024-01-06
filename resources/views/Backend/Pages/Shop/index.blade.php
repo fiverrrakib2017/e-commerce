@@ -62,7 +62,7 @@
 
             <td>{{ $shop->created_at }}</td>
             <td>
-            <a href="#" class="btn btn-primary btn-sm mr-3 edit-btn"><i class="fa fa-edit"></i></a>
+            <a href="{{route('admin.shop.edit',$shop->id)}}" class="btn btn-primary btn-sm mr-3 edit-btn"><i class="fa fa-edit"></i></a>
             <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="{{$shop->id}}"><i class="fa fa-trash"></i></button>
             </td>
         </tr>
