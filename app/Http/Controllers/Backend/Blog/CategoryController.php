@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index(){
-       $data= Blog_Category::latest()->get();
        return view('Backend.Pages.Blog.category');
     }
     public function get_all_data(Request $request){
