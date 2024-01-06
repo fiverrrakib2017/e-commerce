@@ -30,15 +30,14 @@ $route = Route::currentRouteName()
         </li>
         <!----------Blog  Menu-------------->
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/blog')?'show-sub':''}}">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
             <span class="menu-item-label">Blog </span>
           </a>
           <ul class="br-menu-sub" >
-            <li class="sub-item"><a href="#" class="sub-link">Category Add</a></li>
-            <li class="sub-item"><a href="#" class="sub-link">Category List</a></li>
+            <li class="sub-item"><a href="{{route('admin.blog.category.index')}}" class="sub-link {{ ($route == 'admin.blog.category.index')? 'active':'' }}">Manage Category</a></li>
             <li class="sub-item"><a href="#" class="sub-link ">Add Blog</a></li>
-            <li class="sub-item"><a href="#" class="sub-link ">Blog List</a></li>
+            <li class="sub-item"><a href="#" class="sub-link ">Manage Blog</a></li>
           </ul>
         </li>
         <!----------Address  Menu-------------->
