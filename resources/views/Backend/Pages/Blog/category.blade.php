@@ -51,7 +51,7 @@
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.blog.category.delete')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -128,13 +128,13 @@
         <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
             <div class="modal-content tx-size-sm">
             <div class="modal-header pd-x-20">
-                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Discount Coupon</h6>
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Update Category</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         <!----- Start Add  Form ------->
-        <form action="{{route('admin.discount.update')}}" method="post">
+        <form action="{{route('admin.blog.category.update')}}" method="post">
         @csrf
 
         <div class="modal-body ">
@@ -145,6 +145,7 @@
                     <div class="row mb-4">
                         <label class="col-sm-3 form-control-label">Cateogry Name: <span class="tx-danger">*</span></label>
                         <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="text" name="id" class="d-none" required>
                         <input type="text" name="category_name" class="form-control" placeholder="Enter Cateogry Name" required>
                         </div>
                     </div><!-- row -->
@@ -215,7 +216,11 @@
             }
           },
           {
-            "data":"created_at"
+            "data":"created_at",
+            render: function (data, type, row) {
+                var formattedDate = moment(row.created_at).format('DD MMM YYYY');
+                return formattedDate;
+            }
           },
           {
             render:function(data,type,row){
@@ -235,81 +240,71 @@
 
 
     /** Handle edit button click**/
-    // $('#datatable1 tbody').on('click', '.edit-btn', function () {
-    //   var id = $(this).data('id');
-    //   $.ajax({
-    //       type: 'GET',
-    //       url: '/admin/product/discount/edit/' + id,
-    //       success: function (response) {
-    //           if (response.success) {
-    //             $('#editModal').modal('show');
-    //             $('#editModal input[name="id"]').val(response.data.id);
-    //             $('#editModal input[name="code"]').val(response.data.code);
-    //             $('#editModal input[name="name"]').val(response.data.name);
-    //             $('#editModal textarea[name="description"]').val(response.data.description);
-    //             $('#editModal input[name="max_use"]').val(response.data.max_use);
-    //             $('#editModal select[name="type"]').val(response.data.type);
-    //             $('#editModal input[name="discount_amount"]').val(response.data.discount_amount);
-    //             $('#editModal input[name="min_amount"]').val(response.data.min_amount);
-    //             var startDate = new Date(response.data.starts_at);
-    //             var expireDate = new Date(response.data.expires_at);
-    //             $('#editModal input[name="start_date"]').val(startDate.toISOString().split('T')[0]);
-    //             $('#editModal input[name="expire_date"]').val(expireDate.toISOString().split('T')[0]);
-    //             $('#editModal select[name="status"]').val(response.data.status);
-    //           } else {
-    //             toastr.error("Error fetching data for edit!");
-    //           }
-    //       },
-    //       error: function (xhr, status, error) {
-    //         console.error(xhr.responseText);
-    //         toastr.error("Error fetching data for edit!");
-    //       }
-    //   });
-    // });
+    $('#datatable1 tbody').on('click', '.edit-btn', function () {
+      var id = $(this).data('id');
+      $.ajax({
+          type: 'GET',
+          url: '/admin/blog/category/edit/' + id,
+          success: function (response) {
+              if (response.success) {
+                $('#editModal').modal('show');
+                $('#editModal input[name="id"]').val(response.data.id);
+                $('#editModal input[name="category_name"]').val(response.data.name);
+                $('#editModal select[name="status"]').val(response.data.status);
+              } else {
+                toastr.error("Error fetching data for edit!");
+              }
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            toastr.error("Error fetching data for edit!");
+          }
+      });
+    });
 
 
 
 
   /** Handle Delete button click**/
-//   $('#datatable1 tbody').on('click', '.delete-btn', function () {
-//     var id = $(this).data('id');
-//     $('#deleteModal').modal('show');
-//     console.log("Delete ID: " + id);
-//     var value_input = $("input[name*='id']").val(id);
-//   });
+  $('#datatable1 tbody').on('click', '.delete-btn', function () {
+    var id = $(this).data('id');
+    $('#deleteModal').modal('show');
+    console.log("Delete ID: " + id);
+    var value_input = $("input[name*='id']").val(id);
+  });
 
 
   
   /** Handle form submission for delete **/
-//   $('#deleteModal form').submit(function(e){
-//     e.preventDefault();
+  $('#deleteModal form').submit(function(e){
+    e.preventDefault();
 
-//     var form = $(this);
-//     var url = form.attr('action');
-//     var formData = form.serialize();
-//     /** Use Ajax to send the delete request **/
-//     $.ajax({
-//       type:'POST',
-//       'url':url,
-//       data: formData,
-//       success: function (response) {
-//         $('#deleteModal').modal('hide');
-//         if (response.success) {
-//           toastr.success(response.success);
-//           //table.ajax.reload();
-//           $('#datatable1').DataTable().ajax.reload( null , false);
-//         } else {
-//            /** Handle  errors **/
-//           toastr.error("Error!!!");
-//         }
-//       },
+    var form = $(this);
+    var url = form.attr('action');
+    var formData = form.serialize();
+    /** Use Ajax to send the delete request **/
+    $.ajax({
+      type:'POST',
+      'url':url,
+      data: formData,
+      success: function (response) {
+        $('#deleteModal').modal('hide');
+        if (response.success) {
+          toastr.success(response.success);
+          //table.ajax.reload();
+          $('#datatable1').DataTable().ajax.reload( null , false);
+        } else {
+           /** Handle  errors **/
+          toastr.error("Error!!!");
+        }
+      },
 
-//       error: function (xhr, status, error) {
-//          /** Handle  errors **/
-//         console.error(xhr.responseText);
-//       }
-//     });
-//   });
+      error: function (xhr, status, error) {
+         /** Handle  errors **/
+        console.error(xhr.responseText);
+      }
+    });
+  });
 
 
 
@@ -354,45 +349,45 @@
 
 
   /** Update The data from the database table **/
-//   $('#editModal form').submit(function(e){
-//     e.preventDefault();
+  $('#editModal form').submit(function(e){
+    e.preventDefault();
 
-//     var form = $(this);
-//     var url = form.attr('action');
-//     var formData = form.serialize();
-//     /** Use Ajax to send the delete request **/
-//     $.ajax({
-//       type:'POST',
-//       'url':url,
-//       data: formData,
-//       beforeSend: function () {
-//         form.find(':input').prop('disabled', true);  
-//       },
-//       success: function (response) {
-//         $('#editModal').modal('hide');
-//         $('#editModal form')[0].reset();
-//         if (response.success) {
-//           toastr.success(response.success);
-//           $('#datatable1').DataTable().ajax.reload( null , false);
-//         } else {
-//            /** Handle validation errors **/
-//           if (response.errors) {
-//               var errorMessages = response.errors.join('<br>');
-//               toastr.error(errorMessages);
-//           }else {
-//             toastr.error("Error!!!");
-//           }
-//         }
-//       },
+    var form = $(this);
+    var url = form.attr('action');
+    var formData = form.serialize();
+    /** Use Ajax to send the delete request **/
+    $.ajax({
+      type:'POST',
+      'url':url,
+      data: formData,
+      beforeSend: function () {
+        form.find(':input').prop('disabled', true);  
+      },
+      success: function (response) {
+        $('#editModal').modal('hide');
+        $('#editModal form')[0].reset();
+        if (response.success) {
+          toastr.success(response.success);
+          $('#datatable1').DataTable().ajax.reload( null , false);
+        } else {
+           /** Handle validation errors **/
+          if (response.errors) {
+              var errorMessages = response.errors.join('<br>');
+              toastr.error(errorMessages);
+          }else {
+            toastr.error("Error!!!");
+          }
+        }
+      },
 
-//       error: function (xhr, status, error) {
-//         console.error(xhr.responseText);
-//       },
-//       complete: function () {
-//           form.find(':input').prop('disabled', false);
-//         }
-//     });
-//   });
+      error: function (xhr, status, error) {
+        console.error(xhr.responseText);
+      },
+      complete: function () {
+          form.find(':input').prop('disabled', false);
+        }
+    });
+  });
   </script>
 
 

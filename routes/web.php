@@ -168,9 +168,14 @@ Route::prefix('admin/blog')->group(function(){
     /** Category  Route **/
     Route::get('/category/list',[blogCategory::class,'index'])->name('admin.blog.category.index');
     Route::get('/category/all/data',[blogCategory::class,'get_all_data'])->name('admin.blog.category.all_data');
+
     Route::post('/category/store',[blogCategory::class,'store'])->name('admin.blog.category.store');
 
-    Route::get('/category/delete/{id}',[blogCategory::class,'delete'])->name('admin.blog.category.delete');
+    Route::get('/category/edit/{id}',[blogCategory::class,'edit'])->name('admin.blog.category.edit');
+
+    Route::post('/category/delete/',[blogCategory::class,'delete'])->name('admin.blog.category.delete');
+
+    Route::post('/category/update/',[blogCategory::class,'update'])->name('admin.blog.category.update');
     /** Blog  Route **/
 
 });
