@@ -15,20 +15,20 @@
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
           <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
-          <a class="breadcrumb-item" href="{{route('admin.seller.index')}}">Seller</a>
+          <a class="breadcrumb-item" href="{{route('admin.customer.index')}}">Customer</a>
           <span class="breadcrumb-item active">Create</span>
         </nav>
       </div><!-- br-pageheader -->
 <div class="" style="padding: 0px !important;"> 
    <div class="row">
     <div class="col-md-6 m-auto">
-    <div class="card">
-    <div class="card-header bg-info text-white">
-      <h6>Update Seller</h6>
-    </div>
-    <div class="card-body">
-    <form method="post" action="{{route('admin.seller.update',$data->id)}}" id="productForm" enctype="multipart/form-data">   
-      @csrf     
+    <div class="card mb-3">
+      <div class="card-header bg-info text-white">
+        <h6>Update Customer</h6>
+      </div>
+      <form  method="post" action="{{route('admin.customer.update',$data->id)}}" id="productForm" enctype="multipart/form-data">
+      @csrf  
+        <div class="card-body">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -44,7 +44,6 @@
             </div>
           </div>
 
-
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -52,7 +51,7 @@
                 <input type="file"  class="form-control" name="profile_image" ><br>
 
                 @if (!empty($data->profile_image))
-                    <img src="{{ asset('Backend/images/seller/' . $data->profile_image) }}" height="90px" width="150px" alt="">
+                    <img src="{{ asset('Backend/images/customers/' . $data->profile_image) }}" height="90px" width="150px" alt="">
                 @else 
                     <img src="{{ asset('Backend/images/default.jpg') }}" height="90px" width="150px" alt="">
                 @endif
@@ -67,7 +66,6 @@
             </div>
             </div>
           </div>
-
 
           <div class="row">
             <div class="col-md-6">
@@ -99,7 +97,6 @@
             </div>
           </div>
 
-
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
@@ -127,7 +124,7 @@
             </div>
             </div>
           </div>
-         
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -145,7 +142,6 @@
             </div>
             </div>
           </div>
-
 
           <div class="row">
             <div class="col-md-4">
@@ -167,7 +163,6 @@
             </div>
             </div>
           </div>
-         
 
           <div class="row">
             <div class="col-md-4">
@@ -192,16 +187,17 @@
                 </select>
             </div>
             </div>
-          </div>
+          </div> 
 
 
-          <div class="form-group">
-            <button type="submit" class="btn btn-success">Add Now</button>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-success">Update Now</button>
             
-            <button onclick="history.back();" type="button" class="btn btn-danger">Back</button>
-          </div>
-        </form>
-    </div>
+          <button onclick="history.back();" type="button" class="btn btn-danger">Back</button>
+        </div>
+      </form>
+    
    </div> 
     </div>
    </div>

@@ -38,7 +38,6 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
-       //return  $request->all(); exit;
         // Validate the form data
         $rules=[
             'fullname' => 'required|string',
@@ -71,7 +70,7 @@ class CustomerController extends Controller
         if ($request->hasFile('profile_image')) {
             $image = $request->file('profile_image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('Backend/images/seller'), $imageName);
+            $image->move(public_path('Backend/images/customers'), $imageName);
         } else {
             $imageName = '';
         }
@@ -101,7 +100,7 @@ class CustomerController extends Controller
         $object->save();
 
         // Redirect to the index page or show success message
-        return redirect()->route('admin.seller.index')->with('success', 'Seller added successfully');
+        return redirect()->route('admin.customer.index')->with('success', 'Customer added successfully');
     }
 
    
@@ -110,12 +109,12 @@ class CustomerController extends Controller
         $object = Customer::find($request->id);
 
         if (empty($object)) {
-            return response()->json(['error' => 'Seller not found.'], 404);
+            return response()->json(['error' => 'Customer not found.'], 404);
         }
 
         /* Image Find And Delete it From Local Machine */
         if (!empty($object->profile_image)) {
-            $imagePath = public_path('Backend/images/seller/' . $object->profile_image);
+            $imagePath = public_path('Backend/images/customers/' . $object->profile_image);
 
             if (file_exists($imagePath)) {
                 unlink($imagePath);
@@ -157,7 +156,7 @@ class CustomerController extends Controller
             'bank_payment_status' => 'nullable|in:1,2',
         ]);
 
-        // Find the seller
+        // Find the Customer
 
         $object = Customer::findOrFail($id);
 
@@ -168,14 +167,14 @@ class CustomerController extends Controller
 
             // Delete previous image
             if (!empty($object->profile_image)) {
-                $imagePath = public_path('Backend/images/seller/' . $object->profile_image);
+                $imagePath = public_path('Backend/images/customers/' . $object->profile_image);
                 if (file_exists($imagePath)) {
                     unlink($imagePath);
                 }
             }
 
             $imageName = time() . '.' . $request->file('profile_image')->getClientOriginalExtension();
-            $request->file('profile_image')->move(public_path('Backend/images/seller/'), $imageName);
+            $request->file('profile_image')->move(public_path('Backend/images/customer/'), $imageName);
 
             $object->profile_image = $imageName;
         }
@@ -201,6 +200,6 @@ class CustomerController extends Controller
         $object->update();
 
         // Redirect back or to a specific route
-        return redirect()->route('admin.seller.index')->with('success', 'Seller updated successfully.');
+        return redirect()->route('admin.customer.index')->with('success', 'Customer updated successfully.');
     }
 }

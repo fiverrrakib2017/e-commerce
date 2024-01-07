@@ -198,4 +198,8 @@ Route::prefix('admin/customer')->group(function(){
     Route::get('/edit/{id}',[CustomerController::class,'edit'])->name('admin.customer.edit');
 
     Route::post('/delete',[CustomerController::class,'delete'])->name('admin.customer.delete');
+
+    Route::post('/store',[CustomerController::class,'store'])->name('admin.customer.store');
+
+    Route::post('/update/{id}',[CustomerController::class,'update'])->name('admin.customer.update');
 });

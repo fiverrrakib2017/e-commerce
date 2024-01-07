@@ -22,7 +22,7 @@
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <a href="{{route('admin.seller.create')}}" class="btn btn btn-success">Add New Seller</a>
+        <a href="{{route('admin.customer.create')}}" class="btn btn btn-success">Add New Seller</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">
@@ -108,7 +108,7 @@
             render:function(data,type,row){             
 
               if(row.profile_image!==null){
-                return '<img src="{{ asset("Backend/images/customer") }}/' + row.profile_image + '" width="100px" height="90px" class="img-fluid">';
+                return '<img src="{{ asset("Backend/images/customers") }}/' + row.profile_image + '" width="100px" height="90px" class="img-fluid">';
               }else{
                 return '<img src="{{ asset("Backend/images/default.jpg") }}" width="100px" height="90px" class="img-fluid">';
               }
