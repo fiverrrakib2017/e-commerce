@@ -14,25 +14,30 @@
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
           <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
-          <a class="breadcrumb-item" href="{{route('admin.blog.index')}}">Blog</a>
-          <span class="breadcrumb-item active">All Blog</span>
+          <a class="breadcrumb-item" href="{{route('admin.seller.index')}}">Seller</a>
+          <span class="breadcrumb-item active">List</span>
         </nav>
       </div><!-- br-pageheader -->
 <div class="br-section-wrapper" style="padding: 0px !important;"> 
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <a  href="{{route('admin.blog.create')}}" class="btn btn btn-success" >Add New Blog</a>
+        <a href="{{route('admin.seller.create')}}" class="btn btn btn-success">Add New Seller</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">
       <thead>
         <tr>
           <th class="">No.</th>
-          <th class="">Image</th>
-          <th class="">Title</th>
-          <th class="">Category Name</th>
-          <th class="">Status</th>
+          <th class="">Photo</th>
+          <th class="">Fullname</th>
+          <th class="">Phone Number</th>
+          <th class="">City</th>
+          <th class="">State</th>
+          <th class="">Address</th>
+          <th class="">Opening Balance</th>
+          <th class="">Bank Payment Status</th>
+          <th class="">Verification Status</th>
           <th class="">Create Date</th>
           <th class="">Action</th>
         </tr>
@@ -52,7 +57,7 @@
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="{{route('admin.blog.delete')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.customer.delete')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -71,11 +76,6 @@
         </div><!-- modal-content -->
     </div>
 </div>
-<!--End Delete MODAL ---->
-
-
-  
-
 @endsection
 
 @section('script')
@@ -93,7 +93,7 @@
         "serverSide":true,
         beforeSend: function () {
         },
-        ajax: "{{ route('admin.blog.all_data') }}",
+        ajax: "{{ route('admin.customer.get_all_data') }}",
         language: {
           searchPlaceholder: 'Search...',
           sSearch: '',
@@ -104,39 +104,65 @@
             "data":"id"
           },
           {
-            "data":"image",
-            render: function (data, type, row) {
-              return '<img src="{{asset("Backend/images/blog")}}/' + data + '" alt="Image" width="50" height="50">';
-            }
-          },
-          {
-            "data":"title"
-          },
-          {
-            "data":"category.name"
-          },
-          {
-            "data":"status",
-            render:function(data,type,row){
-              if (row.status==1) {
-                return '<span class="badge badge-success">Active</span>';
+            "data":"profile_image",
+            render:function(data,type,row){             
+
+              if(row.profile_image!==null){
+                return '<img src="{{ asset("Backend/images/customer") }}/' + row.profile_image + '" width="100px" height="90px" class="img-fluid">';
               }else{
-                return '<span class="badge badge-secondary">Inactive</span>';
+                return '<img src="{{ asset("Backend/images/default.jpg") }}" width="100px" height="90px" class="img-fluid">';
               }
             }
           },
           {
-            "data":"created_at",
-            render: function (data, type, row) {
-                var formattedDate = moment(row.created_at).format('DD MMM YYYY');
-                return formattedDate;
+            "data":"fullname"
+          },
+          {
+            "data":"phone_number"
+          },
+          {
+            "data":"city"
+          },
+          {
+            "data":"state"
+          },
+          {
+            "data":"address"
+          },
+          {
+            "data":"opening_balance"
+          },
+          {
+            "data":"bank_payment_status",
+            render:function(data,type,row){
+              if (row.bank_payment_status==1) {
+                return '<span class="badge badge-success">Active</span>';
+              }else{
+                return '<span class="badge badge-danger">Inactive</span>';
+              }
             }
           },
           {
+            "data":"verification_status",
             render:function(data,type,row){
-              return `<a href="/admin/blog/edit/${row.id}" class="btn btn-primary btn-sm mr-3"><i class="fa fa-edit"></i></a>
-                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`
+              if (row.verification_status==1) {
+                return '<span class="badge badge-success">Active</span>';
+              }else{
+                return '<span class="badge badge-danger">Inactive</span>';
+              }
             }
+          },
+          {
+            "data":"created_at"
+          },
+          {
+            render: function (data, type, row) {
+              var editUrl = "{{ route('admin.customer.edit', ':id') }}".replace(':id', row.id);
+              
+              return `<a href="${editUrl}" class="btn btn-primary btn-sm mr-3 edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></a>
+              <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`;
+            } 
+
           },
         ],
         order:[
@@ -147,11 +173,16 @@
       $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
     });
 
+
+
+   
+
+
+
   /** Handle Delete button click**/
   $('#datatable1 tbody').on('click', '.delete-btn', function () {
     var id = $(this).data('id');
     $('#deleteModal').modal('show');
-    console.log("Delete ID: " + id);
     var value_input = $("input[name*='id']").val(id);
   });
 
@@ -191,11 +222,6 @@
 
 
 
-
-
-
-
-  
   </script>
 
 
@@ -203,14 +229,10 @@
     <script>
         toastr.success("{{ session('success') }}");
     </script>
-  @endif
-
-  @if(session('errors'))
+    @elseif(session('error'))
     <script>
-      var errors = @json(session('errors'));
-      errors.forEach(function(error) {
-          toastr.error(error);
-      });
+        toastr.error("{{ session('error') }}");
     </script>
-  @endif
+    @endif
+  
 @endsection

@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\Shop\pickupController;
 use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
+use App\Http\Controllers\Backend\Customer\CustomerController;
 use App\Http\Controllers\Frontend\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -184,4 +185,17 @@ Route::prefix('admin/blog')->group(function(){
     Route::get('/edit/{id}',[BlogController::class,'edit'])->name('admin.blog.edit');
     Route::post('/update',[BlogController::class,'update'])->name('admin.blog.update');
     Route::post('/delete',[BlogController::class,'delete'])->name('admin.blog.delete');
+});
+
+/** Customer  Route **/
+Route::prefix('admin/customer')->group(function(){
+    Route::get('/list',[CustomerController::class,'index'])->name('admin.customer.index');
+
+    Route::get('/all-data',[CustomerController::class,'get_all_data'])->name('admin.customer.get_all_data');
+
+    Route::get('/create',[CustomerController::class,'create'])->name('admin.customer.create');
+
+    Route::get('/edit/{id}',[CustomerController::class,'edit'])->name('admin.customer.edit');
+
+    Route::post('/delete',[CustomerController::class,'delete'])->name('admin.customer.delete');
 });

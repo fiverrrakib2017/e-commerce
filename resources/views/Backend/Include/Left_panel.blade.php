@@ -14,15 +14,16 @@ $route = Route::currentRouteName()
         </li>
         <!----------Customer  Menu-------------->
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/customer')?'show-sub':''}}">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Customer </span>
+            <span class="menu-item-label">Customer</span>
           </a>
           <ul class="br-menu-sub" >
             
-          <li class="sub-item"><a href="#" class="sub-link ">Add Customer</a></li>
+          <li class="sub-item"><a href="{{route('admin.customer.create')}}" class="sub-link {{ ($route == 'admin.customer.create')? 'active':'' }}">Add Customer</a></li>
 
-            <li class="sub-item"><a href="#" class="sub-link">Customer List</a></li>
+            <li class="sub-item"><a href="{{route('admin.customer.index')}}" class="sub-link {{ ($route == 'admin.customer.index')? 'active':'' }}">Customer Management</a></li>
+
             <li class="sub-item"><a href="#" class="sub-link">Customer Invoice</a></li>
 
             
