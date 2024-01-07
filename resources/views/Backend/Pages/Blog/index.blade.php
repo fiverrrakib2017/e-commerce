@@ -22,7 +22,7 @@
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <button  type="button" class="btn btn btn-success"  data-toggle="modal" data-target="#addModal">Add New Blog</a>
+        <a  href="{{route('admin.blog.create')}}" class="btn btn btn-success" >Add New Blog</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">
@@ -72,92 +72,7 @@
     </div>
 </div>
 <!--End Delete MODAL ---->
-  <div id="addModal" class="modal fade effect-scale">
-    <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
-          <div class="modal-content tx-size-sm">
-          <div class="modal-header pd-x-20">
-              <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add New Blog</h6>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-        <!----- Start Add  Form ------->
-        <form action="{{route('admin.blog.store')}}" method="post" enctype="multipart/form-data">
-        @csrf
 
-        <div class="modal-body ">
-            <!----- Start Add  Form input ------->
-            <div class="col-xl-12">
-                <div class="form-layout form-layout-4">
-
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Title: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <input class="form-control " name="title" placeholder="Enter Your Title" required>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="col-sm-3 form-control-label">Cateogry Name: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                        <select type="text" name="category_id" class="form-control" required>
-                            <option value="">---Select----</option>
-                          @foreach ($category as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                          @endforeach
-                        </select>
-                        </div>
-                    </div><!-- row -->
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Slug: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <input class="form-control " name="slug" required>
-                        </div>
-                    </div>
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Short Description: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <textarea class="form-control " name="short_description" placeholder="Enter Your Short Description"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Description: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <textarea class="form-control " name="description" placeholder="Enter Your  Description"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Image: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                        <input type="file" class="form-control " name="image" required/>
-                        </div>
-                    </div>
-
-                    
-
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Status: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <select class="form-control " name="status" required>
-                                <option value="">---Select---</option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-success tx-size-xs">Save changes</button>
-            <button type="button" class="btn btn-danger tx-size-xs" data-dismiss="modal">Close</button>
-        </div>
-
-        </form>
-        <!----- End Add Form ------->
-        </div>
-    </div>
-  </div>
 
   
 <!----- Edit Modal ------->
@@ -270,7 +185,7 @@
           },
           {
             render:function(data,type,row){
-              return `<button class="btn btn-primary btn-sm mr-3 edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></button>
+              return `<a href="/admin/blog/edit/${row.id}" class="btn btn-primary btn-sm mr-3"><i class="fa fa-edit"></i></a>
                 <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`
             }
           },

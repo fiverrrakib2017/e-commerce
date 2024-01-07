@@ -179,5 +179,8 @@ Route::prefix('admin/blog')->group(function(){
     /** Blog  Route **/
     Route::get('/list',[BlogController::class,'index'])->name('admin.blog.index');
     Route::get('/all-data',[BlogController::class,'get_all_data'])->name('admin.blog.all_data');
-    Route::post('/store/data',[BlogController::class,'store'])->name('admin.blog.store');
+    Route::get('/create',[BlogController::class,'create'])->name('admin.blog.create');
+    Route::post('/store-data',[BlogController::class,'store'])->name('admin.blog.store');
+    Route::get('/edit/{id}',[BlogController::class,'edit'])->name('admin.blog.edit');
+    Route::post('/update',[BlogController::class,'update'])->name('admin.blog.update');
 });

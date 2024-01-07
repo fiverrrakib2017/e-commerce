@@ -14,6 +14,10 @@ class BlogController extends Controller
         $category=Blog_Category::latest()->get();
         return view('Backend.Pages.Blog.index',compact('category'));
     }
+    public function create(){
+        $category=Blog_Category::latest()->get();
+         return view('Backend.Pages.Blog.create',compact('category'));
+    }
     public function get_all_data(Request $request){
         $search=$request->search['value'];
         $columnsForOrderBy=['id','category_id','title','image','status'];
@@ -49,27 +53,57 @@ class BlogController extends Controller
             'slug' => 'required|string|max:255',
             'short_description' => 'nullable|string',
             'description' => 'required|string',
-            // 'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+             'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|in:0,1',
         ]);
         // Create a new Blog instance
-        $category = new Blog();
-        $category->category_id  = $request->category_id ;
-        $category->title  = $request->title ;
-        $category->slug  = $request->slug ;
-        $category->short_description = $request->short_description;
-        $category->description = $request->description;
+        $blog = new Blog();
+        $blog->category_id  = $request->category_id ;
+        $blog->title  = $request->title ;
+        $blog->slug  = $request->slug ;
+        $blog->short_description = $request->short_description;
+        $blog->description = $request->description;
         /*
         here is my custom method which upload image file and database table save this image path 
         ImageUpload::upload($request, $fieldName, $object, $property, $folder_path)*/
 
         if ($request->hasFile('image')) {
-            ImageUpload::upload($request, 'image', $category, 'image','Backend/images/blog');
+            ImageUpload::upload($request, 'image', $blog, 'image','Backend/images/blog');
         }
-        $category->status = $request->status;
-        $category->save();
+        $blog->status = $request->status;
+        $blog->save();
+        return redirect()->route('admin.blog.index')->with('success', 'Blog Add Successfully');
+    }
+    public function edit($id){
+        $blog =Blog::find($id);
+        $category=Blog_Category::latest()->get();
+        return view('Backend.Pages.Blog.Update',compact('blog','category'));
+    }
+    public function update(Request $request){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'category_id' => 'required',
+            'slug' => 'required|string|max:255',
+            'short_description' => 'nullable|string',
+            'description' => 'required|string',
+            'status' => 'required|in:0,1',
+        ]);
+        $blog =Blog::find($request->id);
+        $blog->category_id  = $request->category_id ;
+        $blog->title  = $request->title ;
+        $blog->slug  = $request->slug ;
+        $blog->short_description = $request->short_description;
+        $blog->description = $request->description;
+        /*
+        here is my custom method which upload image file and database table save this image path 
+        ImageUpload::upload($request, $fieldName, $object, $property, $folder_path)*/
 
-        return response()->json(['success' => 'Blog Add Successfully']);
+        if ($request->hasFile('image')) {
+            ImageUpload::upload($request, 'image', $blog, 'image','Backend/images/blog');
+        }
+        $blog->status = $request->status;
+        $blog->save();
+        return redirect()->route('admin.blog.index')->with('success', 'Blog Update Successfully');
     }
     
 }

@@ -36,7 +36,9 @@ $route = Route::currentRouteName()
           </a>
           <ul class="br-menu-sub" >
             <li class="sub-item"><a href="{{route('admin.blog.category.index')}}" class="sub-link {{ ($route == 'admin.blog.category.index')? 'active':'' }}">Manage Category</a></li>
-            <li class="sub-item"><a href="{{route('admin.blog.index')}}" class="sub-link {{ ($route == 'admin.blog.index')? 'active':'' }}">Manage Blog</a></li>
+            <li class="sub-item"><a href="{{route('admin.blog.create')}}" class="sub-link {{ ($route == 'admin.blog.create')? 'active':'' }}">Add Blog</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.blog.index')}}" class="sub-link {{ ($route == 'admin.blog.index'||$route == 'admin.blog.edit')? 'active':'' }}">Manage Blog</a></li>
           </ul>
         </li>
         <!----------Address  Menu-------------->
