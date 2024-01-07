@@ -52,7 +52,7 @@
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="{{route('admin.blog.category.delete')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.blog.delete')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -75,58 +75,7 @@
 
 
   
-<!----- Edit Modal ------->
-<div id="editModal" class="modal fade effect-scale">
-        <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
-            <div class="modal-content tx-size-sm">
-            <div class="modal-header pd-x-20">
-                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Update Category</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        <!----- Start Add  Form ------->
-        <form action="{{route('admin.blog.category.update')}}" method="post">
-        @csrf
 
-        <div class="modal-body ">
-            <!----- Start Add  Form input ------->
-            <div class="col-xl-12">
-                <div class="form-layout form-layout-4">
-
-                    <div class="row mb-4">
-                        <label class="col-sm-3 form-control-label">Cateogry Name: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                        <input type="text" name="id" class="d-none" required>
-                        <input type="text" name="category_name" class="form-control" placeholder="Enter Cateogry Name" required>
-                        </div>
-                    </div><!-- row -->
-
-                    <div class="row mb-4 mt-4">
-                        <label class="col-sm-3 form-control-label">Status: <span class="tx-danger">*</span></label>
-                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
-                            <select class="form-control " name="status" required>
-                                <option value="">---Select---</option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-success tx-size-xs">Update Now</button>
-            <button type="button" class="btn btn-danger tx-size-xs" data-dismiss="modal">Close</button>
-        </div>
-
-        </form>
-        <!----- End Add Form ------->
-        </div>
-    </div>
-  </div>
-<!----- Edit Modal ------->
 @endsection
 
 @section('script')
@@ -270,85 +219,11 @@
 
 
 
-  /** Store The data from the database table **/
-  $('#addModal form').submit(function(e){
-    e.preventDefault();
-
-    var form = $(this);
-    var url = form.attr('action');
-    var formData = form.serialize();
-    /** Use Ajax to send the delete request **/
-    $.ajax({
-      type:'POST',
-      'url':url,
-      data: formData,
-      success: function (response) {
-        $('#addModal').modal('hide');
-        $('#addModal form')[0].reset();
-        if (response.success) {
-          toastr.success(response.success);
-          $('#datatable1').DataTable().ajax.reload( null , false);
-        } else {
-           /** Handle validation errors **/
-          if (response.errors) {
-              var errorMessages = response.errors.join('<br>');
-              toastr.error(errorMessages);
-          }else {
-            toastr.error("Error!!!");
-          }
-        }
-      },
-
-      error: function (xhr, status, error) {
-         /** Handle  errors **/
-        console.error(xhr.responseText);
-      }
-    });
-  });
 
 
 
 
-  /** Update The data from the database table **/
-  $('#editModal form').submit(function(e){
-    e.preventDefault();
-
-    var form = $(this);
-    var url = form.attr('action');
-    var formData = form.serialize();
-    /** Use Ajax to send the delete request **/
-    $.ajax({
-      type:'POST',
-      'url':url,
-      data: formData,
-      beforeSend: function () {
-        form.find(':input').prop('disabled', true);  
-      },
-      success: function (response) {
-        $('#editModal').modal('hide');
-        $('#editModal form')[0].reset();
-        if (response.success) {
-          toastr.success(response.success);
-          $('#datatable1').DataTable().ajax.reload( null , false);
-        } else {
-           /** Handle validation errors **/
-          if (response.errors) {
-              var errorMessages = response.errors.join('<br>');
-              toastr.error(errorMessages);
-          }else {
-            toastr.error("Error!!!");
-          }
-        }
-      },
-
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function () {
-          form.find(':input').prop('disabled', false);
-        }
-    });
-  });
+  
   </script>
 
 

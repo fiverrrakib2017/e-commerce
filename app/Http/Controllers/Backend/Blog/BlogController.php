@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Blog_Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -104,6 +105,20 @@ class BlogController extends Controller
         $blog->status = $request->status;
         $blog->save();
         return redirect()->route('admin.blog.index')->with('success', 'Blog Update Successfully');
+    }
+    public function delete(Request $request){
+      
+        $object = Blog::findOrFail($request->id);
+
+        // Delete the blog image
+        if ($object->image!=NULL) {
+            File::delete(public_path('Backend/images/blog/' . $object->image));
+        }
+       
+
+        // Delete the blog from the database
+        $object->delete();
+        return response()->json(['success'=>'Delete Successfull']);
     }
     
 }

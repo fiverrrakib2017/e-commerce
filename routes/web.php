@@ -183,4 +183,5 @@ Route::prefix('admin/blog')->group(function(){
     Route::post('/store-data',[BlogController::class,'store'])->name('admin.blog.store');
     Route::get('/edit/{id}',[BlogController::class,'edit'])->name('admin.blog.edit');
     Route::post('/update',[BlogController::class,'update'])->name('admin.blog.update');
+    Route::post('/delete',[BlogController::class,'delete'])->name('admin.blog.delete');
 });
