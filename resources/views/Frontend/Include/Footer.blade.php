@@ -5,6 +5,7 @@
                     <div class="single_footer">
                         <h2>Get Know us</h2>
                         <ul>
+                            <li><a href="">Terms and Condition</a></li>
                             <li><a href="">Career</a></li>
                             <li><a href="">Blog</a></li>
                             <li><a href="">About Store</a></li>
@@ -60,7 +61,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="images/payments.png"/>
+                    <img src="{{asset('Frontend/images/payments.png')}}"/>
                 </div>
             </div>
         </div>

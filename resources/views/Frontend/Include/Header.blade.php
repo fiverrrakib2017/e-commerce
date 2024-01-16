@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-2 mb-sm-3">
                     <div class="header_logo">
-                        <img src="{{asset('Frontend/images/header_logo.png')}}" width="150px" href="index.html"/>
+                        <img src="{{asset('Frontend/images/header_logo.png')}}" width="150px" href="{{url('/')}}"/>
                     </div>
 
                 </div>
@@ -59,26 +59,26 @@
                                 <div class="collapse navbar-collapse main_navbar" id="navbarSupportedContent">
                                   <ul class="navbar-nav mr-auto">
                                     <li class="nav-item active">
-                                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                      <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="productCategory.html">Shop</a>
+                                        <a class="nav-link" href="#">Shop</a>
                                       </li>
                                       <li class="nav-item">
                                         <a class="nav-link" href="#">Product</a>
                                       </li>
                                     <li class="nav-item">
-                                      <a class="nav-link" href="about.html">About</a>
+                                      <a class="nav-link" href="#">About</a>
                                     </li>
                                     
                                     <li class="nav-item">
-                                      <a class="nav-link" href="">Service</a>
+                                      <a class="nav-link" href="#">Service</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="blog.html">Blog</a>
+                                        <a class="nav-link" href="#">Blog</a>
                                       </li>
                                       <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link" href="#">Contact</a>
                                       </li>
                                   </ul>
                                   

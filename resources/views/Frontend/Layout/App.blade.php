@@ -19,33 +19,13 @@
 
 
      <!---Hero section-->
-     @include('Frontend.include.Hero_Section')
+     <!-- @include('Frontend.include.Hero_Section') -->
     <!---Hero section-->
    
     @yield('content');
     
     
-    <!-----Newsletter-->
-   <section class="shop_newsletter">
-       <div class="container">
-           <div class="innter_top">
-               <div class="row">
-                   <div class="col-md-8 offset-md-2">
-                       <div class="newsLetter_text">
-                           <h4>NEWSLETTER</h4>
-                           <p>Subscribe to our newsletter and get 10% off your first purchase</p>
-                           <form action="" method="post" class="news_letter_form">
-                               <input type="email" name="email" placeholder="Enter Your Email"/>
-                               <button class="subscribe_btn">Subscribe</button>
-
-                           </form>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-
-   </section>
+    
     <!--footer-->
     @include('Frontend.include.Footer')
     

@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\Product\CategoryController;
 use App\Http\Controllers\Backend\Product\ChildCategoryController;
 use App\Http\Controllers\Backend\Product\DiscountController;
 use App\Http\Controllers\Backend\Product\ProductController;
+use App\Http\Controllers\Frontend\ProductController as FrontProudctController;
 use App\Http\Controllers\Backend\Product\ShippingController;
 use App\Http\Controllers\Backend\Product\SubCateogryController;
 use App\Http\Controllers\Backend\Product\TempImageController;
@@ -28,8 +29,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[homeController::class,'index']);
 
+/* Frontend Route */
+Route::get('/',[homeController::class,'index']);
+Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
+// Route::get('/user/register',)frontend.register
+
+
+
+
+/* Backend Route */
 Route::get('/admin/dashboard', function () {
     return view('Backend.Pages.Dashboard.index');
 })->name('admin.dashboard');
@@ -78,11 +87,12 @@ Route::prefix('admin/product')->group(function(){
 
 
     /* Product Route*/
-    Route::get('/product/all',[ProductController::class,'index'])->name('admin.products.index');
-    Route::get('/product/create',[ProductController::class,'create'])->name('admin.products.create');
+    Route::get('/all',[ProductController::class,'index'])->name('admin.products.index');
+    Route::get('/create',[ProductController::class,'create'])->name('admin.products.create');
+    Route::get('/edit/{id}',[ProductController::class,'edit'])->name('admin.products.edit');
     Route::post('/upload-temp-image', [TempImageController::class, 'create'])->name('temp-image.create');
-    Route::post('/product/store',[ProductController::class,'store'])->name('admin.products.store');
-    Route::post('/product/delete',[ProductController::class,'delete'])->name('admin.products.delete');
+    Route::post('/store',[ProductController::class,'store'])->name('admin.products.store');
+    Route::post('/delete',[ProductController::class,'delete'])->name('admin.products.delete');
 
 
     /*Shipping Charge Route*/

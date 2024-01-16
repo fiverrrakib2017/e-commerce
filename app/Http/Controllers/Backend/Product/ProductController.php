@@ -117,4 +117,8 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('admin.products.index')->with('success','Delete Success');
     }
+    public function edit($id){
+        $data=Product::find($id);
+        return view('Backend.Pages.Product.Edit',compact('data'));
+    }
 }

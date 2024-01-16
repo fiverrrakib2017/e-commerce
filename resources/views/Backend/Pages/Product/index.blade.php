@@ -71,7 +71,7 @@
               </td>
               <td>
                 <!-- Add your action buttons here -->
-                <a class="btn btn-primary btn-sm mr-3" href="{{route('admin.subcategory.edit', $data->id)}}"><i class="fa fa-edit"></i></a>
+                <a class="btn btn-primary btn-sm mr-3" href="{{route('admin.products.edit', $data->id)}}"><i class="fa fa-edit"></i></a>
                 <button data-toggle="modal" data-target="#deleteModal{{$data->id}}" class="btn btn-danger btn-sm mr-3"><i class="fa fa-trash"></i></button>
               </td>
             </tr>
@@ -136,11 +136,7 @@
           }
         });
 
-        $('#datatable2').DataTable({
-          bLengthChange: false,
-          searching: false,
-          responsive: true
-        });
+       
 
         // Select2
         $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
