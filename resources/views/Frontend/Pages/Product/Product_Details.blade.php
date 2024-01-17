@@ -40,7 +40,7 @@
                                 @endif
 
                                 </div>
-                                <div class="product_image_group mb-5">
+                                <!-- <div class="product_image_group mb-5">
                                     <div class="small-img-col">
                                         <img src="{{asset('Frontend/images/1.jpg')}}" width="100%" class="small-img">
                                     </div>
@@ -53,7 +53,7 @@
                                     <div class="small-img-col ml-1">
                                         <img src="{{asset('Frontend/images/26.jpg')}}" width="100%" class="small-img">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-md-6">
                                 <div class="product_content">
@@ -73,7 +73,7 @@
                                 <h2 class="product_price">৳{{ $product->price }}</h2>
                                 <div class="product_size">
                                     <h6>Select Size</h6>
-                                    <select class="form-control w-50">
+                                    <select class="form-select w-50">
                                         <option>Black</option>
                                         <option>White</option>
                                         <option>Green</option>
@@ -83,16 +83,19 @@
                                 </div>
                                 <div class="product_quantity mt-3">
                                     <h6>Quantity</h6>
-                                    <input type="number" value="1" class="quantity">
-                                    <!-----modal start-->
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-dark" data-toggle="modal"
-                                        data-target="#exampleModal">
+                                <form action="{{route('frontend.add_to_cart')}}" method="post">
+                                    @csrf
+                                    <input type="number" name="qty" value="1" class="quantity form-control mb-2" min="1" max="{{$product->qty}}">
+
+                                    <input type="text" name="product_id" class="d-none" value="{{$product->id}}">
+
+                                    <button type="submit" class="btn btn btn-dark">
                                         Add To Cart
                                     </button>
+                                </form>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog custom_modal_design">
                                             <div class="modal-content">
@@ -133,7 +136,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <!----modal end-->
                                 </div>
@@ -367,4 +370,18 @@
         </div>
 
     </section>
+@endsection
+
+@section('script')
+@if(session('success'))
+    <script>
+        toastr.success('{{ session('success') }}');
+    </script>
+    @elseif(session('error'))
+    <script>
+        toastr.error('{{ session('error') }}');
+    </script>
+    @endif
+    
+
 @endsection

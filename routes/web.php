@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[homeController::class,'index']);
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
 // Route::get('/user/register',)frontend.register
-
+Route::post('/add-to-cart',[CartController::class,'add_to_cart'])->name('frontend.add_to_cart');
 
 
 
@@ -213,3 +214,5 @@ Route::prefix('admin/customer')->group(function(){
 
     Route::post('/update/{id}',[CustomerController::class,'update'])->name('admin.customer.update');
 });
+Auth::routes();
+

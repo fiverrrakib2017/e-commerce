@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <link rel="stylesheet" href="{{asset('Frontend/css/responsive.css')}}"/>
     <link rel="stylesheet" href="{{asset('Frontend/css/style.css')}}"/>
+    <link href="{{asset('Frontend/css/toastr.min.css')}}" rel="stylesheet">
 </head>
 <body>
    <!---Header Section-->
@@ -35,6 +36,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" ></script>
+<script type="text/javascript" src="{{asset('Frontend/js/toastr.min.js')}}"></script>
 <script type="text/javascript">
    
 var owl = $('.owl-carousel');
@@ -68,6 +70,6 @@ owl.on('mousewheel', '.owl-stage', function (e) {
 });
 
 </script>
-
+@yield('script');
 </body>
 </html>
