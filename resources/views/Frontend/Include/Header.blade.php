@@ -20,9 +20,18 @@
                         <div class="single_icon_area">
                             <a href="" class="single-icon"><i class="fa fa-user"></i></a>
                         </div>
+
+                        @if(auth()->check())
+                          <div class="single_icon_area">
+                            <a href="{{ route('frontend.cart.index') }}" class="single-icon"><i class="fa-solid fa-cart-arrow-down"></i> <span class="total-count">{{ auth()->user()->cartItems->count() }}</span></a>
+                          </div>
+                        @else
                         <div class="single_icon_area">
-                            <a href="#" class="single-icon"><i class="fa-solid fa-cart-arrow-down"></i> <span class="total-count">2</span></a>
-                        </div>
+                            <a href="#" class="single-icon"><i class="fa-solid fa-cart-arrow-down"></i> <span class="total-count">0</span></a>
+                          </div>
+                        @endif
+                        
+
                         
                     </div>
                     

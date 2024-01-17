@@ -34,9 +34,12 @@ use Illuminate\Support\Facades\Route;
 /* Frontend Route */
 Route::get('/',[homeController::class,'index']);
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
-// Route::get('/user/register',)frontend.register
 Route::post('/add-to-cart',[CartController::class,'add_to_cart'])->name('frontend.add_to_cart');
-
+Route::get('/cart/checkout',[CartController::class,'cart'])->name('frontend.cart.index');
+Route::post('/checkout',[CartController::class,'checkout'])->name('frontend.checkout');
+Route::get('/thank/you',function(){
+    return view('Frontend.Pages.thank_you');
+})->name('frontend.thank_you');
 
 
 /* Backend Route */
