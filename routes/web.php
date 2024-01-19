@@ -34,18 +34,19 @@ use Illuminate\Support\Facades\Route;
 
 /* Frontend Route */
 Route::get('/',[homeController::class,'index']);
+/* Product Details Route */
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
 
-Route::post('/add-to-cart',[CartController::class,'add_to_cart'])->name('frontend.add_to_cart');
-
+/* Wishlist  Route */
 Route::get('/wish/list',[wishlistController::class,'wish_list'])->name('frontend.wish_list');
-
+Route::get('/wishlist/to/cart/{id}/{qty}',[wishlistController::class,'wish_list_to_cart'])->name('frontend.wish_list_to_cart');
+Route::get('/wishlist/delete/{deleteId}',[wishlistController::class,'delete_wishlist'])->name('frontend.delete_wishlist');
 Route::post('/add-to-wishlist',[wishlistController::class,'add_to_wishlist'])->name('frontend.add_to_wishlist');
 
+/* Cart Route */
+Route::post('/add-to-cart',[CartController::class,'add_to_cart'])->name('frontend.add_to_cart');
 Route::get('/cart/checkout',[CartController::class,'cart'])->name('frontend.cart.index');
-
 Route::post('/checkout',[CartController::class,'checkout'])->name('frontend.checkout');
-
 Route::get('/thank/you',function(){
     return view('Frontend.Pages.thank_you');
 })->name('frontend.thank_you');
@@ -94,10 +95,6 @@ Route::prefix('admin/product')->group(function(){
 
     /*Get child Category*/
     Route::get('/get-child_category/{id}',[ChildCategoryController::class,'get_child_category']);
-
-
-
-
 
     /* Product Route*/
     Route::get('/all',[ProductController::class,'index'])->name('admin.products.index');
