@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\homeController;
+use App\Http\Controllers\Frontend\wishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,17 @@ use Illuminate\Support\Facades\Route;
 /* Frontend Route */
 Route::get('/',[homeController::class,'index']);
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
+
 Route::post('/add-to-cart',[CartController::class,'add_to_cart'])->name('frontend.add_to_cart');
+
+Route::get('/wish/list',[wishlistController::class,'wish_list'])->name('frontend.wish_list');
+
+Route::post('/add-to-wishlist',[wishlistController::class,'add_to_wishlist'])->name('frontend.add_to_wishlist');
+
 Route::get('/cart/checkout',[CartController::class,'cart'])->name('frontend.cart.index');
+
 Route::post('/checkout',[CartController::class,'checkout'])->name('frontend.checkout');
+
 Route::get('/thank/you',function(){
     return view('Frontend.Pages.thank_you');
 })->name('frontend.thank_you');

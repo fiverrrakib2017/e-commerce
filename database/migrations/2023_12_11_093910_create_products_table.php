@@ -18,9 +18,17 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('sub_category_id')->nullable();
             $table->unsignedBigInteger('child_category_id')->nullable();
+            $table->unsignedBigInteger('seller_id');
 
             $table->string('slug');
+            $table->string('size')->nullable();
+            $table->string('color')->nullable();
             $table->double('price', 10,2)->nullable();
+            $table->string('tax')->nullable();
+            $table->double('delivery_charge', 10,2)->nullable();
+            $table->string('product_type');
+
+
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
             $table->text('shipping_returns')->nullable();
@@ -35,6 +43,7 @@ return new class extends Migration
             $table->foreign('sub_category_id')->on('product_sub_categories')->references('id')->onDelete('cascade');
             $table->foreign('child_category_id')->on('product_child_categories')->references('id')->onDelete('cascade');
             $table->foreign('brand_id')->on('product__brands')->references('id')->onDelete('cascade');
+            $table->foreign('seller_id')->on('sellers')->references('id')->onDelete('cascade');
         });
     }
 

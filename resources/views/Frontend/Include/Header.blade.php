@@ -15,7 +15,7 @@
                 <div class="col-md-2">
                     <div class="header_right_area">
                         <div class="single_icon_area">
-                            <a href="" class="single-icon"><i class="fa fa-heart"></i></a>
+                            <a href="{{route('frontend.wish_list')}}" class="single-icon"><i class="fa fa-heart"></i></a>
                         </div>
                         <div class="single_icon_area">
                             <a href="" class="single-icon"><i class="fa fa-user"></i></a>
@@ -30,6 +30,7 @@
                             <a href="#" class="single-icon"><i class="fa-solid fa-cart-arrow-down"></i> <span class="total-count">0</span></a>
                           </div>
                         @endif
+                       
                         
 
                         

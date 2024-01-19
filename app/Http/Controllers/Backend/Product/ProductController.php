@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Product_Brand;
 use App\Models\Product_Category;
 use App\Models\Product_image;
+use App\Models\Seller;
 use App\Models\Temp_Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,9 +20,10 @@ class ProductController extends Controller
         return view('Backend.Pages.Product.index',compact('product'));
     }
     public function create(){
+        $seller=Seller::latest()->get();
         $category=Product_Category::latest()->get();
         $brand=Product_Brand::latest()->get();
-        return view('Backend.Pages.Product.Create',compact('category','brand'));
+        return view('Backend.Pages.Product.Create',compact('category','brand','seller'));
     }
     public function store(Request $request){
         $rules = [
@@ -32,7 +34,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'description' => 'nullable|max:10000',
             'sku' => 'required|unique:products',
-            // 'track_qty' => 'required|in:Yes,No',
+            'seller_id' => 'required',
+            'product_type' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
         if($validator->passes()){
@@ -44,6 +47,15 @@ class ProductController extends Controller
             $product->sub_category_id = $request->sub_cat_id;
             $product->child_category_id = $request->child_cat_id;
 
+            $product->seller_id = $request->seller_id;
+            $product->size = $request->size;
+            $product->color = $request->color;
+            $product->tax = $request->tax;
+            $product->delivery_charge = $request->delivery_charge;
+            $product->product_type = $request->product_type;
+            
+            
+            
             $product->slug = $request->slug;
             $product->price = $request->price;
             $product->description = $request->description;
@@ -59,7 +71,7 @@ class ProductController extends Controller
 
             $product->save();
 
-            // save gallery pics
+            // save gallery pic
             if(!empty($request->image_array)){
                 foreach($request->image_array as $temp_image_id){
 

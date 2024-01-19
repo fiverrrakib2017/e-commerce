@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="product_share_button mt-1">
                                     <ul>
-                                        <a href="" class="mr-3"><i class="fa fa-heart"></i> Add to Wish Lists</a>
+                                         <a type="button" class="mr-3 wishlist"><i class="fa fa-heart"></i> Add to Wish Lists</a>
                                         <a href=""><i class="fa fa-share"></i>Share</a>
                                     </ul>
 
@@ -373,15 +373,46 @@
 @endsection
 
 @section('script')
-@if(session('success'))
-    <script>
-        toastr.success('{{ session('success') }}');
-    </script>
-    @elseif(session('error'))
-    <script>
-        toastr.error('{{ session('error') }}');
-    </script>
+    @if(session('success'))
+        <script>
+            toastr.success('{{ session("success") }}');
+        </script>
+        @elseif(session('error'))
+        <script>
+            toastr.error('{{ session("error") }}');
+        </script>
     @endif
-    
+ 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".wishlist").click(function(e){
+            e.preventDefault();
+            /*get the Product id qty */
+            var productId = $("input[name='product_id']").val();
+            var qty = $('.quantity').val();
+            // Send AJAX request
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('frontend.add_to_wishlist') }}",
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'product_id': productId,
+                    'qty': qty
+                },
+                success: function (data, textStatus, xhr) {
+                    if(data.success){
+                        toastr.success(data.success);
+                    } else if(data.error){
+                        toastr.error(data.error);
+                    }
+                },
+
+                error: function (error) {
+                    toastr.error('Failed to add to wishlist');
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

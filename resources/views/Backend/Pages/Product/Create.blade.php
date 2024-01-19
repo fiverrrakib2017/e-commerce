@@ -217,7 +217,22 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col">
+              <div class="form-group">
+                <label for="">Seller</label>
+                <select type="text" class="form-control " name="seller_id" id="seller_id" required>                 
+                  <option value="">---Select---</option>
+                  @if (count($seller) > 0)
+
+                    @foreach($seller as $item)
+                    <option value="{{$item->id}}">{{ $item->fullname }}</option>
+                    @endforeach
+                  @endif
+                </select>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col">
               <div class="form-group">
                 <label for="">Brand</label>
                 <select type="text" class="form-control select2" name="brand_id" id="brand_id" required>                 
@@ -227,15 +242,12 @@
                     @foreach($brand as $item)
                     <option value="{{$item->id}}">{{ $item->brand_name }}</option>
                     @endforeach
-
-                  @else
-                    <option value="">No Brand</option>
                   @endif
                 </select>
                 <p class="ierr"></p>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col">
               <div class="form-group">
                 <label for="">Category</label>
                 <select type="text" onchange="load_sub_category()" class="form-control select2" name="category_id" id="category_id" required>
@@ -252,7 +264,7 @@
                   
                 </select>
                 <p class="ierr"></p>
-            </div>
+              </div>
             </div>
           </div>
 
@@ -322,6 +334,66 @@
                 <input type="text" class="form-control" name="sku" id="sku" required/>
                 <p class="ierr"></p>
             </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Vat/Tax</label>
+                <select type="number" class="form-control" id="tax"  name="tax" required>
+                    <option >---Select---</option>
+                    <option value="5%">5%</option>
+                    <option value="10%">10%</option>
+                    <option value="15%">15%</option>
+                    <option value="20%">20%</option>
+                    <option value="25%">25%</option>
+                    <option value="30%">30%</option>
+                    <option value="35%">35%</option>
+                    <option value="40%">40%</option>
+                </select>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Delivery Charge</label>
+                <input type="text" class="form-control" name="dellivery_charge" id="dellivery_charge" placeholder="Enter Amount" required/>
+                <p class="ierr"></p>
+            </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="">Size</label>
+                <input type="text" class="form-control" id="size"  name="size" placeholder="Enter Size"  required/>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="">Color</label>
+                <input type="text" class="form-control" name="color" id="color" placeholder="Enter Color" required/>
+                <p class="ierr"></p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="">Product Type</label>
+                <select type="text" class="form-control" name="product_type" id="product_type" required>
+                  <option >---Select---</option>
+                  <option value="Features">Features</option>
+                  <option value="Popular">Popular</option>
+                  <option value="New">New</option>
+                </select>
+                <p class="ierr"></p>
+              </div>
             </div>
           </div>
 
