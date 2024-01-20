@@ -1,0 +1,122 @@
+@extends('Frontend.Layout.App')
+@section('title','Welcome To Our Shop | Admin Panel')
+
+@section('content')
+<section class="page_tittle_area">
+        <div class="container">
+           <div class="row">
+               <div class="col-md-12">
+                   <div class="page_tittle">
+                       <h2 class="text-uppercase ">My Account</h2>
+                   </div>
+               </div>
+           </div>
+        </div>
+      </section>
+    <!---user info area-->
+    <!---user info area-->
+    <section class="user_dashboard_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="dashboard_left">
+                        <div class="user_image_area">
+                            @if(auth()->check())
+                                <img src="{{ asset('Frontend/images/user-image.jpg') }}"/>
+                                <p>{{ auth()->user()->name }}</p>
+                            @endif
+                        </div>
+                        <div class="user_sidebar_menu">
+                            <ul>
+                                <li><a href="{{route('frontend.order_list')}}">Order</a></li>
+                                <li><a href="{{route('frontend.user_account')}}">Account</a></li>
+                                <li><a href="customerAddress.html">Address</a></li>
+                                 <li><a href="vouchers.html">Vouchers</a></li>
+                                <li><a href="userpayement.html">Payment Methods</a></li>
+                                <li><a href="{{route('frontend.return_order_list')}}">Returns</a></li>
+                                <li><a href="{{route('frontend.order_cancle')}}">Cancellations</a></li>
+                                <li><a href="{{route('frontend.wish_list')}}">WishList</a></li>
+                                <li><a href="subscription.html">Subscriptions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-md-8">
+                    <div class="user_main_content">
+                        <h2 class="user_top_heading">Reason for your Return</h2>
+                        <div class="container">
+
+
+
+                            <div class="row ">
+                                
+
+
+                                   
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--recent order table-->
+                        <div class="recent_order mt-5">
+                           
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>#Order No</th>
+                                    <th>Placed on</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                    <th> Return Reason</th>
+                                </thead>
+                                <tbody>
+                                @foreach($data as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->created_at->format('m/d/Y') }}</td>
+                                        <td>
+                                            @if($order->orderDetails)
+                                                @foreach($order->orderDetails as $orderDetail)
+                                                    <img src="{{ asset('uploads/product/' . $orderDetail->product->product_image->first()->image) }}" width="100" height="100" />
+                                                @endforeach
+                                            @else
+                                                No items
+                                            @endif
+                                        </td>
+                                        <td>${{ $order->grand_total }}</td>
+                                        <td>
+                                            <form>
+                                                <select class="form-control mt-3" aria-label="Default select example">
+                                                    <option selected>Please Select a reason</option>
+                                                    <option value="1">Product Problem</option>
+                                                    <option value="2">Payment Problem</option>
+                                                    <option value="3">Delivery Problem</option>
+                                                  </select>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+@section('script')
+    @if(session('success'))
+        <script>
+            toastr.success('{{ session("success") }}');
+        </script>
+        @elseif(session('error'))
+        <script>
+            toastr.error('{{ session("error") }}');
+        </script>
+    @endif
+ 
+
+
+@endsection

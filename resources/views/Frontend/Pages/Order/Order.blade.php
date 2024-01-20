@@ -18,12 +18,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
+                    
                     <div class="dashboard_left">
                         <div class="user_image_area">
                             @if(auth()->check())
                                 <img src="{{ asset('Frontend/images/user-image.jpg') }}"/>
                                 <p>{{ auth()->user()->name }}</p>
                             @endif
+                            
                         </div>
                         <div class="user_sidebar_menu">
                             <ul>
@@ -32,54 +34,52 @@
                                 <li><a href="customerAddress.html">Address</a></li>
                                  <li><a href="vouchers.html">Vouchers</a></li>
                                 <li><a href="userpayement.html">Payment Methods</a></li>
-                                <li><a href="returnproduct.html">Returns</a></li>
-                                <li><a href="cancellations.html">Cancellations</a></li>
+                                <li><a href="{{route('frontend.return_order_list')}}">Returns</a></li>
+                                <li><a href="{{route('frontend.order_cancle')}}">Cancellations</a></li>
                                 <li><a href="{{route('frontend.wish_list')}}">WishList</a></li>
                                 <li><a href="subscription.html">Subscriptions</a></li>
                             </ul>
                         </div>
                     </div>
+                  
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 mb-5">
                     <div class="user_main_content">
-                        <h2 class="user_top_heading">My WishList</h2>
-                        
-
-                        
-                        <!--product wish list table-->
-                        <div class="product_wishlist">
-                           
-                        <table class="table table-striped">
-                            <tbody>
-                            @forelse($data as $wishlistItem)
-                                <tr>
-                                    <td>
-                                        <img src="{{ asset('uploads/product/' . $wishlistItem->product->product_image->first()->image) }}" class="float-left" width="150" height="150"/>
-                                        <p class="ml-3">{{ $wishlistItem->product->title }}</p>
-                                        <p class="ml-3">Size:{{ $wishlistItem->product->size }}, Color: {{ $wishlistItem->product->color }}</p>
-                                        <a href="{{ route('frontend.delete_wishlist', ['deleteId' => $wishlistItem->id]) }}">
-                                            <i class="fa fa-trash ml-1 fa-1x text-danger"></i>
-                                        </a>
-                                    </td>
-                                    <td>${{ $wishlistItem->product->price }}</td>
-                                    <td>
-                                        <a href="{{ route('frontend.wish_list_to_cart', ['id' => $wishlistItem->product->id, 'qty' => $wishlistItem->qty]) }}">
-                                            <i class="fa-solid fa-cart-arrow-down fa-1x text-dark"></i>
-                                        </a> 
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="3">No items in the wishlist</td>
-                                </tr>
-                            @endforelse
-                            </tbody>
-                        </table>
-
+                       <!--recent order table-->
+                        <div class="recent_order mt-5">
+                            <h2>Recent Order</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>#Order No</th>
+                                    <th>Placed on</th>
+                                    <th>Items</th>
+                                    <th>Total</th>
+                                </thead>
+                                <tbody>
+                                @foreach($data as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->created_at->format('m/d/Y') }}</td>
+                                        <td>
+                                            @if($order->orderDetails)
+                                                @foreach($order->orderDetails as $orderDetail)
+                                                    <img src="{{ asset('uploads/product/' . $orderDetail->product->product_image->first()->image) }}" width="100" height="100" />
+                                                @endforeach
+                                            @else
+                                                No items
+                                            @endif
+                                        </td>
+                                        <td>${{ $order->grand_total }}</td>
+                                        <td>
+                                           
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
-                </div>
                 </div>
             </div>
         </div>

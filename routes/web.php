@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\homeController;
 use App\Http\Controllers\Frontend\wishlistController;
@@ -50,7 +51,14 @@ Route::post('/checkout',[CartController::class,'checkout'])->name('frontend.chec
 Route::get('/thank/you',function(){
     return view('Frontend.Pages.thank_you');
 })->name('frontend.thank_you');
-
+/* Order Route */
+Route::get('/user/account/order/all',[AccountController::class,'order_list'])->name('frontend.order_list');
+/* Return  Route */
+Route::get('/user/account/return/order/all',[AccountController::class,'return_order_list'])->name('frontend.return_order_list');
+/* Account  Route */
+Route::get('/user/account/dashboard',[AccountController::class,'user_account_dashboard'])->name('frontend.user_account');
+/* Order Cancle  Route */
+Route::get('/user/account/order/cancle',[AccountController::class,'order_cancle'])->name('frontend.order_cancle');
 
 /* Backend Route */
 Route::get('/admin/dashboard', function () {
