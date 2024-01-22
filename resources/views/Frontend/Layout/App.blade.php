@@ -41,7 +41,7 @@
    
 var owl = $('.owl-carousel');
 owl.owlCarousel({
-    loop:true,
+    loop:false,
     nav:true,
     margin:10,
     

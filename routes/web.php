@@ -35,13 +35,20 @@ use Illuminate\Support\Facades\Route;
 
 /* Frontend Route */
 Route::get('/',[homeController::class,'index']);
+
 /* Product Details Route */
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
 
+/* Category base Product Route */
+Route::get('/product/category/{id}',[FrontProudctController::class,'category_product'])->name('frontend.product.category');
+
 /* Wishlist  Route */
 Route::get('/wish/list',[wishlistController::class,'wish_list'])->name('frontend.wish_list');
+
 Route::get('/wishlist/to/cart/{id}/{qty}',[wishlistController::class,'wish_list_to_cart'])->name('frontend.wish_list_to_cart');
+
 Route::get('/wishlist/delete/{deleteId}',[wishlistController::class,'delete_wishlist'])->name('frontend.delete_wishlist');
+
 Route::post('/add-to-wishlist',[wishlistController::class,'add_to_wishlist'])->name('frontend.add_to_wishlist');
 
 /* Cart Route */

@@ -12,20 +12,32 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    
     public function order_list(){
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
         $data = Product_Order::where('user_id', Auth::user()->id)->latest()->get();
         return view('Frontend.Pages.Order.Order', compact('data'));
     }
     public function return_order_list(){
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
         $data = Product_Order::where('user_id', Auth::user()->id)->latest()->get();
         return view('Frontend.Pages.Return_Order.Return_Order', compact('data'));
     }
     public function user_account_dashboard(){
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
         $data=User::find(Auth::user()->id);
         return view('Frontend.Pages.Account.Account',compact('data'));
     }
     public function order_cancle(){
-
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
         $data = Product_Order::where('user_id', Auth::user()->id)->latest()->get();
         return view('Frontend.Pages.Order.Order_Cancle',compact('data'));
     }

@@ -672,11 +672,11 @@
                     <div class="owl-carousel owl-theme">
                         @foreach ($category as $item)
                         <div class="item">
-                            <a href="productCategory.html" class="text-decoration-none text-dark">
+                            <a href="#" class="text-decoration-none text-dark">
                                 <div class="card h-100" >
                                     <img src="{{asset('Backend/images/category/'.$item->category_image)}}" class="card-img-top category_slider_image" alt="...">
                                     <div class="card-body text-center">
-                                      <a href="productCategory.html" class="btn btn-dark category_slider_tittle">{{$item->category_name}}</a>
+                                      <a href="{{ route('frontend.product.category',$item->id)}}" class="btn btn-dark category_slider_tittle">{{ $item->category_name  }}</a>
                                     </div>
                                   </div> 
                             </a>
