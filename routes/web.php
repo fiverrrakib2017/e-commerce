@@ -16,8 +16,10 @@ use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontBlogController;
 use App\Http\Controllers\Frontend\homeController;
 use App\Http\Controllers\Frontend\wishlistController;
@@ -73,8 +75,10 @@ Route::get('/user/blog/list',[FrontBlogController::class,'show_blog_page'])->nam
 Route::get('/user/blog/category/{id}',[FrontBlogController::class,'category_blog'])->name('frontend.category_blog');
 
 Route::get('/user/single/blog/{blogId}',[FrontBlogController::class,'single_blog_page'])->name('frontend.single_blog_page');
-
-
+/* About US   Route */
+Route::get('/user/about',[AboutController::class,'show_about'])->name('frontend.show_about');
+/* Contract  Route */
+Route::get('/user/contact',[ContactController::class,'show_contact'])->name('frontend.show_contact');
 
 
 

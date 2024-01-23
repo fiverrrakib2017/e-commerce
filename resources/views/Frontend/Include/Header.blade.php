@@ -112,7 +112,7 @@
                                         <a class="nav-link" href="#">Product</a>
                                       </li>
                                     <li class="nav-item">
-                                      <a class="nav-link" href="#">About</a>
+                                      <a class="nav-link" href="{{route('frontend.show_about')}}">About</a>
                                     </li>
                                     
                                     <li class="nav-item">
@@ -122,7 +122,7 @@
                                         <a class="nav-link" href="{{route('frontend.blog')}}">Blog</a>
                                       </li>
                                       <li class="nav-item">
-                                        <a class="nav-link" href="#">Contact</a>
+                                        <a class="nav-link" href="{{route('frontend.show_contact')}}">Contact</a>
                                       </li>
                                   </ul>
                                   
