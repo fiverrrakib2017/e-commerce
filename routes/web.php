@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\FrontBlogController;
 use App\Http\Controllers\Frontend\homeController;
 use App\Http\Controllers\Frontend\wishlistController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,17 @@ Route::get('/user/account/return/order/all',[AccountController::class,'return_or
 Route::get('/user/account/dashboard',[AccountController::class,'user_account_dashboard'])->name('frontend.user_account');
 /* Order Cancle  Route */
 Route::get('/user/account/order/cancle',[AccountController::class,'order_cancle'])->name('frontend.order_cancle');
+/* Blog  Route */
+Route::get('/user/blog/list',[FrontBlogController::class,'show_blog_page'])->name('frontend.blog');
+
+Route::get('/user/blog/category/{id}',[FrontBlogController::class,'category_blog'])->name('frontend.category_blog');
+
+Route::get('/user/single/blog/{blogId}',[FrontBlogController::class,'single_blog_page'])->name('frontend.single_blog_page');
+
+
+
+
+
 
 /* Backend Route */
 Route::get('/admin/dashboard', function () {

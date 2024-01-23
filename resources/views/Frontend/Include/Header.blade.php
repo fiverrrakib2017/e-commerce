@@ -119,7 +119,7 @@
                                       <a class="nav-link" href="#">Service</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Blog</a>
+                                        <a class="nav-link" href="{{route('frontend.blog')}}">Blog</a>
                                       </li>
                                       <li class="nav-item">
                                         <a class="nav-link" href="#">Contact</a>
