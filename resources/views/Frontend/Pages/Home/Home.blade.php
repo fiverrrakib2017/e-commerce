@@ -35,7 +35,7 @@
         <div class="container">
             <h2>Features products</h2>
             <hr/>
-            <div class="row">
+            <div class="row" id="items_container">
                @foreach ($product as $item)
                 <div class="col-md-3 col-sm-6 mb-3">
                     <div class="features_product">
@@ -76,122 +76,8 @@
                 </div>
                 @endforeach
             </div>
-            <div class="row mt-3">
-               
-                <div class="col-md-3 col-sm-6  mb-3">
-                    <div class="popular_product">
-                        <a href="singleProduct.html" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <img src="{{asset('Frontend/images/popular-products1.jpg')}}" class="card-img-top product_image" alt="...">
-                                <div class="card-body">
-                                  <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
-                                  
-                                  <p><span class="product-tittle-color">$55</span></p>
-                                  <p><del>$25</del>-40%</p>
-                                  <div class="product_rating">
-                                    <ul>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                      
-                                        
-                                        
-                                    </ul>
-                                </div>
-                                </div>
-                              </div>
-                            </a>
-                       
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6  mb-3">
-                    <div class="popular_product">
-                        <a href="singleProduct.html" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <img src="{{asset('Frontend/images/popular-products2.png')}}" class="card-img-top product_image" alt="...">
-                                <div class="card-body">
-                                  <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
-                                  
-                                  <p><span class="product-tittle-color">$55</span></p>
-                                  <p><del>$25</del>-40%</p>
-                                  <div class="product_rating">
-                                    <ul>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                       
-                                        
-                                        
-                                    </ul>
-                                </div>
-                                </div>
-                              </div>
-                        </a>
-                        
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="popular_product">
-                        <a href="singleProduct.html" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <img src="{{asset('Frontend/images/popular-products3.jpg')}}" class="card-img-top product_image" alt="...">
-                                <div class="card-body">
-                                  <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
-                                  
-                                  <p><span class="product-tittle-color">$55</span></p>
-                                  <p><del>$25</del>-40%</p>
-                                  <div class="product_rating">
-                                    <ul>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                       
-                                        
-                                        
-                                    </ul>
-                                </div>
-                                </div>
-                              </div>
-                        </a>
-                        
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="popular_product">
-                        <a href="singleProduct.html" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <img src="{{asset('Frontend/images/popular-products4.jpg')}}" class="card-img-top product_image" alt="...">
-                                <div class="card-body">
-                                  <h5 class="product_tittle">Video lamp with Tripod for Smartphone</h5>
-                                  <p><span class="product-tittle-color">$55</span></p>
-                                  <p><del>$25</del>-40%</p>
-                                  <div class="product_rating">
-                                    <ul>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                        <span><i class="fa fa-star checked star"></i></span>
-                                       
-                                        
-                                        
-                                    </ul>
-                                </div>
-                                </div>
-                              </div>
-                            </a>
-                       
-                    </div>
-                </div>
-            </div>
             <div class="load_more text-center">
-                <button type="button" class="btn btn-warning mt-3 ">Load More</button>
+            <button type="button" class="btn btn-warning mt-3" id="load_more_button" data-page="{{ $product->currentPage() + 1 }}">Load More</button>
             </div>
         </div>
 
@@ -709,4 +595,82 @@
        </div>
 
    </section>
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function() {
+    var start = 8;
+
+    $('#load_more_button').click(function() {
+        $.ajax({
+            url: "{{ route('frontend.load-more') }}",
+            method: "GET",
+            data: {
+                start: start
+            },
+            dataType: "json",
+            beforeSend: function() {
+                $('#load_more_button').html(`<div class="text-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                </div>`);
+                $('#load_more_button').attr('disabled', true);
+            },
+            success: function(data) {
+                if (data.data.length > 0) {
+                    var html = '';
+                    for (var i = 0; i < data.data.length; i++) {
+                        var item = data.data[i];
+                        var productImage = item.product_image; 
+                        var productDetailsUrl = "{{ route('frontend.product.details', ':id') }}".replace(':id', item.id);
+
+                        html += `
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="features_product">
+                                <a href="${productDetailsUrl}" class="text-decoration-none text-dark">
+                                    <div class="card h-100">
+                                    @if ($productImage && !empty($productImage->image))
+                                        <img src="{{ asset('uploads/product/'.$productImage->image.'') }}" alt="" class="card-img-top product_image">
+                                    @else
+                                        <img src="https://dummyimage.com/250/ffffff/000000" alt="" srcset="" class="card-img-top product_image">
+                                    @endif
+                                    <div class="card-body">
+                                        <h5 class="product_tittle">${item.title}</h5>
+                                        <p><span class="product-tittle-color">${item.price}</span></p>
+                                        <p><del>$25</del>-40%</p>
+                                        <div class="product_rating">
+                                            <ul>
+                                                <span><i class="fa fa-star checked star"></i></span>
+                                                <span><i class="fa fa-star checked star"></i></span>
+                                                <span><i class="fa fa-star checked star"></i></span>
+                                                <span><i class="fa fa-star checked star"></i></span>
+                                                <span><i class="fa fa-star checked star"></i></span>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        `;
+                    }
+
+                    // Append data with fade-in effect
+                    $('#items_container').append($(html).hide().fadeIn(1000));
+                    $('#load_more_button').html('Load More');
+                    $('#load_more_button').attr('disabled', false);
+                    start = data.next;
+                } else {
+                    $('#load_more_button').html('No More Data Available');
+                    $('#load_more_button').attr('disabled', true);
+                }
+            }
+        });
+    });
+});
+
+</script>
+
 @endsection

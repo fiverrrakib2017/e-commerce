@@ -1,5 +1,5 @@
 @extends('Frontend.Layout.App')
-@section('title','About Page||Welcome To Our Shop | Admin Panel')
+@section('title','About Page||Welcome To Our Shop ')
 
 @section('content')
 <section class="contact_us_tittle">

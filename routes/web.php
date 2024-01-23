@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Route;
 
 /* Frontend Route */
 Route::get('/',[homeController::class,'index']);
-
+Route::get('/load-more', [homeController::class, 'load_more'])->name('frontend.load-more');
 /* Product Details Route */
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
 
