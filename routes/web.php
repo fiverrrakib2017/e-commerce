@@ -42,6 +42,9 @@ Route::get('/load-more', [homeController::class, 'load_more'])->name('frontend.l
 /* Product Details Route */
 Route::get('/product/details/{id}',[FrontProudctController::class,'get_details'])->name('frontend.product.details');
 
+/* Product  Route */
+Route::get('/product/all',[FrontProudctController::class,'get_all_product'])->name('frontend.product.all');
+
 /* Category base Product Route */
 Route::get('/product/category/{id}',[FrontProudctController::class,'category_product'])->name('frontend.product.category');
 

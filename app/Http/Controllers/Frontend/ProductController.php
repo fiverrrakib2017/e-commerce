@@ -28,4 +28,10 @@ class ProductController extends Controller
         $data = Product::where(['brand_id' => $id])->paginate(9);
         return view('Frontend.Pages.Product.Brand_Product',compact('data','category','brand'));
     }
+    public function get_all_product(){
+        $category=Product_Category::latest()->get();
+        $brand=Product_Brand::latest()->get();
+        $data = Product::latest()->paginate(9);
+        return view('Frontend.Pages.Product.Product',compact('data','category','brand'));
+    }
 }    

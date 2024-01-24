@@ -106,10 +106,10 @@
                                       <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Shop</a>
+                                        <a class="nav-link" href="{{route('frontend.product.all')}}">Shop</a>
                                       </li>
                                       <li class="nav-item">
-                                        <a class="nav-link" href="#">Product</a>
+                                        <a class="nav-link" href="{{route('frontend.product.all')}}">Product</a>
                                       </li>
                                     <li class="nav-item">
                                       <a class="nav-link" href="{{route('frontend.show_about')}}">About</a>
