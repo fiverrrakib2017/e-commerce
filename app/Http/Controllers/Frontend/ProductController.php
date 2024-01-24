@@ -22,4 +22,10 @@ class ProductController extends Controller
         
         return view('Frontend.Pages.Product.Category_Product',compact('data','category','brand'));
     }
+    public function brand_product($id){
+        $category=Product_Category::latest()->get();
+        $brand=Product_Brand::latest()->get();
+        $data = Product::where(['brand_id' => $id])->paginate(9);
+        return view('Frontend.Pages.Product.Brand_Product',compact('data','category','brand'));
+    }
 }    

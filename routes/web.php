@@ -45,6 +45,9 @@ Route::get('/product/details/{id}',[FrontProudctController::class,'get_details']
 /* Category base Product Route */
 Route::get('/product/category/{id}',[FrontProudctController::class,'category_product'])->name('frontend.product.category');
 
+/* Brand base Product Route */
+Route::get('/product/brand/{id}',[FrontProudctController::class,'brand_product'])->name('frontend.product.brand');
+
 /* Wishlist  Route */
 Route::get('/wish/list',[wishlistController::class,'wish_list'])->name('frontend.wish_list');
 
