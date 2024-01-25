@@ -22,6 +22,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontBlogController;
 use App\Http\Controllers\Frontend\homeController;
+use App\Http\Controllers\Frontend\subscriberController;
 use App\Http\Controllers\Frontend\wishlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -85,8 +86,8 @@ Route::get('/user/single/blog/{blogId}',[FrontBlogController::class,'single_blog
 Route::get('/user/about',[AboutController::class,'show_about'])->name('frontend.show_about');
 /* Contract  Route */
 Route::get('/user/contact',[ContactController::class,'show_contact'])->name('frontend.show_contact');
-
-
+/* Subscriber Route */
+Route::post('/user/subscriber/store/data',[subscriberController::class,'store'])->name('frontend.subscriber.store');
 
 
 /* Backend Route */

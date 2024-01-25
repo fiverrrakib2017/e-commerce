@@ -143,10 +143,14 @@
                        <div class="newsLetter_text">
                            <h4>NEWSLETTER</h4>
                            <p>Subscribe to our newsletter and get 10% off your first purchase</p>
-                           <form action="" method="post" class="news_letter_form">
-                               <input type="email" name="email" placeholder="Enter Your Email"/>
-                               <button class="subscribe_btn">Subscribe</button>
-
+                           <form action="{{route('frontend.subscriber.store')}}" method="post" class="news_letter_form">
+                            @csrf
+                            <div class="form-group">
+                                 <input type="email" class="form-control" name="email" placeholder="Enter Your Email"/>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="subscribe_btn">Subscribe</button>
+                            </div>
                            </form>
                        </div>
                    </div>
@@ -229,8 +233,47 @@
             }
         });
     });
+
+
+    $('.newsLetter_text form').submit(function(e){
+    e.preventDefault();
+
+    var form = $(this);
+    var url = form.attr('action');
+    var formData = form.serialize();
+    /** Use Ajax to send the  request **/
+    $.ajax({
+      type:'POST',
+      'url':url,
+      data: formData,
+        beforeSend: function() {
+            $('.subscribe_btn').html(`<div class="text-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden"></span>
+                </div>
+            </div>`);
+            $('.subscribe_btn').attr('disabled', true);
+        },
+      success: function (response) {
+        if (response.success) {
+         $('.newsLetter_text form').empty();
+          toastr.success(response.success);
+          $('.subscribe_btn').html('Subscribe');
+          $('.subscribe_btn').attr('disabled', false);
+        }
+      },
+
+      error: function (xhr, status, error) {
+        // toastr.error(xhr.responseText);
+        toastr.error( error )
+         $('.subscribe_btn').html('Subscribe');
+          $('.subscribe_btn').attr('disabled', false);
+      }
+    });
+  });
 });
 
 </script>
 
 @endsection
+

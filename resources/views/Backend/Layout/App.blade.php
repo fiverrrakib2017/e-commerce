@@ -55,7 +55,7 @@
         @yield('content')
 
       </div><!-- br-pagebody -->
-      <!-- @include('Backend.Include.Footer') -->
+       <!-- @include('Backend.Include.Footer')  -->
     </div><!-- br-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
 
