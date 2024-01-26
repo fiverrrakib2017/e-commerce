@@ -16,13 +16,14 @@ use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Backend\Subscriber\SubscriberController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FrontBlogController;
 use App\Http\Controllers\Frontend\homeController;
-use App\Http\Controllers\Frontend\subscriberController;
+use App\Http\Controllers\Frontend\Front_subscriber_Controller;
 use App\Http\Controllers\Frontend\wishlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -87,7 +88,7 @@ Route::get('/user/about',[AboutController::class,'show_about'])->name('frontend.
 /* Contract  Route */
 Route::get('/user/contact',[ContactController::class,'show_contact'])->name('frontend.show_contact');
 /* Subscriber Route */
-Route::post('/user/subscriber/store/data',[subscriberController::class,'store'])->name('frontend.subscriber.store');
+Route::post('/user/subscriber/store/data',[Front_subscriber_Controller::class,'store'])->name('frontend.subscriber.store');
 
 
 /* Backend Route */
@@ -261,5 +262,13 @@ Route::prefix('admin/customer')->group(function(){
 
     Route::post('/update/{id}',[CustomerController::class,'update'])->name('admin.customer.update');
 });
+/** Subscrib  Route **/
+ Route::get('/admin/subscriber/data/all',[SubscriberController::class,'index'])->name('admin.subscriber.index');
+ Route::get('/admin/subscriber/get_all_data',[SubscriberController::class,'get_all_data'])->name('admin.subscriber.get_all_data');
+ Route::post('/admin/subscriber/delete/',[SubscriberController::class,'delete'])->name('admin.subscriber.delete');
+
+
+
+
 Auth::routes();
 

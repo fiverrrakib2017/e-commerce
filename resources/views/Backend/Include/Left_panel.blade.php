@@ -138,7 +138,7 @@ $route = Route::currentRouteName()
         </li>
         <!---------- Subscriber Menu-------------->
         <li class="br-menu-item">
-          <a href="{{ route('admin.dashboard') }}" class="br-menu-link  ">
+          <a href="{{ route('admin.subscriber.index') }}" class="br-menu-link  {{ Route::is('admin.subscriber.index') ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-home-outline tx-24"></i>
             <span class="menu-item-label">Subscriber </span>
           </a>

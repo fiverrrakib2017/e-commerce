@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 
-class subscriberController extends Controller
+class Front_subscriber_Controller extends Controller
 {
     public function store(Request $request)
     {
