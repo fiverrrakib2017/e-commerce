@@ -255,20 +255,27 @@
             $('.subscribe_btn').attr('disabled', true);
         },
       success: function (response) {
-        if (response.success) {
-         $('.newsLetter_text form').empty();
-          toastr.success(response.success);
+        if (response.success==true ) {
+         $(".newsLetter_text form input[name='email']").val('');
+          toastr.success(response.message);
           $('.subscribe_btn').html('Subscribe');
           $('.subscribe_btn').attr('disabled', false);
         }
       },
 
       error: function (xhr, status, error) {
-        // toastr.error(xhr.responseText);
-        toastr.error( error )
-         $('.subscribe_btn').html('Subscribe');
-          $('.subscribe_btn').attr('disabled', false);
-      }
+            if(xhr.responseJSON && xhr.responseJSON.errors) {
+                // Loop through validation errors and display them
+                $.each(xhr.responseJSON.errors, function (key, value) {
+                    toastr.error(value[0]);
+                });
+            } else {
+                toastr.error('An error occurred.');
+            }
+
+            $('.subscribe_btn').html('Subscribe');
+            $('.subscribe_btn').attr('disabled', false);
+        }
     });
   });
 });

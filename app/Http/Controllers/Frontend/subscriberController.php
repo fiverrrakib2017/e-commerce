@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Frontend;
-
+use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
@@ -10,17 +10,21 @@ class subscriberController extends Controller
 {
     public function store(Request $request)
     {
-        // Validate email 
-        $request->validate([
-            'email' => 'required|email|unique:subscribers',
-        ]);
+        try {
+            // Validate the request data
+            $request->validate([
+                'email' => 'required|email|unique:subscribers',
+            ]);
 
-        // Create a new subscriber
-        $subscriber = new Subscriber();
-        $subscriber->email = $request->email;
-        $subscriber->save();
+            // Insert into the subscribers table
+            $subscriber = Subscriber::create([
+                'email' => $request->email,
+            ]);
 
-        // You can also send a response if needed
-        return response()->json(['success' => 'Subscription successful']);
+            return response()->json(['success' => true, 'message' => 'Subscription successful']);
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json(['success' => false, 'errors' => $e->errors()], 422);
+        }
     }
 }
