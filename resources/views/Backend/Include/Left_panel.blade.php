@@ -86,7 +86,7 @@ $route = Route::currentRouteName()
 
         <!---------- Orders Menu-------------->
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link ">
+          <a href="{{route('admin.order.index')}}" class="br-menu-link {{ Route::is('admin.order.index') ? 'active' : '' }}">
             <i class="menu-item-icon icon ion-ios-medkit-outline tx-24"></i>
             <span class="menu-item-label">Orders </span>
           </a>

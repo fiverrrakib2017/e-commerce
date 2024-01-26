@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\Shop\ShopController;
 use App\Http\Controllers\Backend\Shop\StaffController;
 use App\Http\Controllers\Backend\Blog\CategoryController as blogCategory;
 use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Backend\Order\OrderController;
 use App\Http\Controllers\Backend\Subscriber\SubscriberController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
@@ -261,6 +262,15 @@ Route::prefix('admin/customer')->group(function(){
     Route::post('/store',[CustomerController::class,'store'])->name('admin.customer.store');
 
     Route::post('/update/{id}',[CustomerController::class,'update'])->name('admin.customer.update');
+});
+
+/** Order Mangement   Route **/
+Route::prefix('admin/order')->group(function(){
+    Route::get('/list',[OrderController::class,'index'])->name('admin.order.index');
+
+    Route::get('/all-data',[OrderController::class,'get_all_data'])->name('admin.order.get_all_data'); 
+    
+    Route::post('/delete',[OrderController::class,'delete'])->name('admin.order.delete');
 });
 /** Subscrib  Route **/
  Route::get('/admin/subscriber/data/all',[SubscriberController::class,'index'])->name('admin.subscriber.index');

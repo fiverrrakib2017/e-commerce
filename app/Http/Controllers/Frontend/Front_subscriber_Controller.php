@@ -19,6 +19,7 @@ class Front_subscriber_Controller extends Controller
             // Insert into the subscribers table
             $subscriber = Subscriber::create([
                 'email' => $request->email,
+                'status' => 1,
             ]);
 
             return response()->json(['success' => true, 'message' => 'Subscription successful']);
