@@ -54,6 +54,7 @@
                                     <th>Placed on</th>
                                     <th>Items</th>
                                     <th>Total</th>
+                                    <th>Status</th>
                                 </thead>
                                 <tbody>
                                 @foreach($data as $order)
@@ -69,9 +70,16 @@
                                                 No items
                                             @endif
                                         </td>
-                                        <td>${{ $order->grand_total }}</td>
+                                        <td>BDT {{ $order->grand_total }}</td>
                                         <td>
-                                           
+                                            @if ($order->status=1)
+                                            <span class="badge badge-primary">Processing</span>
+
+                                            @elseif ($order->status=2)
+                                            <span class="badge badge-success">Deliverd</span>
+                                            @endif
+
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

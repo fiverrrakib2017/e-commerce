@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
@@ -106,10 +107,35 @@ class CartController extends Controller
                 $productData->qty = $updatedQty;
                 $productData->update();
             }
-            /* Clear the user's cart after successful checkout */
-            Cart::where('user_id', Auth::id())->delete();
+             /* Make a request to the courier service API to create a Parcel */
+             $courierApiUrl = 'https://portal.steadfast.com.bd/api/v1/create_order';
+             $courierData = [
+                'invoice' => $order->id,
+                'recipient_name' => $request->first_name . ' ' . $request->last_name,
+                'recipient_phone' => $request->number,
+                'recipient_address' => $request->address,
+                'cod_amount' => $request->total,  
+                'note' => 'Delivery instructions or other notes.',
+                // Add other courier-related data
+            ];
+            $headers = [
+                'Api-Key' => '9w8uwnfx7sc9r2rupggjkg2iiqxbsjin',  
+                'Secret-Key' => 'xegqa89dwila6smbneu1vtu2',  
+                'Content-Type' => 'application/json',
+            ];
+            $response = Http::withHeaders($headers)->post($courierApiUrl, $courierData);
+            if ($response->successful()) {
+                /*  Handle the courier service response*/
+                $courierApiResponse = $response->json();
+                
+                /* Clear the user's cart after successful checkout */
+                Cart::where('user_id', Auth::id())->delete(); 
 
-            return redirect()->route('frontend.thank_you')->with('success', 'Order placed successfully');
+                return redirect()->route('frontend.thank_you')->with('success', 'Order placed successfully');
+            } else {
+                /* Handle the error response from the courier service*/
+                return redirect()->back()->with('error', 'Failed to create shipment with the courier service');
+            }
         }
     }
 }
