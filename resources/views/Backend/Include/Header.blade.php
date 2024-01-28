@@ -141,15 +141,15 @@
           </div><!-- dropdown -->
           <div class="dropdown">
             <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span class="logged-name hidden-md-down">Rakib Mahmud</span>
-              <img src="https://via.placeholder.com/500" class="wd-32 rounded-circle" alt="">
+              <span class="logged-name hidden-md-down">{{ Auth::guard('admin')->user()->name }}</span>
+              <img src="{{asset('Backend/images/avatar.png')}}" class="wd-32 rounded-circle" alt="">
               <span class="square-10 bg-success"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-header wd-250">
               <div class="tx-center">
-                <a href=""><img src="https://via.placeholder.com/500" class="wd-80 rounded-circle" alt=""></a>
-                <h6 class="logged-fullname">Katherine P. Lumaad</h6>
-                <p>youremail@domain.com</p>
+                <a href=""><img src="{{asset('Backend/images/avatar.png')}}" class="wd-80 rounded-circle" alt=""></a>
+                <h6 class="logged-fullname">{{ Auth::guard('admin')->user()->name }}</h6>
+                <p>{{ Auth::guard('admin')->user()->email }}</p>
               </div>
               <hr>
               <ul class="list-unstyled user-profile-nav">
@@ -158,7 +158,7 @@
                 <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
                 <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
                 <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>
-                <li><a href=""><i class="icon ion-power"></i> Sign Out</a></li>
+                <li><a href="{{route('admin.logout')}}"><i class="icon ion-power"></i> Sign Out</a></li>
               </ul>
             </div><!-- dropdown-menu -->
           </div><!-- dropdown -->
