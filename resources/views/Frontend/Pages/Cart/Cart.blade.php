@@ -14,48 +14,48 @@
                         <div class="row">
                             <div class="col">
                             <label>First Name<span style="color:red;font-weight: 800;">*</span></label>
-                            <input type="text" class="form-control"  name="first_name" placeholder="Enter First Name">
+                            <input type="text" class="form-control"  name="first_name" placeholder="Enter First Name" required>
                             </div>
                             <div class="col">
                             <label>Last Name<span style="color:red;font-weight: 800;">*</span></label>
-                            <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name">
+                            <input type="text" class="form-control" name="last_name" placeholder="Enter Last Name" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label>Email<span style="color:red;font-weight: 800;">*</span></label>
-                                <input type="email" class="form-control" name="email" placeholder=" Enter Email" >
+                                <input type="email" class="form-control" name="email" placeholder=" Enter Email" required >
                             </div>
                             <div class="col">
                                 <label>Phone<span style="color:red;font-weight: 800;">*</span></label>
-                                <input type="number" class="form-control" name="number" placeholder=" Enter Number" >
+                                <input type="number" class="form-control" name="number" placeholder=" Enter Number"  required>
                             </div>
                             </div>
                             <div class="row">
                             <div class="col">
                                 <label>Country<span style="color:red;font-weight: 800;">*</span></label>
-                                <input type="text" class="form-control" name="country" placeholder=" Enter Your Country" >
+                                <input type="text" class="form-control" name="country" placeholder=" Enter Your Country"  required>
                             </div>
                             <div class="col">
                                 <label>City<span style="color:red;font-weight: 800;">*</span></label>
-                                <input type="text" class="form-control" name="city" placeholder=" Enter Your City" >
+                                <input type="text" class="form-control" name="city" placeholder=" Enter Your City"  required>
                             </div>
                             </div>
                             <div class="row">
                             <div class="col">
                                 <label>Area<span style="color:red;font-weight: 800;">*</span></label>
-                                <input type="text" class="form-control" name="area" placeholder=" Enter Your Area" >
+                                <input type="text" class="form-control" name="area" placeholder=" Enter Your Area"  required>
                             </div>
                             
                             <div class="col">
                                 <label>Post Code<span style="color:red;font-weight: 800;">*</span></label>
-                                <input type="text" class="form-control" placeholder=" Enter Your Post Code"  name="zip_code">
+                                <input type="text" class="form-control" placeholder=" Enter Your Post Code"  name="zip_code" required>
                             </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <label>Address <span style="color:red;font-weight: 800;">*</span></label>
-                                    <input type="text" class="form-control" placeholder=" Enter Your Address" name="address">
+                                    <input type="text" class="form-control" placeholder=" Enter Your Address" name="address" required>
                                 </div>
                             </div>
                             <div class="row d-none">
