@@ -47,22 +47,14 @@
                 <form class="user_account_form">
                     <div class="row">
                         <div class="form-group col-md-6">
-                          <label for="inputEmail4"><strong>First Name</strong></label>
-                          <input type="text" class="form-control" id="inputEmail4" placeholder="john" class="user_account_edit">
+                          <label for="inputEmail4"><strong>Name</strong></label>
+                          <input type="text" class="form-control" id="inputEmail4" class="user_account_edit" value="{{$data->name}}">
                         </div>
                         <div class="form-group col-md-6">
-                          <label for="inputPassword4"><strong>Last Name</strong></label>
-                          <input type="text" class="form-control" id="inputPassword4" placeholder="james">
+                          <label for="inputPassword4"><strong>Email Address</strong></label>
+                          <input type="email" class="form-control" id="inputAddress2" value="{{$data->email}}">
                         </div>
                       </div>
-                    <div class="form-group">
-                      <label for="inputAddress"><strong> Name</strong></label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="john james">
-                    </div>
-                    <div class="form-group">
-                      <label for="inputAddress2"><strong>Email Address</strong></label>
-                      <input type="email" class="form-control" id="inputAddress2" placeholder="johnexample@gmail.com">
-                    </div>
                       <h4> Password Change</h4>
                       <hr/>
                       <div class="form-group">

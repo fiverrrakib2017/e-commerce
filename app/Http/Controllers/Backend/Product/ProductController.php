@@ -12,7 +12,6 @@ use App\Models\Temp_Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
-
 class ProductController extends Controller
 {
     public function index(){
