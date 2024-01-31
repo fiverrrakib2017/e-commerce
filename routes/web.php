@@ -100,7 +100,7 @@ Route::get('/admin/login', [AdminController::class, 'login_form'])->name('admin.
 Route::post('login-functionality',[AdminController::class,'login_functionality'])->name('login.functionality');
 
 Route::group(['middleware'=>'admin'],function(){
-    Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
+    Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
     Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
 
     Route::prefix('admin/product')->group(function(){
@@ -283,5 +283,22 @@ Route::group(['middleware'=>'admin'],function(){
      Route::get('/admin/subscriber/get_all_data',[SubscriberController::class,'get_all_data'])->name('admin.subscriber.get_all_data');
      Route::post('/admin/subscriber/delete/',[SubscriberController::class,'delete'])->name('admin.subscriber.delete');
 });
+
+
+
+
+
+Route::get('/optimize', function () {
+    // Run optimize commands
+    \Illuminate\Support\Facades\Artisan::call('optimize');
+    \Illuminate\Support\Facades\Artisan::call('config:cache');
+    \Illuminate\Support\Facades\Artisan::call('route:cache');
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+
+    // Return a response
+    return response('Optimization complete');
+});
+
+
 Auth::routes();
 

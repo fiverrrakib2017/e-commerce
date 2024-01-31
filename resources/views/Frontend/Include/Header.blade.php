@@ -30,54 +30,31 @@
                             <a href="#" class="single-icon"><i class="fa-solid fa-cart-arrow-down"></i> <span class="total-count">0</span></a>
                           </div>
                         @endif
-                       
-                        
 
-                        
+
+
+
                     </div>
-                    
-                    
+
+
 
                 </div>
                 <div class="col-md-2">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <!-- <a href="{{route('login')}}" class="btn btn-secondary header_login_button">Login</a>
-                        <a href="{{route('register')}}" class="btn btn-secondary">Register</a> -->
-                        <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                    @guest
+                        @if (Route::has('login'))
+                            <a href="{{route('login')}}" class="btn btn-warning header_login_button">Login</a>
+                        @endif
+                        @if (Route::has('register'))
+                            <a href="{{route('register')}}" class="btn btn-success">Register</a>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">@csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
+                    @endguest
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                        
                       </div>
                 </div>
             </div>
@@ -89,17 +66,17 @@
             <div class="cat-menu">
                 <div class="row">
                     <div class="col-md-3">
-                      
+
                     </div>
                     <div class="col-md-9">
                         <div class="menu_area">
                             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                               
+
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                   <span class="navbar-toggler-icon custom_toggle"></span>
-                                  
+
                                 </button>
-                              
+
                                 <div class="collapse navbar-collapse main_navbar" id="navbarSupportedContent">
                                   <ul class="navbar-nav mr-auto">
                                     <li class="nav-item active">
@@ -114,7 +91,7 @@
                                     <li class="nav-item">
                                       <a class="nav-link" href="{{route('frontend.show_about')}}">About</a>
                                     </li>
-                                    
+
                                     <li class="nav-item">
                                       <a class="nav-link" href="#">Service</a>
                                     </li>
@@ -125,11 +102,11 @@
                                         <a class="nav-link" href="{{route('frontend.show_contact')}}">Contact</a>
                                       </li>
                                   </ul>
-                                  
+
                                 </div>
                               </nav>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

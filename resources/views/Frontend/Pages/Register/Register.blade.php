@@ -7,6 +7,15 @@
         <div class="row ">
             <div class="col-md-6 offset-md-3 registration_form">
                    <h2 class="text-center mb-3">Create An Account</h2>
+                   @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                    @endif
                    <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group">
