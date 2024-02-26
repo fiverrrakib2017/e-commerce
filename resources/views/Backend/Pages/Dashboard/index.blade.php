@@ -2,61 +2,313 @@
 @section('title','Dashboard | Admin Panel')
 
 @section('content')
-<div class="row row-sm">
+        <div class="row">
+          <div class="col-md-2 offset-md-10 mt-3 mb-2">
+            <div >
+              <select class="form-control select2" data-placeholder="Choose location">
+                <option label="Choose one"></option>
+                <option value="1" selected>Today</option>
+                <option value="1" >Last 7 Days</option>
+                <option value="2">Last Month</option>
+                <option value="3">Last Year</option>
+                <option value="4">Last 2 Years</option>
+              </select>
+            </div><!-- wd-200 -->
+          </div>
+        </div>
+
+        <div class="row ">
+        
           <div class="col-sm-6 col-xl-3">
             <div class="bg-info rounded overflow-hidden">
               <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                <i class="ion ion-earth tx-60 lh-0 tx-white op-7"></i>
+              <i class="ion ion-cash tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
-                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Today's Visits</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">1,975,224</p>
-                  <span class="tx-11 tx-roboto tx-white-8">24% higher yesterday</span>
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Sales</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ 32000</p>
                 </div>
               </div>
               <div id="ch1" class="ht-50 tr-y-1"></div>
             </div>
           </div><!-- col-3 -->
+
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
             <div class="bg-purple rounded overflow-hidden">
               <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                <i class="ion ion-bag tx-60 lh-0 tx-white op-7"></i>
+              <i class="ion ion-card tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
-                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Today Sales</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">$329,291</p>
-                  <span class="tx-11 tx-roboto tx-white-8">$390,212 before tax</span>
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Purchase</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ 329,291</p>
                 </div>
               </div>
               <div id="ch3" class="ht-50 tr-y-1"></div>
             </div>
           </div><!-- col-3 -->
+
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
             <div class="bg-teal rounded overflow-hidden">
               <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                <i class="ion ion-monitor tx-60 lh-0 tx-white op-7"></i>
+                <i class="ion ion-ios-cart tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
-                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">% Unique Visits</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">54.45%</p>
-                  <span class="tx-11 tx-roboto tx-white-8">23% average duration</span>
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Orders</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">54</p>
                 </div>
               </div>
               <div id="ch2" class="ht-50 tr-y-1"></div>
             </div>
           </div><!-- col-3 -->
+
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
             <div class="bg-primary rounded overflow-hidden">
               <div class="pd-x-20 pd-t-20 d-flex align-items-center">
-                <i class="ion ion-clock tx-60 lh-0 tx-white op-7"></i>
+              <i class="ion ion-cash tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
-                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Bounce Rate</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">32.16%</p>
-                  <span class="tx-11 tx-roboto tx-white-8">65.45% on average time</span>
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Net Profit </p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ 32000</p>
                 </div>
               </div>
               <div id="ch4" class="ht-50 tr-y-1"></div>
             </div>
           </div><!-- col-3 -->
-        </div><!-- row -->
 
+        </div><!-- row -->
+        
+        <div class="row " style="margin-top: 22px;">
+          <div class="col-sm-6 col-xl-3">
+            <div class="bg-info rounded overflow-hidden">
+              <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+              <i class="ion ion-ios-people tx-60 lh-0 tx-white op-7"></i>
+                <div class="mg-l-20">
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Customers</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">224</p>
+                </div>
+              </div>
+              <div id="ch8" class="ht-50 tr-y-1"></div>
+            </div>
+          </div><!-- col-3 -->
+
+          <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
+            <div class="bg-primary  rounded overflow-hidden">
+              <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+              <i class="ion ion-ios-people tx-60 lh-0 tx-white op-7"></i>
+                <div class="mg-l-20">
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Suppliers</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">29,291</p>
+                </div>
+              </div>
+              <div id="ch3" class="ht-50 tr-y-1"></div>
+            </div>
+          </div><!-- col-3 -->
+
+          <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+            <div class="bg-teal rounded overflow-hidden">
+              <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+              <i class="ion ion-cube tx-60 lh-0 tx-white op-7"></i>
+                <div class="mg-l-20">
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Products</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">540</p>
+                </div>
+              </div>
+              <div id="ch2" class="ht-50 tr-y-1"></div>
+            </div>
+          </div><!-- col-3 -->
+
+          <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+            <div class="bg-primary rounded overflow-hidden">
+              <div class="pd-x-20 pd-t-20 d-flex align-items-center">
+              <i class="ion ion-ios-people tx-60 lh-0 tx-white op-7"></i>
+                <div class="mg-l-20">
+                  <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Seller </p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">32</p>
+                </div>
+              </div>
+              <div id="ch4" class="ht-50 tr-y-1"></div>
+            </div>
+          </div><!-- col-3 -->
+
+        </div><!-- row -->
+        <div class="row row-sm mg-t-20">
+          <div class="col-lg-6">
+            <div class="card shadow-base bd-0">
+              <div class="card-header bg-transparent pd-20">
+                <h6 class="card-title tx-uppercase tx-12 mg-b-0">Latest Customer</h6>
+              </div><!-- card-header -->
+              <table class="table table-responsive mg-b-0 tx-12">
+                <thead>
+                  <tr class="tx-10">
+                    <th class="wd-10p pd-y-5">&nbsp;</th>
+                    <th class="pd-y-5">User</th>
+                    <th class="pd-y-5">Type</th>
+                    <th class="pd-y-5">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Mark K. Peters</a>
+                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
+                    </td>
+                    <td class="tx-12">
+                      <span class="square-8 bg-success mg-r-5 rounded-circle"></span> Email verified
+                    </td>
+                    <td>Just Now</td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Karmen F. Brown</a>
+                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
+                    </td>
+                    <td class="tx-12">
+                      <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> Pending verification
+                    </td>
+                    <td>Apr 21, 2017 8:34am</td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Gorgonio Magalpok</a>
+                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
+                    </td>
+                    <td class="tx-12">
+                      <span class="square-8 bg-success mg-r-5 rounded-circle"></span> Purchased success
+                    </td>
+                    <td>Apr 10, 2017 4:40pm</td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Ariel T. Hall</a>
+                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
+                    </td>
+                    <td class="tx-12">
+                      <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> Payment on hold
+                    </td>
+                    <td>Apr 02, 2017 6:45pm</td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">John L. Goulette</a>
+                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
+                    </td>
+                    <td class="tx-12">
+                      <span class="square-8 bg-pink mg-r-5 rounded-circle"></span> Account deactivated
+                    </td>
+                    <td>Mar 30, 2017 10:30am</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="card-footer tx-12 pd-y-15 bg-transparent">
+                <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
+              </div><!-- card-footer -->
+            </div><!-- card -->
+          </div><!-- col-6 -->
+          <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card shadow-base bd-0">
+              <div class="card-header pd-20 bg-transparent">
+                <h6 class="card-title tx-uppercase tx-12 mg-b-0">Top Rated Product </h6>
+              </div><!-- card-header -->
+              <table class="table table-responsive mg-b-0 tx-12">
+                <thead>
+                  <tr class="tx-10">
+                    <th class="wd-10p pd-y-5">&nbsp;</th>
+                    <th class="pd-y-5">Item Details</th>
+                    <th class="pd-y-5 tx-right">Sold</th>
+                    <th class="pd-y-5">Gain</th>
+                    <th class="pd-y-5 tx-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/800x533" class="wd-55" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">The Dothraki Shoes</a>
+                      <span class="tx-11 d-block"><span class="square-8 bg-danger mg-r-5 rounded-circle"></span> 20 remaining</span>
+                    </td>
+                    <td class="valign-middle tx-right">3,345</td>
+                    <td class="valign-middle"><span class="tx-success"><i class="icon ion-android-arrow-up mg-r-5"></i>33.34%</span> from last week</td>
+                    <td class="valign-middle tx-center">
+                      <a href="" class="tx-gray-600 tx-24"><i class="icon ion-android-more-horizontal"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/800x533" class="wd-55" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Westeros Sneaker</a>
+                      <span class="tx-11 d-block"><span class="square-8 bg-success mg-r-5 rounded-circle"></span> In stock</span>
+                    </td>
+                    <td class="valign-middle tx-right">720</td>
+                    <td class="valign-middle"><span class="tx-danger"><i class="icon ion-android-arrow-down mg-r-5"></i>21.20%</span> from last week</td>
+                    <td class="valign-middle tx-center">
+                      <a href="" class="tx-gray-600 tx-24"><i class="icon ion-android-more-horizontal"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/800x533" class="wd-55" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Selonian Hand Bag</a>
+                      <span class="tx-11 d-block"><span class="square-8 bg-success mg-r-5 rounded-circle"></span> In stock</span>
+                    </td>
+                    <td class="valign-middle tx-right">1,445</td>
+                    <td class="valign-middle"><span class="tx-success"><i class="icon ion-android-arrow-up mg-r-5"></i>23.34%</span> from last week</td>
+                    <td class="valign-middle tx-center">
+                      <a href="" class="tx-gray-600 tx-24"><i class="icon ion-android-more-horizontal"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/800x533" class="wd-55" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Kel Dor Sunglass</a>
+                      <span class="tx-11 d-block"><span class="square-8 bg-warning mg-r-5 rounded-circle"></span> 45 remaining</span>
+                    </td>
+                    <td class="valign-middle tx-right">2,500</td>
+                    <td class="valign-middle"><span class="tx-success"><i class="icon ion-android-arrow-up mg-r-5"></i>28.78%</span> from last week</td>
+                    <td class="valign-middle tx-center">
+                      <a href="" class="tx-gray-600 tx-24"><i class="icon ion-android-more-horizontal"></i></a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="pd-l-20">
+                      <img src="https://via.placeholder.com/800x533" class="wd-55" alt="Image">
+                    </td>
+                    <td>
+                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Kubaz Sunglass</a>
+                      <span class="tx-11 d-block"><span class="square-8 bg-success mg-r-5 rounded-circle"></span> In stock</span>
+                    </td>
+                    <td class="valign-middle tx-14 tx-right">223</td>
+                    <td class="valign-middle"><span class="tx-danger"><i class="icon ion-android-arrow-down mg-r-5"></i>18.18%</span> from last week</td>
+                    <td class="valign-middle tx-center">
+                      <a href="" class="tx-gray-600 tx-24"><i class="icon ion-android-more-horizontal"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="card-footer tx-12 pd-y-15 bg-transparent">
+                <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Products</a>
+              </div><!-- card-footer -->
+            </div><!-- card -->
+          </div><!-- col-6 -->
+        </div><!-- row -->
         <div class="row row-sm mg-t-20">
           <div class="col-lg-8">
             <div class="card bd-0 shadow-base">
@@ -130,51 +382,7 @@
               </div><!-- row -->
             </div><!-- card -->
 
-            <div class="card shadow-base bd-0 pd-25 mg-t-20">
-              <div class="d-md-flex justify-content-between align-items-center">
-                <div>
-                  <h6 class="tx-13 tx-uppercase tx-inverse tx-semibold tx-spacing-1">Delivery Overview</h6>
-                  <p class="mg-b-0">Past 30 Days — Last Updated Oct 20, 2017</p>
-                </div>
-                <div class="wd-200 mg-t-20 mg-md-t-0">
-                  <select class="form-control select2" data-placeholder="Choose location">
-                    <option label="Choose one"></option>
-                    <option value="1" selected>New York</option>
-                    <option value="2">San Francisco</option>
-                    <option value="3">Los Angeles</option>
-                    <option value="4">Chicago</option>
-                    <option value="5">Seattle</option>
-                  </select>
-                </div><!-- wd-200 -->
-              </div><!-- d-flex -->
-
-              <div id="mapShiftWorker" class="ht-300 ht-sm-400 mg-t-25"></div>
-
-              <div class="row row-xs mg-t-25">
-                <div class="col-sm-4">
-                  <div class="tx-center pd-y-15 bd">
-                    <p class="mg-b-5 tx-uppercase tx-10 tx-mont tx-semibold">New Deliveries</p>
-                    <h4 class="tx-lato tx-inverse tx-bold mg-b-0">12,344</h4>
-                    <span class="tx-12 tx-danger tx-roboto">2.7% increased</span>
-                  </div>
-                </div><!-- col-4 -->
-                <div class="col-sm-4 mg-t-20 mg-sm-t-0">
-                  <div class="tx-center pd-y-15 bd">
-                    <p class="mg-b-5 tx-uppercase tx-10 tx-mont tx-semibold">Delivered</p>
-                    <h4 class="tx-lato tx-inverse tx-bold mg-b-0">24,333</h4>
-                    <span class="tx-12 tx-danger tx-roboto">2.7% decreased</span>
-                  </div>
-                </div><!-- col-4 -->
-                <div class="col-sm-4 mg-t-20 mg-sm-t-0">
-                  <div class="tx-center pd-y-15 bd">
-                    <p class="mg-b-5 tx-uppercase tx-10 tx-mont tx-semibold">Returned</p>
-                    <h4 class="tx-lato tx-inverse tx-bold mg-b-0">432</h4>
-                    <span class="tx-12 tx-success tx-roboto">2.7% decreased</span>
-                  </div>
-                </div><!-- col-4 -->
-              </div><!-- row -->
-
-            </div><!-- card -->
+          
 
 
           </div><!-- col-8 -->
@@ -258,95 +466,10 @@
               <p class="tx-11 mg-b-0 mg-t-15 tx-white-7">Notice: Lorem ipsum dolor sit amet.</p>
             </div><!-- card -->
 
-            <div class="card bd-0 mg-t-20">
-              <div id="carousel12" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                  <li data-target="#carousel12" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel12" data-slide-to="1"></li>
-                  <li data-target="#carousel12" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner" role="listbox">
-                  <div class="carousel-item active">
-                    <div class="bg-br-primary pd-30 ht-300 pos-relative d-flex align-items-center rounded">
-                      <div class="pos-absolute t-20 r-20">
-                        <a href="" class="tx-white-5 hover-info"><i class="icon ion-edit tx-16"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-stats-bars tx-20"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-gear-a tx-20"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-more tx-20"></i></a>
-                      </div>
-                      <div class="tx-white">
-                        <p class="tx-uppercase tx-11 tx-semibold tx-mont tx-spacing-2 tx-white-5">Recent Article</p>
-                        <h5 class="lh-5 mg-b-20">20 Best Travel Tips After 5 Years Of Traveling The World</h5>
-                        <nav class="nav flex-row tx-13">
-                          <a href="" class="tx-white-8 hover-white pd-l-0 pd-r-5">12K+ Views</a>
-                          <a href="" class="tx-white-8 hover-white pd-x-5">234 Shares</a>
-                          <a href="" class="tx-white-8 hover-white pd-x-5">43 Comments</a>
-                        </nav>
-                      </div>
-                    </div><!-- d-flex -->
-                  </div>
-                  <div class="carousel-item">
-                    <div class="bg-info pd-30 ht-300 pos-relative d-flex align-items-center rounded">
-                      <div class="pos-absolute t-20 r-20">
-                        <a href="" class="tx-white-5 hover-info"><i class="icon ion-edit tx-16"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-stats-bars tx-20"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-gear-a tx-20"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-more tx-20"></i></a>
-                      </div>
-                      <div class="tx-white">
-                        <p class="tx-uppercase tx-11 tx-semibold tx-mont tx-spacing-2 tx-white-5">Recent Article</p>
-                        <h5 class="lh-5 mg-b-20">How I Flew Around the World in Business Class for $1,340</h5>
-                        <nav class="nav flex-row tx-13">
-                          <a href="" class="tx-white-8 hover-white pd-l-0 pd-r-5">Edit</a>
-                          <a href="" class="tx-white-8 hover-white pd-x-5">Unpublish</a>
-                          <a href="" class="tx-white-8 hover-white pd-x-5">Delete</a>
-                        </nav>
-                      </div>
-                    </div><!-- d-flex -->
-                  </div>
-                  <div class="carousel-item">
-                    <div class="bg-purple pd-30 ht-300 d-flex pos-relative align-items-center rounded">
-                      <div class="pos-absolute t-20 r-20">
-                        <a href="" class="tx-white-5 hover-info"><i class="icon ion-edit tx-16"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-stats-bars tx-20"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-gear-a tx-20"></i></a>
-                        <a href="" class="tx-white-5 hover-info mg-l-7"><i class="icon ion-more tx-20"></i></a>
-                      </div>
-                      <div class="tx-white">
-                        <p class="tx-uppercase tx-11 tx-semibold tx-mont tx-spacing-2 tx-white-5">Recent Article</p>
-                        <h5 class="lh-5 mg-b-20">10 Reasons Why Travel Makes You a Happier Person</h5>
-                        <nav class="nav flex-row tx-13">
-                          <a href="" class="tx-white-8 hover-white pd-l-0 pd-r-5">Edit</a>
-                          <a href="" class="tx-white-8 hover-white pd-x-5">Unpublish</a>
-                          <a href="" class="tx-white-8 hover-white pd-x-5">Delete</a>
-                        </nav>
-                      </div>
-                    </div><!-- d-flex -->
-                  </div>
-                </div><!-- carousel-inner -->
-              </div><!-- carousel -->
-            </div><!-- card -->
-
-            <div class="card bg-danger bd-0 mg-t-20">
-              <div class="pd-x-25 pd-t-25">
-                <h6 class="tx-13 tx-uppercase tx-white tx-medium tx-spacing-1 mg-b-10">Monthly Statistics</h6>
-                <p class="mg-b-20 tx-white-6">Past 30 Days — Last Updated Oct 14, 2017</p>
-                <div class="row row-sm mg-t-20">
-                  <div class="col">
-                    <p class="mg-b-5 tx-uppercase tx-10 tx-mont tx-semibold tx-white-6">Bounce Rate</p>
-                    <h4 class="tx-lato tx-white tx-bold tx-normal mg-b-0">23.32%</h4>
-                    <span class="tx-12 tx-white-6 tx-roboto">2.7% increased</span>
-                  </div><!-- col -->
-                  <div class="col">
-                    <p class="mg-b-5 tx-uppercase tx-10 tx-mont tx-semibold tx-white-6">Page Views</p>
-                    <h4 class="tx-lato tx-white tx-normal mg-b-0">42.58%</h4>
-                    <span class="tx-12 tx-white-6 tx-roboto">1.5% decreased</span>
-                  </div><!-- col -->
-                </div><!-- row -->
-                <div id="ch13" class="ht-160"></div>
-              </div><!-- pd-x-25 -->
-            </div><!-- card -->
+         
+          
 
           </div><!-- col-4 -->
         </div><!-- row -->
+       
 @endsection

@@ -3,7 +3,7 @@ $route = Route::currentRouteName()
 @endphp
 <div class="br-logo"><a href=""><span>[</span>Pointsoft <i>plus</i><span>]</span></a></div>
     <div class="br-sideleft sideleft-scrollbar">
-      
+    <label class="sidebar-label pd-x-10 mg-t-20 op-3">Menu</label>
       <ul class="br-sideleft-menu">
 
         <li class="br-menu-item">
@@ -53,6 +53,7 @@ $route = Route::currentRouteName()
                     
           </ul>
         </li>
+        <label class="sidebar-label pd-x-10 mg-t-20 op-3">Inventory</label>
         <!----------Customer  Menu-------------->
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub {{($prefix=='admin/customer')?'show-sub':''}}">
@@ -166,6 +167,7 @@ $route = Route::currentRouteName()
             
           </ul>
         </li>
+        <label class="sidebar-label pd-x-10 mg-t-20 op-3">Accounts</label>
         <!----------Home Page Management Menu-------------->
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub {{($prefix=='admin/home_page')?'show-sub':''}}">
