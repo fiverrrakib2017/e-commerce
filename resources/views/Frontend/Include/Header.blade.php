@@ -30,13 +30,13 @@
                             <a href="#" class="single-icon"><i class="fa-solid fa-cart-arrow-down"></i> <span class="total-count">0</span></a>
                           </div>
                         @endif
+                       
+                        
 
-
-
-
+                        
                     </div>
-
-
+                    
+                    
 
                 </div>
                 <div class="col-md-2">
@@ -66,17 +66,17 @@
             <div class="cat-menu">
                 <div class="row">
                     <div class="col-md-3">
-
+                      
                     </div>
                     <div class="col-md-9">
                         <div class="menu_area">
                             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
+                               
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                   <span class="navbar-toggler-icon custom_toggle"></span>
-
+                                  
                                 </button>
-
+                              
                                 <div class="collapse navbar-collapse main_navbar" id="navbarSupportedContent">
                                   <ul class="navbar-nav mr-auto">
                                     <li class="nav-item active">
@@ -91,7 +91,7 @@
                                     <li class="nav-item">
                                       <a class="nav-link" href="{{route('frontend.show_about')}}">About</a>
                                     </li>
-
+                                    
                                     <li class="nav-item">
                                       <a class="nav-link" href="#">Service</a>
                                     </li>
@@ -102,11 +102,11 @@
                                         <a class="nav-link" href="{{route('frontend.show_contact')}}">Contact</a>
                                       </li>
                                   </ul>
-
+                                  
                                 </div>
                               </nav>
                         </div>
-
+                        
                     </div>
                 </div>
             </div>

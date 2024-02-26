@@ -152,7 +152,7 @@
                                     <a href="{{route('frontend.product.details',$item->id)}}"> 
                                     <div class="card h-100">
                                         @if (!empty($productImage->image))
-                                        <img src="{{ asset('uploads/product/'.$productImage->image.'') }}" alt="" class="card-img-top product_image">
+                                        <img src="{{ $productImage->image }}" alt="" class="card-img-top product_image">
                                         
                                         @else
                                             <img src="https://dummyimage.com/250/ffffff/000000" alt="" srcset="" class="card-img-top product_image">

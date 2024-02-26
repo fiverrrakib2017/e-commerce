@@ -60,9 +60,12 @@
                             </div>
                             <div class="row d-none">
                                 <div class="col">
-                                    <input type="text" class="form-control"  name="sub_total" value="{{$subtotal}}">
+                                    <input type="text" class="form-control"  name="sub_total" value="{{round($subtotal) }}">
+                                    <input type="text" class="form-control"  name="delivery_charge" value="{{round($deliveryCharge)}}">
+                                    <input type="text" class="form-control" name="tax_amount" value="{{ round($vatTax) }}">
 
-                                    <input type="text" class="form-control" name="total" value="{{$total}}">
+
+                                    <input type="text" class="form-control" name="total" value="{{round($total)}}">
 
                                 </div>
                             </div>
@@ -93,7 +96,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="cart_product_image">
-                            <img src="{{ $productImage ? asset('uploads/product/'.$productImage->image) : '' }}" class="w-100"/>
+                            <img src="{{ $productImage ? $productImage->image : '' }}" class="w-100"/>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -108,6 +111,7 @@
                     </div>
                 @endforeach
                     <hr/>
+                    @if(!$cart->isEmpty())
                     <div class="payment_cost_area">
                         <h3>Sub Total<span class="checkout_amount">$ {{round($subtotal)}}</span></h3>
                         <hr/>
@@ -117,6 +121,7 @@
                         <hr/>
                         <h3 class="mb-5">Total<span class="checkout_amount">$ {{ round($total) }}</span></h3>
                     </div>
+                    @endif
                 </div>
                 
             </div>

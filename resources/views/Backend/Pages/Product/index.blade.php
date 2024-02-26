@@ -16,9 +16,8 @@
 @section('content')
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
-          <a class="breadcrumb-item" href="index.html">Dashboard</a>
-          <a class="breadcrumb-item" href="#">Product</a>
-          <span class="breadcrumb-item active">Brand</span>
+          <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
+          <span class="breadcrumb-item active">Product</span>
         </nav>
       </div><!-- br-pageheader -->
 <div class="br-section-wrapper" style="padding: 0px !important;"> 
@@ -52,10 +51,10 @@
                 $productImage = $data->product_image->first();
               @endphp
               @if (!empty($productImage->image))
-                  <img src="{{ asset('uploads/product/'.$productImage->image.'') }}" alt="" srcset="" width="40px" height="40px" class="image-fluid">
+                  <img src="{{ $productImage->image }}" alt="" srcset="" width="40px" height="40px" class="image-fluid">
                   {{ $data->title }}
               @else
-                  <img src="https://dummyimage.com/250/ffffff/000000" alt="" srcset="" class="w-[40px] h-[40px]">
+                  <img src="https://dummyimage.com/250/ffffff/000000" alt="" srcset="" width="40px" height="40px" class="w-[40px] h-[40px]">
                   {{ $data->title }}
               @endif
               </td>

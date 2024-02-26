@@ -41,21 +41,21 @@
                     <div class="features_product">
                         <a href="{{route('frontend.product.details',$item->id)}}" class="text-decoration-none text-dark">
                             <div class="card h-100">
-                            @php 
+                            @php
                                 $productImage = $item->product_image->first();
                             @endphp
                             @if (!empty($productImage->image))
-                                <img src="{{ asset('uploads/product/'.$productImage->image.'') }}" alt="" class=" card-img-top product_image">
-                                
+                                <img src="{{ $productImage->image }}" alt="" class=" card-img-top product_image">
+
                             @else
                                 <img src="https://dummyimage.com/250/ffffff/000000" alt="" srcset="" class="card-img-top product_image">
-                                
+
                             @endif
 
 
                             <div class="card-body">
                               <h5 class="product_tittle">{{$item->title}}</h5>
-                              
+
                               <p><span class="product-tittle-color">{{ $item->price }}</span></p>
                               <p><del>$25</del>-40%</p>
                               <div class="product_rating">
@@ -65,8 +65,8 @@
                                     <span><i class="fa fa-star checked star"></i></span>
                                     <span><i class="fa fa-star checked star"></i></span>
                                     <span><i class="fa fa-star checked star"></i></span>
-                                    
-                                    
+
+
                                 </ul>
                             </div>
                             </div>
@@ -82,15 +82,15 @@
         </div>
 
     </section>
-    
+
     <!---shop by brands-->
     <section class="shopBy_brand mb-5">
         <div class="container">
             <h2 class="text-center text-white brand_tittle">Shop By Popular Brand</h2>
             <hr class="brand_hr_design"/>
-            
+
             <div class="row">
-                @foreach ($brand as $item)               
+                @foreach ($brand as $item)
                 <div class="col-md-2 col-sm-6 mb-3">
                     <a href="{{route('frontend.product.brand',$item->id)}}" class="text-decoration-none text-dark">
                         <div class="card h-100" >
@@ -98,13 +98,13 @@
                             <div class="card-body text-center">
                               <a href="{{route('frontend.product.brand',$item->id)}}" class="btn btn-dark ">{{$item->brand_name}}</a>
                             </div>
-                        </div> 
+                        </div>
                     </a>
                 </div>
                 @endforeach
              </div>
              <!---SECOND ROW-->
-            
+
         </div>
 
     </section>
@@ -124,7 +124,7 @@
                                     <div class="card-body text-center">
                                       <a href="{{ route('frontend.product.category',$item->id)}}" class="btn btn-dark category_slider_tittle">{{ $item->category_name  }}</a>
                                     </div>
-                                  </div> 
+                                  </div>
                             </a>
                         </div>
                         @endforeach
@@ -132,7 +132,7 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
     <!-----Newsletter-->
    <section class="shop_newsletter">
@@ -187,7 +187,7 @@
                     var html = '';
                     for (var i = 0; i < data.data.length; i++) {
                         var item = data.data[i];
-                        var productImage = item.product_image; 
+                        var productImage = item.product_image;
                         var productDetailsUrl = "{{ route('frontend.product.details', ':id') }}".replace(':id', item.id);
 
                         html += `
@@ -195,11 +195,9 @@
                             <div class="features_product">
                                 <a href="${productDetailsUrl}" class="text-decoration-none text-dark">
                                     <div class="card h-100">
-                                    @if ($productImage && !empty($productImage->image))
-                                        <img src="{{ asset('uploads/product/'.$productImage->image.'') }}" alt="" class="card-img-top product_image">
-                                    @else
-                                        <img src="https://dummyimage.com/250/ffffff/000000" alt="" srcset="" class="card-img-top product_image">
-                                    @endif
+
+                                        <img src="${item.product_image}" alt="" class="card-img-top product_image">
+
                                     <div class="card-body">
                                         <h5 class="product_tittle">${item.title}</h5>
                                         <p><span class="product-tittle-color">${item.price}</span></p>

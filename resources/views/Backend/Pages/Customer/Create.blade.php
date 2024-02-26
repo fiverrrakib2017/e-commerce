@@ -21,7 +21,7 @@
       </div><!-- br-pageheader -->
 <div class="" style="padding: 0px !important;"> 
    <div class="row">
-    <div class="col-md-6 m-auto">
+    <div class="col-md-12 m-auto">
     <div class="card">
       <div class="card-header bg-info text-white">
         <h6>Add New Customer</h6>

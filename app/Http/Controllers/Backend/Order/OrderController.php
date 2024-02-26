@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Backend\Order;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invoice_Note;
+use App\Models\Product;
 use App\Models\Product_Order;
+use App\Models\Product_Order_Details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -13,49 +17,67 @@ class OrderController extends Controller
     }
     public function get_all_data(Request $request){
         $search = $request->search['value'];
-        $columnsForOrderBy = ['id', 'user_id', 'sub_total', 'discount', 'grand_total','payment_status','created_at'];
+        $columnsForOrderBy = ['id', 'fullname', 'phone_number','sub_total', 'discount', 'grand_total','order_status','created_at'];
         $orderByColumn = $request->order[0]['column'];
-        $orderDirection = $request->order[0]['dir'];
-
-        $run_query = Product_Order::with('user:id,name')
-            ->when($search, function ($query) use ($search) {
-                $query->where(function ($subquery) use ($search) {
-                    /* Search based on the user name in the user table*/
-                    $subquery->whereHas('user', function ($subquery) use ($search) {
-                        $subquery->where('name', 'like', "%$search%");
-                    });
-                    // Or search based on the name in the Product Order table
-                    $subquery->orWhere('sub_total', 'like', "%$search%");
-                    $subquery->orWhere('discount', 'like', "%$search%");
-                    $subquery->orWhere('grand_total', 'like', "%$search%");
-                    $subquery->orWhere('payment_status', 'like', "%$search%");
-                });
-            })
-            ->orderBy($columnsForOrderBy[$orderByColumn], $orderDirection);
-
-        $total = $run_query->count();
-        $item = $run_query->skip($request->start)->take($request->length)->get();
-
-        $data = [];
-
-        foreach ($item as $item) {
-            $data[] = [
-                'id' => $item->id,
-                'order_name' => $item->user ? $item->user->name  : 'N/A',
-                'sub_total' => $item->sub_total,
-                'discount' => $item->discount,
-                'grand_total' => $item->grand_total,
-                'payment_status' => $item->payment_status,
-                'created_at' => $item->created_at,
-            ];
-        }
-
+        $orderDirectection = $request->order[0]['dir'];
+    
+        $object = Product_Order::when($search, function ($query) use ($search) {
+            $query->where('first_name', 'like', "%$search%")
+                ->orWhere('last_name', 'like', "%$search%");
+            $query->where('phone_number', 'like', "%$search%");
+            $query->where('sub_total', 'like', "%$search%");
+            $query->where('discount', 'like', "%$search%");
+            $query->where('grand_total', 'like', "%$search%");
+            $query->where('order_status', 'like', "%$search%");
+        });
+        $object->select([
+            '*',
+            DB::raw("CONCAT(first_name, ' ', last_name) as fullname")
+        ]);
+        
+        $object->orderBy($columnsForOrderBy[$orderByColumn], $orderDirectection);
+    
+        $total = $object->count();
+        $item = $object->skip($request->start)->take($request->length)->get();
+    
         return response()->json([
             'draw' => $request->draw,
             'recordsTotal' => $total,
             'recordsFiltered' => $total,
-            'data' => $data,
+            'data' => $item,
         ]);
+    }
+    public function get_order($id){
+        $product_order = Product_Order::with('orderDetails')->find($id);
+        foreach ($product_order->orderDetails as $order_detail) {
+            // Retrieve product details based on product_id
+            $product = Product::find($order_detail->product_id);
+            
+            // Append product details to the order detail object
+            $order_detail->product = $product;
+        }
+        return response()->json(['success' => true, 'data' =>$product_order]);
+    }
+    public function get_note($id){
+        $data = Invoice_Note::where(['invoice_id'=>$id])->get();
+        if (!empty($data)) {
+            return response()->json(['success' => true, 'data' =>$data]);
+            exit; 
+        } 
+        return response()->json(['success' => false, 'message' =>'Not Found']);
+    }
+    public function order_note_store(Request $request){
+        $request->validate([
+            'id' => 'required',
+            'note' => 'required|string',
+        ]);
+        /* Create a new Invoice_Note instance*/
+        $object = new Invoice_Note();
+        $object->invoice_id = $request->id;
+        $object->note = $request->note;
+        $object->save();
+
+        return response()->json(['success'=>true,'message' => 'Added Successfully']);
     }
     public function delete(Request $request){
         try {
@@ -66,5 +88,8 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error '], 500);
         }
+    }
+    public function confirm_order($id){
+        $object=Product_Order::find($id);
     }
 }

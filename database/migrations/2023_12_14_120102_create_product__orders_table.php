@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('sub_total');
             $table->double('discount');
+            $table->double('delivery_charge');
+            $table->double('tax_amount');
             $table->integer('grand_total');
             $table->integer('payment_status');
             $table->text('note')->nullable();

@@ -12,23 +12,7 @@ $route = Route::currentRouteName()
             <span class="menu-item-label">Dashboard</span>
           </a>
         </li>
-        <!----------Customer  Menu-------------->
-        <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/customer')?'show-sub':''}}">
-            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Customer</span>
-          </a>
-          <ul class="br-menu-sub" >
-            
-          <li class="sub-item"><a href="{{route('admin.customer.create')}}" class="sub-link {{ ($route == 'admin.customer.create')? 'active':'' }}">Add Customer</a></li>
-
-            <li class="sub-item"><a href="{{route('admin.customer.index')}}" class="sub-link {{ ($route == 'admin.customer.index')? 'active':'' }}">Customer Management</a></li>
-
-            <li class="sub-item"><a href="#" class="sub-link">Customer Invoice</a></li>
-
-            
-          </ul>
-        </li>
+        
         <!----------Blog  Menu-------------->
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub {{($prefix=='admin/blog')?'show-sub':''}}">
@@ -44,15 +28,61 @@ $route = Route::currentRouteName()
         </li>
         <!----------Address  Menu-------------->
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/address')?'show-sub':''}}">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
             <span class="menu-item-label">Address </span>
           </a>
           <ul class="br-menu-sub" >
-            <li class="sub-item"><a href="#" class="sub-link">Country List</a></li>
-            <li class="sub-item"><a href="#" class="sub-link">State List</a></li>
-            <li class="sub-item"><a href="#" class="sub-link">City List</a></li> 
-            <li class="sub-item"><a href="#" class="sub-link ">Add Address</a></li>            
+            <li class="sub-item"><a href="{{route('admin.address.country.index')}}" class="sub-link {{ ($route == 'admin.address.country.index' )? 'active':'' }}">Country List</a></li>
+            <li class="sub-item"><a href="{{route('admin.address.state.index')}}" class="sub-link {{ ($route == 'admin.address.state.index' )? 'active':'' }}">State List</a></li>
+            <li class="sub-item"><a href="{{route('admin.address.city.index')}}" class="sub-link {{ ($route == 'admin.address.city.index' )? 'active':'' }}">City List</a></li> 
+            <li class="sub-item"><a href="{{route('admin.address.index')}}" class="sub-link {{ ($route == 'admin.address.index' )? 'active':'' }}">Add Address</a></li>            
+          </ul>
+        </li>
+        <!----------Page Builder  Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/landing_page')?'show-sub':''}}">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Landing Page Management </span>
+          </a>
+          <ul class="br-menu-sub">
+
+            <li class="sub-item"><a href="{{route('admin.landing_page.create')}}" class="sub-link {{ ($route == 'admin.landing_page.create' )? 'active':'' }}">Create Landing Page</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.landing_page.index')}}" class="sub-link {{ ($route == 'admin.landing_page.index' )? 'active':'' }}">Landing Page List</a></li>   
+                    
+          </ul>
+        </li>
+        <!----------Customer  Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/customer')?'show-sub':''}}">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Customer</span>
+          </a>
+          <ul class="br-menu-sub" >
+            
+          <li class="sub-item"><a href="{{route('admin.customer.create')}}" class="sub-link {{ ($route == 'admin.customer.create')? 'active':'' }}">Add Customer</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.customer.index')}}" class="sub-link {{ ($route == 'admin.customer.index')? 'active':'' }}">Customer Management</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.customer.invoice.create_invoice')}}" class="sub-link {{ ($route == 'admin.customer.invoice.create_invoice')? 'active':'' }}">Invoice Create</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.customer.invoice.show_invoice')}}" class="sub-link {{ ($route == 'admin.customer.invoice.show_invoice'|| 'admin.customer.invoice.edit_invoice' ||'admin.customer.invoice.view_invoice')? 'active':'' }}">Invoice Management</a></li>
+
+            
+          </ul>
+        </li>
+        <!----------Supplier  Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub ">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Supplier</span>
+          </a>
+          <ul class="br-menu-sub" >
+            <li class="sub-item"><a href="#" class="sub-link ">Add Supplier</a></li>
+            <li class="sub-item"><a href="#" class="sub-link ">Supplier Management</a></li>
+            <li class="sub-item"><a href="#" class="sub-link ">Invoice Create</a></li>
+            <li class="sub-item"><a href="#" class="sub-link">Invoice Management</a></li>            
           </ul>
         </li>
         <!----------Product Menu-------------->
@@ -132,6 +162,23 @@ $route = Route::currentRouteName()
             <li class="sub-item"><a href="{{route('admin.shop.create')}}" class="sub-link {{ ($route == 'admin.shop.create')? 'active':'' }}">Shop Add</a></li>
 
             <li class="sub-item"><a href="{{route('admin.shop.index')}}" class="sub-link {{ ($route == 'admin.shop.index')? 'active':'' }}">Shop Management</a></li>
+
+            
+          </ul>
+        </li>
+        <!----------Home Page Management Menu-------------->
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/home_page')?'show-sub':''}}">
+            <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+            <span class="menu-item-label">Home Page </span>
+          </a>
+          <ul class="br-menu-sub" >
+
+            <li class="sub-item"><a href="{{route('admin.pickup.index')}}" class="sub-link {{ ($route == 'admin.pickup.index')? 'active':'' }}">Hero Section </a></li>
+
+            <li class="sub-item"><a href="{{route('admin.home_page.about.index')}}" class="sub-link {{ ($route == 'admin.home_page.about.index')? 'active':'' }}">About Section </a></li>
+
+            <li class="sub-item"><a href="{{route('admin.home_page.contract.index')}}" class="sub-link {{ ($route == 'admin.home_page.contract.index')? 'active':'' }}">Contract </a></li>
 
             
           </ul>

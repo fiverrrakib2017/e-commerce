@@ -10,6 +10,7 @@ use App\Models\Product_image;
 use App\Models\Seller;
 use App\Models\Temp_Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 class ProductController extends Controller
@@ -17,6 +18,9 @@ class ProductController extends Controller
     public function index(){
          $product=Product::with('product_image')->latest()->get();
         return view('Backend.Pages.Product.index',compact('product'));
+    }
+    public function get_product($id){
+        return Product::with('product_image')->where(['id'=>$id])->latest()->get();
     }
     public function create(){
         $seller=Seller::latest()->get();
@@ -32,7 +36,6 @@ class ProductController extends Controller
             'slug' => 'nullable|unique:products',
             'price' => 'required|numeric',
             'description' => 'nullable|max:10000',
-            'sku' => 'required|unique:products',
             'seller_id' => 'required',
             'product_type' => 'required',
         ];
@@ -40,6 +43,7 @@ class ProductController extends Controller
         if($validator->passes()){
 
             $product = new Product();
+            $product->user_id = Auth::guard('admin')->user()->id; 
             $product->title = $request->product_name;
             $product->brand_id = $request->brand_id;
             $product->category_id = $request->category_id;
@@ -85,7 +89,7 @@ class ProductController extends Controller
 
                     $imageName = $product->id . '-' . $productImage->id.'-'.time().'.'.$ext;
 
-                    $productImage->image = $imageName;
+                    $productImage->image =url('uploads/product/' .$imageName);
                     $productImage->save();
 
                     // Generate Product Thumbnails

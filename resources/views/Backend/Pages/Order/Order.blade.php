@@ -27,16 +27,17 @@
         <tr>
           <th class="">Invoice No.</th>
           <th class="">Full Name</th>
+          <th class="">Phone Number</th>
           <th class="">Sub Total</th>
           <th class="">Discount</th>
           <th class="">Grand Total</th>
-          <th class="">Payment Status</th>
+          <th class="">Order Status</th>
           <th class="">Create Date</th>
           <th class="">Action</th>
         </tr>
       </thead>
       <tbody>
-
+          
       </tbody>
     </table>
       </div>
@@ -45,8 +46,8 @@
   </div><!-- table-wrapper -->
 </div><!-- br-section-wrapper -->
 
-<!--Start Delete MODAL ---->
-<div id="deleteModal" class="modal fade">
+<!--Start Order Confirm MODAL ---->
+<div id="orderConfirmModal" class="modal fade">
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
@@ -68,7 +69,215 @@
         </div><!-- modal-body -->
         </div><!-- modal-content -->
     </div>
-</div>
+  </div>
+<!--Start Delete MODAL ---->
+  <div id="deleteModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-top" role="document">
+        <div class="modal-content tx-size-sm">
+        <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <form action="{{route('admin.order.delete')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="icon icon ion-ios-close-outline tx-60 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
+                <input type="hidden" name="id" value="">
+                <button type="submit" class="btn btn-danger mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
+                    yes
+                </button>
+                <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    No
+                </button>
+            </form>
+        </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div>
+  </div>
+<!---------Add Note Modal----------->
+  <div id="addNoteModal" class="modal fade effect-scale">
+        <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
+            <div class="modal-content tx-size-sm">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Note</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <!----- Start Add  Form ------->
+        <form action="{{route('admin.order.note.store')}}" method="post">
+        @csrf
+
+        <div class="modal-body ">
+            <!----- Start Add  Form input ------->
+            <div class="col-xl-12">
+                <div class="form-layout form-layout-4">
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Note : <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                          <input type="text" name="id" value="" class="d-none">
+                        <textarea type="text" name="note" class="form-control" placeholder="Enter Your Note" required></textarea>
+                        </div>
+                    </div><!-- row -->
+
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success tx-size-xs">Save changes</button>
+            <button type="button" class="btn btn-danger tx-size-xs" data-dismiss="modal">Close</button>
+        </div>
+
+        </form>
+        <!----- End Add Form ------->
+        </div>
+    </div>
+  </div>
+  <!---------Note View Modal----------->
+  <div id="NoteViewModal" class="modal fade effect-scale">
+        <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
+            <div class="modal-content tx-size-sm">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">View Note</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+             <!-----  Add Form Start------->
+              <form action="#" method="post">
+                <div class="modal-body ">
+                    <!----- Start Add  Form input ------->
+                    <div class="col-xl-12">
+                        <div class="form-layout form-layout-4">
+
+                        <div class="table-responsive" id="note_table">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th class="wd-10p">No.</th>
+                                <th class="tx-center">Accounts Title</th>
+                                <th class="tx-right">Date</th>
+                              </tr>
+                            </thead>
+                            <tbody id="note_tbody"> </tbody>
+                          
+                          </table>
+                        </div><!-- table-responsive -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger tx-size-xs" data-dismiss="modal">Close</button>
+                </div>
+
+              </form>
+             <!----- End Add Form ------->
+        </div>
+    </div>
+  </div>
+<!----- View Invoice Modal ------->
+  <div id="invoiceModal" class="modal fade effect-scale">
+        <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
+            <div class="modal-content tx-size-sm">
+            <div class="modal-header pd-x-20">
+               <button class="btn btn-primary">Print</button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <!----- Start Add  Form ------->
+        <form action="#">
+
+        <div class="modal-body ">
+        <div class="card bd-0 shadow-base">
+          <div class="card-body pd-30 pd-md-60">
+            <div class="d-md-flex justify-content-between flex-row-reverse">
+              <h1 class="mg-b-0 tx-uppercase tx-gray-400 tx-mont tx-bold">Invoice</h1>
+              <div class="mg-t-25 mg-md-t-0">
+                <h6 class="tx-primary">Pointssoft.com</h6>
+                <p class="lh-7">Mohakhali DOSH Road No:1 Office No:435 Dhaka, Bangladesh<br>
+                Tel No: 324 445-4544<br>
+                Email: admin@pointssoft.com</p>
+              </div>
+            </div><!-- d-flex -->
+
+            <div class="row mg-t-20">
+              <div class="col-md">
+                <label class="tx-uppercase tx-13 tx-bold mg-b-20">Billed To</label>
+                <h6 class="tx-inverse" id="bill_name">Juan Dela Cruz</h6>
+                <p class="lh-7" id="bill_address">4033 Patterson Road, Staten Island, NY 10301</p> 
+                <p >Mobile No: <span id="bill_phone_number"></span></p> 
+                <p > Email: <span id="bill_email"></span></p>
+              </div><!-- col -->
+              <div class="col-md" id="invoice_information">
+                <label class="tx-uppercase tx-13 tx-bold mg-b-20">Invoice Information</label>
+                <p class="d-flex justify-content-between mg-b-5">
+                  <span>Invoice No</span>
+                  <span>GHT-673-00</span>
+                </p>
+                <p class="d-flex justify-content-between mg-b-5">
+                  <span>Project ID</span>
+                  <span>32334300</span>
+                </p>
+                <p class="d-flex justify-content-between mg-b-5">
+                  <span>Issue Date:</span>
+                  <span>November 21, 2017</span>
+                </p>
+                <p class="d-flex justify-content-between mg-b-5">
+                  <span>Due Date:</span>
+                  <span>November 30, 2017</span>
+                </p>
+              </div><!-- col -->
+            </div><!-- row -->
+
+            <div class="table-responsive mg-t-40" id="invoice_table">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="wd-40p">Product Name</th>
+                    <th class="tx-center">Quantity</th>
+                    <th class="tx-right">Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="invoice_tbody"> </tbody>
+                <tfooter id="invoice_tfooter">
+                  <tr>
+                    <td class="tx-right">Sub-Total</td>
+                    <td colspan="3" class="tx-right"><span id="bill_sub_total"></span></td>
+                  </tr>
+                  <tr>
+                    <td class="tx-right">Tax (5%)</td>
+                    <td colspan="3"  class="tx-right" id="bill_tax_amount">$287.50</td>
+                  </tr>
+                  <tr>
+                    <td class="tx-right">Delivery Charge</td>
+                    <td colspan="3"  class="tx-right" id="bill_delivery_charge">$287.50</td>
+                  </tr>
+                  <tr>
+                    <td class="tx-right">Discount</td>
+                    <td colspan="3" class="tx-right" id="bill_discount">-$287.50</td>
+                  </tr>
+                  <tr>
+                    <td class="tx-right tx-uppercase tx-bold tx-inverse">Grand Total</td>
+                    <td colspan="3" class="tx-right"><h4 class="tx-teal tx-bold tx-lato" id="bill_grand_total">$287.50</h4></td>
+                  </tr>
+                </tfooter>
+              </table>
+            </div><!-- table-responsive -->
+
+          </div><!-- card-body -->
+        </div>
+        <!-- card-footer start -->
+        <!-- card-footer end -->
+        </form>
+        <!----- End Add Form ------->
+        </div>
+      </div>
+  </div>
+<!----- View Invoice Modal ------->
 @endsection
 
 @section('script')
@@ -97,7 +306,10 @@
             "data":"id"
           },
           {
-            "data":"order_name"
+            "data":"fullname"
+          },
+          {
+            "data":"phone_number"
           },
           {
             "data":"sub_total"
@@ -109,12 +321,14 @@
             "data":"grand_total"
           },
           {
-            "data":"payment_status",
+            "data":"order_status",
             render:function(data,type,row){
-              if (row.payment_status==1) {
-                return '<span class="badge badge-success">Active</span>';
+              if (row.order_status==0) {
+                return '<span class="badge badge-primary">Processing</span>';
+              }else if (row.order_status==1){
+                return '<span class="badge badge-success">Confirm</span>';
               }else{
-                return '<span class="badge badge-danger">Inactive</span>';
+                return '<span class="badge badge-danger">Success</span>';
               }
             }
           },
@@ -127,7 +341,27 @@
           },
           {
             render:function(data,type,row){
-              return `<button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`
+              if (row.order_status == 0) {
+                return `
+                <button class="btn btn-success btn-sm mr-3 confirm-btn" data-id="${row.order_status}">Confirm</button>
+                <button class="btn btn-secondary btn-sm mr-3 add-note-btn" data-id="${row.id}">Add Note</button>
+                <button class="btn btn-success btn-sm mr-3 note-view-btn" data-id="${row.id}">View Note</button>
+                <button class="btn btn-primary btn-sm mr-3 invoice-btn" data-id="${row.id}"><i class="fa fa-eye"></i></button>
+                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+              `;
+              } else if (row.order_status == 1) {
+                return `
+                <button class="btn btn-primary btn-sm mr-3 restart-btn" data-id="${row.id}">Restart</button>
+                <button class="btn btn-secondary btn-sm mr-3 add-note-btn" data-id="${row.id}">Add Note</button>
+                <button class="btn btn-success btn-sm mr-3 note-view-btn" data-id="${row.id}">View Note</button>
+                <button class="btn btn-primary btn-sm mr-3 invoice-btn" data-id="${row.id}"><i class="fa fa-eye"></i></button>
+                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+              `;
+              }else{
+                return 'Error';
+              }
+              
+
             }
           },
         ],
@@ -139,12 +373,142 @@
       $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
     });
 
+  /** Handle Order Confrim button click**/
+  $('#datatable1 tbody').on('click', '.confirm-btn', function () {
+    $('#orderConfirmModal').modal('show');
+  });
+  /** Handle Order Restart button click**/
+  $('#datatable1 tbody').on('click', '.restart-btn', function () {
+    $('#deleteModal').modal('show');
+  });
   /** Handle Delete button click**/
   $('#datatable1 tbody').on('click', '.delete-btn', function () {
     var id = $(this).data('id');
     $('#deleteModal').modal('show');
     var value_input = $("input[name*='id']").val(id);
   });
+
+    /** Handle Add Note button click**/
+    $('#datatable1 tbody').on('click', '.add-note-btn', function () {
+      var id = $(this).data('id');
+      $('#addNoteModal').modal('show');
+      var id = $("input[name*='id']").val(id);
+    });
+    
+    /** Handle form submission for delete **/
+    $('#addNoteModal form').submit(function(e){
+      e.preventDefault();
+
+      var form = $(this);
+      var url = form.attr('action');
+      var formData = form.serialize();
+      /** Use Ajax to send the  request **/
+      $.ajax({
+        type:'POST',
+        'url':url,
+        data: formData,
+        success: function (response) {
+          if (response.success==true) {
+            form.trigger('reset');
+            $('#addNoteModal').modal('hide');
+            toastr.success(response.message);
+            $('#datatable1').DataTable().ajax.reload( null , false);
+          } 
+        },
+
+        error: function (xhr, status, error) {
+          /** Handle  errors **/
+          toastr.error(xhr.responseText);
+        }
+      });
+    });
+    /** Handle View Note button click**/
+    $('#datatable1 tbody').on('click', '.note-view-btn', function () {
+      var id = $(this).data('id');
+      $.ajax({
+          type: 'GET',
+          url: '/admin/order/get_note/' + id,
+            success: function (response) {
+              if (response.success==true) {
+                $('#NoteViewModal').modal('show');
+                var output='';
+                var Counter = 1; // Initialize ID counter
+                response.data.forEach(function(item){
+                  
+                  output += '<tr>';
+                  output += '<td class="tx-12">' +  Counter++ + '</td>';
+
+                    if (item.note=='Order Created') {
+                      output += '<td class="tx-center text-success">' +  item.note + '</td>';
+                    }else if(item.note=='Order Cancle'){
+                      output += '<td class="tx-center text-danger">' +  item.note + '</td>';
+                    }else if(item.note=='Order Processing'){
+                      output += '<td class="tx-center text-primary">' +  item.note + '</td>';
+                    }else{
+                       output += '<td class="tx-center">' +  item.note + '</td>';
+                    }
+                 
+                    
+                    // Format the date
+                    var formattedDate = new Date(item.created_at);
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var formattedDateString = formattedDate.toLocaleDateString('en-GB', options);
+                    
+                    output += '<td class="tx-right">' +  formattedDateString + '</td>';
+                    output += '</tr>';
+                });
+                $("#note_tbody").html(output);
+              } else if(response.success==false){
+                toastr.error("Error fetching data for edit!");
+              }
+            },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+      });
+    });
+
+    /** Handle view invoice button click**/
+    $('#datatable1 tbody').on('click', '.invoice-btn', function () {
+      var id = $(this).data('id');
+      $.ajax({
+          type: 'GET',
+          url: '/admin/order/get_order/' + id,
+          success: function (response) {
+              if (response.success) {
+                $('#invoiceModal').modal('show');
+                var order=response.data; 
+                 $("#bill_name").text(order.first_name +' '+ order.last_name);
+                 $("#bill_address").text(order.address);
+                 $("#bill_phone_number").text(order.phone_number);
+                 $("#bill_email").text(order.email_address);
+                 $("#bill_sub_total").text(order.sub_total);
+                 $("#bill_discount").text(order.discount);
+                 $("#bill_tax_amount").text(order.tax_amount);
+                 $("#bill_delivery_charge").text(order.delivery_charge);
+                 $("#bill_grand_total").text(order.grand_total);
+                 var tbodyHtml='';
+                 order.order_details.forEach(function(orderDetail){
+                    tbodyHtml += '<tr>';
+                    tbodyHtml += '<td class="tx-12">' + __short_title_name(orderDetail.product.title)  + '</td>';
+                    tbodyHtml += '<td class="tx-center">' + orderDetail.qty + '</td>';
+                    tbodyHtml += '<td class="tx-right">' + orderDetail.product.price + '</td>';
+                    tbodyHtml += '</tr>';
+                 });
+                 $("#invoice_tbody").html(tbodyHtml);
+
+
+
+              } else {
+                toastr.error("Error fetching data for edit!");
+              }
+          },
+          error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            toastr.error("Error fetching data for edit!");
+          }
+      });
+    });
 
 
   
@@ -177,6 +541,15 @@
       }
     });
   });
+
+  function __short_title_name(title){
+    var max_length=50; 
+    if (title.length > max_length) {
+      return title.substring(0, max_length - 3) + '...';
+    }else{
+      return title;
+    }
+  }
 
   </script>
 

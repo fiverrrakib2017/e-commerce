@@ -13,46 +13,48 @@
     <link rel="stylesheet" href="{{asset('Frontend/css/responsive.css')}}"/>
     <link rel="stylesheet" href="{{asset('Frontend/css/style.css')}}"/>
     <link href="{{asset('Frontend/css/toastr.min.css')}}" rel="stylesheet">
+    @include('Frontend.Include.gtag')
 </head>
 <body>
+    @include('Frontend.Include.gtag1')
    <!---Header Section-->
-    @include('Frontend.include.Header')
+    @include('Frontend.Include.Header')
     <!---Header Section-->
 
 
      <!---Hero section-->
-     <!-- @include('Frontend.include.Hero_Section') -->
+     <!-- @include('Frontend.Include.Hero_Section') -->
     <!---Hero section-->
-   
-    @yield('content');
-    
-    
-    
+
+    @yield('content')
+
+
+
     <!--footer-->
-    @include('Frontend.include.Footer')
-    
+    @include('Frontend.Include.Footer')
+
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" ></script>
 <script type="text/javascript" src="{{asset('Frontend/js/toastr.min.js')}}"></script>
 <script type="text/javascript">
-   
+
 var owl = $('.owl-carousel');
 owl.owlCarousel({
     loop:false,
     nav:true,
     margin:10,
-    
+
     responsive:{
         0:{
             items:1
         },
         600:{
             items:3
-        },            
+        },
         960:{
             items:5
         },
@@ -71,6 +73,6 @@ owl.on('mousewheel', '.owl-stage', function (e) {
 });
 
 </script>
-@yield('script');
+@yield('script')
 </body>
 </html>

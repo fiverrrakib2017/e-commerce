@@ -6,7 +6,7 @@
 		<link href="{{asset('Backend/lib/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
 		<link href="{{asset('Backend/lib/highlightjs/styles/github.css')}}" rel="stylesheet">
     <link href="{{asset('Backend/lib/select2/css/select2.min.css')}}" rel="stylesheet">
-    
+
     <!-- Bracket CSS -->
     <link rel="stylesheet" href="{{asset('Backend/css/bracket.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
@@ -62,7 +62,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    
+
 }
 .Neon-input-dragDrop {
     display: block;
@@ -77,7 +77,7 @@
     -webkit-transition: box-shadow 0.3s, border-color 0.3s;
     -moz-transition: box-shadow 0.3s, border-color 0.3s;
     transition: box-shadow 0.3s, border-color 0.3s;
-    
+
 }
 .Neon-input-dragDrop .Neon-input-icon {
     font-size: 48px;
@@ -174,7 +174,7 @@
           <span class="breadcrumb-item active">Create</span>
         </nav>
       </div><!-- br-pageheader -->
-<div class="" style="padding: 0px !important;"> 
+<div class="" style="padding: 0px !important;">
    <div class="row">
     <div class="col-md-9 m-auto">
     <div class="card">
@@ -200,15 +200,15 @@
             </div>
             </div>
           </div>
-         
+
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <input type="text" name="image_id" id="image_id" hidden>
                   <label for="image" class="label">Upload Image</label>
                   <div id="image" class="dropzone dz-clickable">
-                    <div class="dz-message needsclick">    
-                        <br>Drop files here or click to upload.<br><br>                                            
+                    <div class="dz-message needsclick">
+                        <br>Drop files here or click to upload.<br><br>
                     </div>
                 </div>
                 <div id="rowImg"></div>
@@ -220,7 +220,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="">Seller</label>
-                <select type="text" class="form-control " name="seller_id" id="seller_id" required>                 
+                <select type="text" class="form-control " name="seller_id" id="seller_id" required>
                   <option value="">---Select---</option>
                   @if (count($seller) > 0)
 
@@ -235,7 +235,7 @@
             <div class="col">
               <div class="form-group">
                 <label for="">Brand</label>
-                <select type="text" class="form-control select2" name="brand_id" id="brand_id" required>                 
+                <select type="text" class="form-control select2" name="brand_id" id="brand_id" required>
                   <option value="">---Select---</option>
                   @if (count($brand) > 0)
 
@@ -261,7 +261,7 @@
                   @else
                     <option value="">No Product</option>
                   @endif
-                  
+
                 </select>
                 <p class="ierr"></p>
               </div>
@@ -345,14 +345,11 @@
                 <label for="">Vat/Tax</label>
                 <select type="number" class="form-control" id="tax"  name="tax" required>
                     <option >---Select---</option>
+                    <option value="0%">0%</option>
                     <option value="5%">5%</option>
                     <option value="10%">10%</option>
                     <option value="15%">15%</option>
                     <option value="20%">20%</option>
-                    <option value="25%">25%</option>
-                    <option value="30%">30%</option>
-                    <option value="35%">35%</option>
-                    <option value="40%">40%</option>
                 </select>
                 <p class="ierr"></p>
               </div>
@@ -435,7 +432,7 @@
               </div>
             </div>
           </div>
-        
+
 
 
           <div class="form-group">
@@ -443,14 +440,16 @@
           </div>
         </form>
     </div>
-   </div> 
+   </div>
     </div>
    </div>
 </div><!-- br-section-wrapper -->
 
 
 @endsection
-
+@php
+    $tamurl='upload-temp-image';
+@endphp
 @section('script')
 <script src="https://cdn.tiny.cloud/1/h2axwpnzfh7k1agff20oqbrdvqd0hpov0jv1oc3q8gb14mqi/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
@@ -459,7 +458,7 @@
     $("#product_name").on('keyup',function(){
         var inputString=$(this).val();
         var result= inputString.replace(/\s+/g, '-').toLowerCase();
-       
+
         $("#slug").val(result);
     });
 
@@ -489,10 +488,10 @@
 
 
     /** Drag And Drop Image Upload **/
-      Dropzone.autoDiscover = false;    
-      const dropzone = $("#image").dropzone({ 
+      Dropzone.autoDiscover = false;
+      const dropzone = $("#image").dropzone({
 
-        url:  "{{ route('temp-image.create') }}",
+        url:  "{{$tamurl}}",
         maxFiles: 10,
         paramName: 'image',
         addRemoveLinks: true,
@@ -528,7 +527,7 @@
         var sub_category_Dropdown = document.getElementById('sub_cat_id');
         sub_category_Dropdown.innerHTML = ''; // Clear previous options
         if (category_id) {
-            // Send an AJAX request 
+            // Send an AJAX request
             fetch('/admin/product/get-sub_category/' + category_id)
               .then(response => response.json())
               .then(data => {
@@ -548,7 +547,7 @@
         var child_category_Dropdown = document.getElementById('child_cat_id');
         child_category_Dropdown.innerHTML = ''; // Clear previous options
         if (sub_category_id) {
-            // Send an AJAX request 
+            // Send an AJAX request
             fetch('/admin/product/get-child_category/' + sub_category_id)
               .then(response => response.json())
               .then(data => {

@@ -34,26 +34,12 @@
                                     $productImage = $product->product_image->first();
                                 @endphp
                                 @if (!empty($productImage->image))
-                                    <img src="{{ asset('uploads/product/'.$productImage->image.'') }}" alt="" srcset="" class="image-fluid w-100">
+                                    <img src="{{$productImage->image }}" alt="" srcset="" class="image-fluid w-100">
                                 @else
                                     <img src="" alt="No Image Found" class="image-fluid w-100">
                                 @endif
 
                                 </div>
-                                <!-- <div class="product_image_group mb-5">
-                                    <div class="small-img-col">
-                                        <img src="{{asset('Frontend/images/1.jpg')}}" width="100%" class="small-img">
-                                    </div>
-                                    <div class="small-img-col ml-1">
-                                        <img src="{{asset('Frontend/images/24.jpg')}}" width="100%" class="small-img">
-                                    </div>
-                                    <div class="small-img-col ml-1">
-                                        <img src="{{asset('Frontend/images/25.jpg')}}" width="100%" class="small-img">
-                                    </div>
-                                    <div class="small-img-col ml-1">
-                                        <img src="{{asset('Frontend/images/26.jpg')}}" width="100%" class="small-img">
-                                    </div>
-                                </div> -->
                             </div>
                             <div class="col-md-6">
                                 <div class="product_content">
