@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\Landing_Page\PageController;
 use App\Http\Controllers\Backend\About\AboutController as AboutBackend; 
 use App\Http\Controllers\Backend\Contract\ContractController as ContractBackend;
 use App\Http\Controllers\Backend\Customer\InvoiceController;
+use App\Http\Controllers\Backend\Supplier\SupplierController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
@@ -379,6 +380,23 @@ Route::group(['middleware'=>'admin'],function(){
         
 
         
+    });
+
+    /** Supplier Mangement   Route **/
+    Route::prefix('admin/supplier')->group(function(){
+        Route::get('/list',[SupplierController::class,'index'])->name('admin.supplier.index');
+
+        Route::get('/all-data',[SupplierController::class,'get_all_data'])->name('admin.supplier.get_all_data');
+
+        Route::get('/create',[SupplierController::class,'create'])->name('admin.supplier.create');
+
+        Route::post('/store',[SupplierController::class,'store'])->name('admin.supplier.store');
+        
+        Route::get('/edit/{id}',[SupplierController::class,'edit'])->name('admin.supplier.edit');
+
+        Route::post('/update/{id}',[SupplierController::class,'update'])->name('admin.supplier.update');
+
+        Route::post('/delete',[SupplierController::class,'delete'])->name('admin.supplier.delete');
     });
 
     /** Order Mangement   Route **/

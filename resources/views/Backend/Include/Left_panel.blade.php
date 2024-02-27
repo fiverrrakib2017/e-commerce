@@ -75,13 +75,15 @@ $route = Route::currentRouteName()
         </li>
         <!----------Supplier  Menu-------------->
         <li class="br-menu-item">
-          <a href="#" class="br-menu-link with-sub ">
+          <a href="#" class="br-menu-link with-sub {{($prefix=='admin/supplier')?'show-sub':''}}">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
             <span class="menu-item-label">Supplier</span>
           </a>
           <ul class="br-menu-sub" >
-            <li class="sub-item"><a href="#" class="sub-link ">Add Supplier</a></li>
-            <li class="sub-item"><a href="#" class="sub-link ">Supplier Management</a></li>
+            <li class="sub-item"><a href="{{route('admin.supplier.create')}}" class="sub-link {{ ($route == 'admin.supplier.create')? 'active':'' }}">Add Supplier</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.supplier.index')}}" class="sub-link {{ ($route == 'admin.supplier.index'|| 'admin.supplier.edit')? 'active':'' }}">Supplier Management</a></li>
+
             <li class="sub-item"><a href="#" class="sub-link ">Invoice Create</a></li>
             <li class="sub-item"><a href="#" class="sub-link">Invoice Management</a></li>            
           </ul>
