@@ -14,6 +14,7 @@
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
           <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
+          <a class="breadcrumb-item" href="{{route('admin.supplier.index')}}">Supplier</a>
           <span class="breadcrumb-item active">All Invoice</span>
         </nav>
       </div><!-- br-pageheader -->
@@ -26,7 +27,7 @@
       <thead>
         <tr>
           <th class="">Invoice No.</th>
-          <th class="">Customer Name</th>
+          <th class="">Supplier Name</th>
           <th class="">Phone Number</th>
           <th class="">Total Amount</th>
           <th class="">Paid Amount</th>
@@ -50,7 +51,7 @@
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="{{route('admin.customer.invoice.delete_invoice')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.supplier.invoice.delete_invoice')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -87,7 +88,7 @@
         "serverSide":true,
         beforeSend: function () {
         },
-        ajax: "{{ route('admin.customer.invoice.show_invoice_data') }}",
+        ajax: "{{ route('admin.supplier.invoice.show_invoice_data') }}",
         language: {
           searchPlaceholder: 'Search...',
           sSearch: '',
@@ -98,10 +99,10 @@
             "data":"id"
           },
           {
-            "data":"customer.fullname"
+            "data":"supplier.fullname"
           },
           {
-            "data":"customer.phone_number"
+            "data":"supplier.phone_number"
           },
           {
             "data":"total_amount"
@@ -127,8 +128,8 @@
           },
           {
             render:function(data,type,row){
-                var editUrl = "{{ route('admin.customer.invoice.edit_invoice', ':id') }}";
-                var viewUrl = "{{ route('admin.customer.invoice.view_invoice', ':id') }}";
+                var editUrl = "{{ route('admin.supplier.invoice.edit_invoice', ':id') }}";
+                var viewUrl = "{{ route('admin.supplier.invoice.view_invoice', ':id') }}";
                 editUrl = editUrl.replace(':id', row.id);
                 viewUrl = viewUrl.replace(':id', row.id);
                 return `

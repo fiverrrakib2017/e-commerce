@@ -1,22 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Customer;
+namespace App\Http\Controllers\Backend\Supplier;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Customer_Invoice;
 use App\Models\Customer_Invoice_Details;
 use App\Models\Product;
+use App\Models\Supplier;
+use App\Models\Supplier_Invoice;
+use App\Models\Supplier_Invoice_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class InvoiceController extends Controller
+class Supplier_invoiceController extends Controller
 {
     public function create_invoice(){
-        $customer=Customer::latest()->get();
+        $supplier=Supplier::latest()->get();
         $product=Product::latest()->get();
         $products=Product::with('product_image')->paginate(10);
-        return view('Backend.Pages.Customer.invoice_create',compact('customer','product','products'));
+        return view('Backend.Pages.Supplier.invoice_create',compact('supplier','product','products'));
     }
     public function search_product_data(Request $request){
         if ($request->search=='') {
@@ -28,25 +31,25 @@ class InvoiceController extends Controller
         return response()->json(['success'=>true,'data' => $products]);
     }
     public function show_invoice(){
-        return view('Backend.Pages.Customer.invoice');
+        return view('Backend.Pages.Supplier.invoice');
     }
     public function view_invoice($id){
-        $customer=Customer::latest()->get();
+        $supplier=Supplier::latest()->get();
         $product=Product::latest()->get();
-       $data=  Customer_Invoice::with('customer','items')->where('id',$id)->get();
-       return view('Backend.Pages.Customer.invoice_view',compact('data','customer','product'));
+       $data=  Supplier_Invoice::with('supplier','items')->where('id',$id)->get();
+       return view('Backend.Pages.Supplier.invoice_view',compact('data','supplier','product'));
     }
     public function edit_invoice($id){
-        $customer=Customer::latest()->get();
+        $supplier=Supplier::latest()->get();
         $product=Product::latest()->get();
         $products=Product::with('product_image')->paginate(10);
-       $data=  Customer_Invoice::with('customer','items')->where('id',$id)->get();
-       return view('Backend.Pages.Customer.invoice_edit',compact('data','customer','product','products'));
+       $data=  Supplier_Invoice::with('supplier','items')->where('id',$id)->get();
+       return view('Backend.Pages.Supplier.invoice_edit',compact('data','supplier','product','products'));
     }
     public function update_invoice(Request $request){
         /* Validate the request data*/
         $validator = Validator::make($request->all(), [
-            'customer_id' => 'required|integer',
+            'supplier_id' => 'required|integer',
             'product_id' => 'required|array',
             'product_id.*' => 'required|numeric',
             'qty' => 'required|array',
@@ -64,8 +67,8 @@ class InvoiceController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
          /*Update the invoice*/
-         $invoice = Customer_Invoice::find($request->id);
-         $invoice->customer_id = $request->customer_id;
+         $invoice = Supplier_Invoice::find($request->id);
+         $invoice->supplier_id = $request->supplier_id;
          $invoice->total_amount = $request->total_amount;
          $invoice->paid_amount = $request->paid_amount ?? 0;
          $invoice->due_amount = $request->due_amount ?? $request->total_amount;
@@ -76,7 +79,7 @@ class InvoiceController extends Controller
 
         /* Create new invoice items*/
         foreach ($request->product_id as $index => $productId) {
-            $invoiceItem = new Customer_Invoice_Details();
+            $invoiceItem = new Supplier_Invoice_Details();
             $invoiceItem->invoice_id = $invoice->id;
             $invoiceItem->product_id = $productId;
             $invoiceItem->qty = $request->qty[$index];
@@ -96,16 +99,16 @@ class InvoiceController extends Controller
     }
     public function show_invoice_data(Request $request){
         $search = $request->search['value'];
-        $columnsForOrderBy = ['id', 'customer_name', 'phone_number','total_amount', 'paid_amount', 'due_amount','status','created_at'];
+        $columnsForOrderBy = ['id', 'fullname', 'phone_number','total_amount', 'paid_amount', 'due_amount','status','created_at'];
         $orderByColumn = $request->order[0]['column'];
         $orderDirection = $request->order[0]['dir'];
     
-        $query = Customer_Invoice::with('customer')->when($search, function ($query) use ($search) {
+        $query = Supplier_Invoice::with('supplier')->when($search, function ($query) use ($search) {
             $query->where('total_amount', 'like', "%$search%")
                   ->orWhere('paid_amount', 'like', "%$search%")
                   ->orWhere('due_amount', 'like', "%$search%")
                   ->orWhere('created_at', 'like', "%$search%")
-                  ->orWhereHas('customer', function ($query) use ($search) {
+                  ->orWhereHas('supplier', function ($query) use ($search) {
                       $query->where('fullname', 'like', "%$search%")
                             ->orWhere('phone_number', 'like', "%$search%");
                   });
@@ -123,7 +126,7 @@ class InvoiceController extends Controller
     public function store_invoice(Request $request){
         /* Validate the request data*/
         $validator = Validator::make($request->all(), [
-            'customer_id' => 'required|integer',
+            'supplier_id' => 'required|integer',
             'product_id' => 'required|array',
             'product_id.*' => 'required|numeric',
             'qty' => 'required|array',
@@ -143,8 +146,8 @@ class InvoiceController extends Controller
         
        
         /*Create the invoice*/
-        $invoice = new Customer_Invoice();
-        $invoice->customer_id = $request->customer_id;
+        $invoice = new Supplier_Invoice();
+        $invoice->supplier_id = $request->supplier_id;
         $invoice->total_amount = $request->total_amount;
         $invoice->paid_amount = $request->paid_amount ?? 0;
         $invoice->due_amount = $request->due_amount ?? $request->total_amount;
@@ -153,7 +156,7 @@ class InvoiceController extends Controller
 
         /* Create invoice items*/
         foreach ($request->product_id as $index => $productId) {
-            $invoiceItem = new Customer_Invoice_Details();
+            $invoiceItem = new Supplier_Invoice_Details();
             $invoiceItem->invoice_id = $invoice->id;
             $invoiceItem->product_id = $productId;
             $invoiceItem->qty = $request->qty[$index];
@@ -172,7 +175,7 @@ class InvoiceController extends Controller
         
     }
     public function delete_invoice(Request $request){
-        $invoice = Customer_Invoice::find($request->id);
+        $invoice = Supplier_Invoice::find($request->id);
         $invoice->delete();
         return response()->json(['success'=>true,'message' => 'Invoice deleted successfully']);
     }

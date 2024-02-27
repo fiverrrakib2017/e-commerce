@@ -7,8 +7,9 @@
 <div class="br-pageheader">
    <nav class="breadcrumb pd-0 mg-0 tx-12">
       <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
-      <a class="breadcrumb-item" href="{{route('admin.customer.index')}}">Customer</a>
-      <span class="breadcrumb-item active">Create</span>
+      <a class="breadcrumb-item" href="{{route('admin.supplier.index')}}">Supplier</a>
+      <span class="breadcrumb-item ">Create</span>
+      <span class="breadcrumb-item active">Invoice</span>
    </nav>
 </div>
 <!-- br-pageheader -->
@@ -17,7 +18,7 @@
       <div class="row d-flex">
          <div class="col-md-7  ">
             <div class="card card-body">
-               <form id="form-data" action="{{route('admin.customer.invoice.store_invoice')}}" method="post">@csrf
+               <form id="form-data" action="{{route('admin.supplier.invoice.store_invoice')}}" method="post">@csrf
                   <div class="input-group mb-2">
                      <label><span class="input-group-text" id="inputGroupPrepend" style="display: inline-block;"><i class="fa fa-barcode"></i></span></label>
                      <input type="text"  placeholder="Enter Your QR Bar code here" class="form-control" autofocus>
@@ -33,10 +34,10 @@
                      </select>
                   </div>
                   <div class="form-group mb-2">
-                     <label>Customer Name</label>
-                     <select type="text" id="customer_name" name="customer_id" class="form-control select2" style="width:100%">
+                     <label>Supplier Name</label>
+                     <select type="text" id="supplier_name" name="supplier_id" class="form-control select2" style="width:100%">
                         <option>Select</option>
-                        @foreach ($customer as $item)
+                        @foreach ($supplier as $item)
                              <option value="{{$item->id}}">{{$item->fullname}}</option>
                         @endforeach
                        

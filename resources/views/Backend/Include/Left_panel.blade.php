@@ -80,12 +80,13 @@ $route = Route::currentRouteName()
             <span class="menu-item-label">Supplier</span>
           </a>
           <ul class="br-menu-sub" >
-            <li class="sub-item"><a href="{{route('admin.supplier.create')}}" class="sub-link {{ ($route == 'admin.supplier.create')? 'active':'' }}">Add Supplier</a></li>
+            <li class="sub-item"><a href="{{route('admin.supplier.create')}}" class="sub-link {{ ($route == 'admin.supplier.create')? 'active':' ' }}">Add Supplier</a></li>
 
             <li class="sub-item"><a href="{{route('admin.supplier.index')}}" class="sub-link {{ ($route == 'admin.supplier.index'|| 'admin.supplier.edit')? 'active':'' }}">Supplier Management</a></li>
 
-            <li class="sub-item"><a href="#" class="sub-link ">Invoice Create</a></li>
-            <li class="sub-item"><a href="#" class="sub-link">Invoice Management</a></li>            
+            <li class="sub-item"><a href="{{route('admin.supplier.invoice.create_invoice')}}" class="sub-link {{ ($route == 'admin.supplier.invoice.create_invoice')? 'active':' ' }}">Invoice Create</a></li>
+
+            <li class="sub-item"><a href="{{route('admin.supplier.invoice.show_invoice')}}" class="sub-link {{ ($route == 'admin.supplier.invoice.show_invoice'|| 'admin.supplier.invoice.edit_invoice' ||'admin.supplier.invoice.view_invoice')? 'active':'' }}">Invoice Management</a></li>            
           </ul>
         </li>
         <!----------Product Menu-------------->

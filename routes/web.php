@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\Landing_Page\PageController;
 use App\Http\Controllers\Backend\About\AboutController as AboutBackend; 
 use App\Http\Controllers\Backend\Contract\ContractController as ContractBackend;
 use App\Http\Controllers\Backend\Customer\InvoiceController;
+use App\Http\Controllers\Backend\Supplier\Supplier_invoiceController;
 use App\Http\Controllers\Backend\Supplier\SupplierController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
@@ -397,6 +398,24 @@ Route::group(['middleware'=>'admin'],function(){
         Route::post('/update/{id}',[SupplierController::class,'update'])->name('admin.supplier.update');
 
         Route::post('/delete',[SupplierController::class,'delete'])->name('admin.supplier.delete');
+
+        /** Supplier Invoice  Route **/
+        Route::get('/invoice/create',[Supplier_invoiceController::class,'create_invoice'])->name('admin.supplier.invoice.create_invoice');
+
+        Route::get('/invoice/get_all_data',[Supplier_invoiceController::class,'show_invoice_data'])->name('admin.supplier.invoice.show_invoice_data');
+
+        Route::post('/invoice/store',[Supplier_invoiceController::class,'store_invoice'])->name('admin.supplier.invoice.store_invoice');
+
+        Route::get('/invoice/show',[Supplier_invoiceController::class,'show_invoice'])->name('admin.supplier.invoice.show_invoice');
+
+        Route::get('/invoice/view/{id}',[Supplier_invoiceController::class,'view_invoice'])->name('admin.supplier.invoice.view_invoice');
+
+        Route::get('/invoice/edit/{id}',[Supplier_invoiceController::class,'edit_invoice'])->name('admin.supplier.invoice.edit_invoice');
+
+        Route::post('/invoice/update',[Supplier_invoiceController::class,'update_invoice'])->name('admin.supplier.invoice.update_invoice');
+
+        Route::post('/invoice/delete',[Supplier_invoiceController::class,'delete_invoice'])->name('admin.supplier.invoice.delete_invoice');
+         
     });
 
     /** Order Mangement   Route **/

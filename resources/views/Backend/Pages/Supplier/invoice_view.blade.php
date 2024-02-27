@@ -7,8 +7,8 @@
 <div class="br-pageheader">
    <nav class="breadcrumb pd-0 mg-0 tx-12">
       <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
-      <a class="breadcrumb-item" href="{{route('admin.customer.index')}}">Customer</a>
-      <a class="breadcrumb-item" href="{{route('admin.customer.invoice.show_invoice')}}">Invoice</a>
+      <a class="breadcrumb-item" href="{{route('admin.supplier.index')}}">Supplier</a>
+      <a class="breadcrumb-item" href="{{route('admin.supplier.invoice.show_invoice')}}">Invoice</a>
       <span class="breadcrumb-item active">View</span>
    </nav>
 </div>
@@ -34,10 +34,10 @@
             @foreach ($data as $invoice)
                <div class="col-md">
                   <label class="tx-uppercase tx-13 tx-bold mg-b-20">Billed To</label>
-                  <h6 class="tx-inverse">{{ $invoice->customer->fullname }}</h6>
-                  <p class="lh-7">{{ $invoice->customer->address }}</p> 
-                  <p>Mobile No: <span>{{ $invoice->customer->phone_number }}</span></p> 
-                  <p>Email: <span>{{ $invoice->customer->email_address }}</span></p>
+                  <h6 class="tx-inverse">{{ $invoice->supplier->fullname }}</h6>
+                  <p class="lh-7">{{ $invoice->supplier->address }}</p> 
+                  <p>Mobile No: <span>{{ $invoice->supplier->phone_number }}</span></p> 
+                  <p>Email: <span>{{ $invoice->supplier->email_address }}</span></p>
                </div>
             @endforeach
               <div class="col-md" id="invoice_information">
