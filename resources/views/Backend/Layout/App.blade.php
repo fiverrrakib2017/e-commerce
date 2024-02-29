@@ -85,7 +85,7 @@
     <script src="{{asset('Backend/js/bracket.js')}}"></script>
     <script src="{{asset('Backend/js/toastr.min.js')}}"></script>
     @yield('script')
-    <script>
+    <!-- <script>
       $(function(){
         'use strict'
 
@@ -112,7 +112,7 @@
           }
         }
       });
-    </script>
+    </script> -->
     
   </body>
 </html>

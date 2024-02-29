@@ -5,13 +5,13 @@
         <div class="row">
           <div class="col-md-2 offset-md-10 mt-3 mb-2">
             <div >
-              <select class="form-control select2" data-placeholder="Choose location">
+              <select name="dateFilter" class="form-control select2" data-placeholder="Choose location">
                 <option label="Choose one"></option>
-                <option value="1" selected>Today</option>
-                <option value="1" >Last 7 Days</option>
-                <option value="2">Last Month</option>
-                <option value="3">Last Year</option>
-                <option value="4">Last 2 Years</option>
+                <option value="today" selected>Today</option>
+                <option value="last7days" >Last 7 Days</option>
+                <option value="lastmonth">Last Month</option>
+                <option value="lastyear">Last Year</option>
+                <option value="last2years">Last 2 Years</option>
               </select>
             </div><!-- wd-200 -->
           </div>
@@ -25,7 +25,7 @@
               <i class="ion ion-cash tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Sales</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ 32000</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ <span id="total_sales_amount">00</span></p>
                 </div>
               </div>
               <div id="ch1" class="ht-50 tr-y-1"></div>
@@ -38,7 +38,7 @@
               <i class="ion ion-card tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Purchase</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ 329,291</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ <span id="total_purchase_amount">00</span></p>
                 </div>
               </div>
               <div id="ch3" class="ht-50 tr-y-1"></div>
@@ -51,7 +51,7 @@
                 <i class="ion ion-ios-cart tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Orders</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">54</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><span id="total_product_order">0</span></p>
                 </div>
               </div>
               <div id="ch2" class="ht-50 tr-y-1"></div>
@@ -64,7 +64,7 @@
               <i class="ion ion-cash tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Net Profit </p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ 32000</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">৳ <span id="total_net_income">00</span></p>
                 </div>
               </div>
               <div id="ch4" class="ht-50 tr-y-1"></div>
@@ -80,7 +80,7 @@
               <i class="ion ion-ios-people tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Customers</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">224</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><span id="total_customer"></span></p>
                 </div>
               </div>
               <div id="ch8" class="ht-50 tr-y-1"></div>
@@ -93,7 +93,7 @@
               <i class="ion ion-ios-people tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Suppliers</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">29,291</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><span id="total_supplier">0</span></p>
                 </div>
               </div>
               <div id="ch3" class="ht-50 tr-y-1"></div>
@@ -106,7 +106,7 @@
               <i class="ion ion-cube tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Products</p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">540</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><span id="total_products">0</span></p>
                 </div>
               </div>
               <div id="ch2" class="ht-50 tr-y-1"></div>
@@ -119,7 +119,7 @@
               <i class="ion ion-ios-people tx-60 lh-0 tx-white op-7"></i>
                 <div class="mg-l-20">
                   <p class="tx-10 tx-spacing-1 tx-mont tx-semibold tx-uppercase tx-white-8 mg-b-10">Total Seller </p>
-                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1">32</p>
+                  <p class="tx-24 tx-white tx-lato tx-bold mg-b-0 lh-1"><span id="total_seller">0</span></p>
                 </div>
               </div>
               <div id="ch4" class="ht-50 tr-y-1"></div>
@@ -472,4 +472,102 @@
           </div><!-- col-4 -->
         </div><!-- row -->
        
+@endsection
+
+@section('script')
+  <script type="text/javascript"> 
+    $(document).ready(function(){
+
+      function getTodayDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        return yyyy + '-' + mm + '-' + dd;
+      }
+      var todayDate = getTodayDate();
+      __fetch_data(todayDate);
+
+      $('select[name="dateFilter"]').on('change',function (){
+        var data = $(this).val();
+        if (data==="today") {
+          var date=__getTodayDate();
+          __fetch_data(date);
+        }else if(data==='last7days'){
+          var date=__last_seven_days(7);
+          __fetch_data(date);
+        }else if(data==='lastmonth'){
+          var date=__get_last_month();
+          __fetch_data(date);
+        }else if(data==='lastyear'){
+          var date=__get_last_year();
+          __fetch_data(date);
+        }else if(data==='last2years'){
+          var date=__get_last_two_years(2);
+          __fetch_data(date);
+        }else{
+          console.log('Server Error: ');
+        }
+      });
+
+      function __getTodayDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        return yyyy + '-' + mm + '-' + dd;
+      }
+      function __last_seven_days(days) {
+        var today = new Date();
+        today.setDate(today.getDate() - days);
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        return yyyy + '-' + mm + '-' + dd;
+      }
+      function __get_last_month() {
+        var today = new Date();
+        var mm = String(today.getMonth()).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        return yyyy + '-' + mm + '-01'; 
+      }
+
+      function __get_last_year() {
+        var today = new Date();
+        var yyyy = today.getFullYear() - 1;
+        return yyyy + '-01-01'; 
+      }
+
+      function __get_last_two_years(years) {
+        var today = new Date();
+        var yyyy = today.getFullYear() - years;
+        return yyyy + '-01-01'; 
+      }
+      function __fetch_data(date){
+        $.ajax({
+          url:"{{route('admin.dashboard_get_all_data')}}",
+          type:'POST',
+          data:{date:date},
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+          },
+          success:function(response){
+            
+            $('#total_sales_amount').text(response.total_sales_amount);
+            $('#total_purchase_amount').text(response.total_purchase_amount);
+            $('#total_net_income').text(response.net_income);
+            $('#total_customer').text(response.total_customer);
+            $('#total_supplier').text(response.total_supplier);
+            $('#total_products').text(response.total_products);
+            $('#total_seller').text(response.total_seller);
+            $('#total_product_order').text(response.total_product_order);
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      }
+    });
+
+  </script>
 @endsection
