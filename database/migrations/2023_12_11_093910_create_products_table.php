@@ -40,7 +40,7 @@ return new class extends Migration
             $table->integer('status')->default(1);
             $table->timestamps();
 
-            $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');
+            $table->foreign('user_id')->on('admins')->references('id')->onDelete('cascade');
             $table->foreign('category_id')->on('product__categories')->references('id')->onDelete('cascade');
             $table->foreign('sub_category_id')->on('product_sub_categories')->references('id')->onDelete('cascade');
             $table->foreign('child_category_id')->on('product_child_categories')->references('id')->onDelete('cascade');

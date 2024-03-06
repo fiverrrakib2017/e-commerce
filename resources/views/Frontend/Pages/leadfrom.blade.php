@@ -351,14 +351,30 @@ input[type=submit]:hover {
   </head>
   <body>
     @include('Frontend.Include.gtag1')
+
     @if (\Session::has('success'))
+    <script>
+        document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            fbq('track', 'leadFromSubmit');
+        }
+        }
+
+    </script>
     <h1 class="fblink"> <a href="https://www.facebook.com/groups/chepapest" >{!! \Session::get('success') !!} </a> </h1>
     @else
+    <script>
+        document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            fbq('track', 'leadFrom');
+        }
+        }
+    </script>
 
 
-    <link rel="stylesheet" href="./style.css" />
+
     <div>
-      <link href="./index.css" rel="stylesheet" />
+
 
       <div class="home-container">
         <section id="destinations" class="home-destinations">
@@ -376,7 +392,7 @@ input[type=submit]:hover {
             </div>
             <div class="home-video-wrapper">
 
-              <iframe class="home-video" width="auto" height="auto" src="https://www.youtube.com/embed/leyKAM24qmI?si=Ka7gC-sOAZd2PmGC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe class="home-video" width="auto" height="auto" src="https://www.youtube.com/embed/Dq0UVZ6Kd0U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
             </div>
@@ -426,7 +442,7 @@ input[type=submit]:hover {
             <input type="submit" value="Submit">
           </form>
         </section>
-        <div>
+        {{-- <div>
           <div class="home-container3">
             <script>
               function initAccordion() {
@@ -496,13 +512,12 @@ input[type=submit]:hover {
               initAccordion();
             </script>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
     <script
       data-section-id="navbar"
-      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script>
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
     @endif
   </body>
 </html>

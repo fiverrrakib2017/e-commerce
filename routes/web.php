@@ -485,31 +485,31 @@ Route::group(['middleware'=>'admin'],function(){
 
 /*Important Route*/
 
-Route::get('/migrate-fresh-seed',function(){
-    Artisan::call('migrate:fresh --seed');
-      // Return a response
-    return response('Migration and seeding complete');
-});
-Route::get('/config/cache',function(){
-    Artisan::call('config:cache');
-    return response('Configuration cached successfully.');
-});
-Route::get('/optimize', function () {
-    // Run optimize commands
-    Artisan::call('optimize');
-    Artisan::call('config:cache');
-    Artisan::call('route:cache');
-    Artisan::call('view:clear');
-    Artisan::call('cache:clear');
+// Route::get('/migrate-fresh-seed',function(){
+//     Artisan::call('migrate:fresh --seed');
+//       // Return a response
+//     return response('Migration and seeding complete');
+// });
+// Route::get('/config/cache',function(){
+//     Artisan::call('config:cache');
+//     return response('Configuration cached successfully.');
+// });
+// Route::get('/optimize', function () {
+//     // Run optimize commands
+//     Artisan::call('optimize');
+//     Artisan::call('config:cache');
+//     Artisan::call('route:cache');
+//     Artisan::call('view:clear');
+//     Artisan::call('cache:clear');
 
-    // Return a response
-    return response('Optimization complete');
-});
-Route::get('/migrate',function(){
-    Artisan::call('migrate');
-      // Return a response
-    return response('Migration complete');
-});
+//     // Return a response
+//     return response('Optimization complete');
+// });
+// Route::get('/migrate',function(){
+//     Artisan::call('migrate');
+//       // Return a response
+//     return response('Migration complete');
+// });
 
 
 

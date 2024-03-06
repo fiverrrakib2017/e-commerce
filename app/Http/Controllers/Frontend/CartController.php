@@ -97,13 +97,17 @@ class CartController extends Controller
 
         $user=Auth::user();
         if($request->has('landingpage')){
+            $request->validate([
+                'number' => 'required|string',
+                'userName' => 'required|string',
+            ]);
             $number=preg_replace('/[^0-9]/', '', $request->number);
            $user= User::where('email',$number.'@chepapest.com')->first();
            if(!isset($user->id)){
                 $user=new User;
                 $user->email=$number.'@chepapest.com';
                 $user->password=Hash::make($number);
-                $user->name=$request->name;
+                $user->name=$request->userName;
                 $user->save();
             }
             Auth::loginUsingId($user->id);

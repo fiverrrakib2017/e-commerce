@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Landing_Page;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -33,7 +34,9 @@ class LandingPageController extends Controller
         }
         $data->content = $request->html;
         $data->css = $request->css;
+        $data->project_data = $request->projectData;
         $data->save();
-        return response()->json(['data'=>$data]);
+        Log::info($request->projectData);
+        return response()->json($data);
     }
 }

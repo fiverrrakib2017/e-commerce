@@ -26,4 +26,4 @@ Route::get('/dev/products',[ProductController::class,'indexForDev']);
 
 Route::get('/dev/product/{id}',[ProductController::class,'get_productForDev']);
 Route::get('/dev/user/landing-page/{id}',[LandingPageController::class,'viewForDev']);
-Route::get('/dev/user/landing-page/{id}/save',[LandingPageController::class,'DevSave']);
+Route::post('/dev/user/landing-page/{id}/save',[LandingPageController::class,'DevSave']);

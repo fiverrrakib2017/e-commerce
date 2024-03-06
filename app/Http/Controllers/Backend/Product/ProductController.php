@@ -41,9 +41,9 @@ class ProductController extends Controller
         ];
         $validator = Validator::make($request->all(), $rules);
         if($validator->passes()){
-
-            $product = new Product();
-            $product->user_id = Auth::guard('admin')->user()->id; 
+           $user=Auth::guard('admin')->user();
+            $product = new Product;
+            $product->user_id = $user->id;
             $product->title = $request->product_name;
             $product->brand_id = $request->brand_id;
             $product->category_id = $request->category_id;
@@ -56,15 +56,15 @@ class ProductController extends Controller
             $product->tax = $request->tax;
             $product->delivery_charge = $request->delivery_charge;
             $product->product_type = $request->product_type;
-            
-            
-            
+
+
+
             $product->slug = $request->slug;
             $product->price = $request->price;
             $product->description = $request->description;
             $product->short_description = $request->short_description;
             $product->shipping_returns = $request->shipping_returns;
-            
+
             $product->sku = $request->sku;
             $product->barcode = $request->barcode;
             $product->track_qty = 'Yes';
@@ -101,13 +101,13 @@ class ProductController extends Controller
             }
 
             $request->session('success', 'Product added succesfully');
-           
+
             return response()->json([
                 'status' => true,
                 'message' => 'Product added succesfully'
             ]);
             //return redirect()->route('admin.products.index')->with('success','Add Successfully');
-            
+
         }else{
             return response()->json([
                 'status' => false,

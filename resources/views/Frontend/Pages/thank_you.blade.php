@@ -5,6 +5,9 @@
 <section class="thakyou_area">
        <div class="container">
            <div class="row">
+            <script>
+                fbq('track', 'Purchase');
+              </script>
                <div class="col-md-12 text-center">
 
                    <div class="thank_you">
@@ -13,8 +16,8 @@
                       @php
                           $order=session('order');
                       @endphp
-                      <p>Order Number:{{$order->id}}</p>
-                      <p>You Will Receive and Email Confirmation Shortly</p>
+                      <p>Order Number:{{$order->id}}-r8787</p>
+                      <p>You Will Receive Confirmation call in your number Shortly</p>
                       <p>Have a Nice Day!</p>
                    </div>
                </div>

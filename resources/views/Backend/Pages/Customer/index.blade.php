@@ -14,7 +14,7 @@
       <div class="br-pageheader">
         <nav class="breadcrumb pd-0 mg-0 tx-12">
           <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Dashboard</a>
-          <a class="breadcrumb-item" href="{{route('admin.seller.index')}}">Seller</a>
+          <a class="breadcrumb-item" href="{{route('admin.customer.index')}}">Customer</a>
           <span class="breadcrumb-item active">List</span>
         </nav>
       </div><!-- br-pageheader -->
@@ -22,7 +22,7 @@
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
-        <a href="{{route('admin.customer.create')}}" class="btn btn btn-success">Add New Seller</a>
+        <a href="{{route('admin.customer.create')}}" class="btn btn btn-success">Add New Customer</a>
       </div>
       <div class="card-body">
       <table id="datatable1" class="table display responsive nowrap">

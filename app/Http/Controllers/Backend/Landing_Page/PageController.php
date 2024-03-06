@@ -16,15 +16,15 @@ class PageController extends Controller
         $columnsForOrderBy = ['id', 'page_name','page_slug', 'created_at'];
         $orderByColumn = $request->order[0]['column'];
         $orderDirectection = $request->order[0]['dir'];
-    
+
         $object = Landing_Page::when($search, function ($query) use ($search) {
             $query->where('page_name', 'like', "%$search%");
             $query->where('page_slug', 'like', "%$search%");
         })->orderBy($columnsForOrderBy[$orderByColumn], $orderDirectection);
-    
+
         $total = $object->count();
         $data = $object->skip($request->start)->take($request->length)->get();
-    
+
         return response()->json([
             'draw' => $request->draw,
             'recordsTotal' => $total,
@@ -43,10 +43,10 @@ class PageController extends Controller
             'css' => 'required|string',
         ]);
         $page=new Landing_Page();
-        $page->page_name=$request->page_name; 
-        $page->page_slug=$request->page_slug; 
-        $page->content=$request->content; 
-        $page->css=$request->css; 
+        $page->page_name=$request->page_name;
+        $page->page_slug=$request->page_slug;
+        $page->content=$request->content;
+        $page->css=$request->css;
         $page->save();
         return redirect()->route('admin.landing_page.index')->with('success', 'Page Create Success');
 
@@ -63,9 +63,9 @@ class PageController extends Controller
             'css' => 'required|string',
         ]);
         $page = Landing_Page::findOrFail($id);
-        $page->page_name = $request->page_name; 
-        $page->content = $request->content; 
-        $page->css = $request->css; 
+        $page->page_name = $request->page_name;
+        $page->content = $request->content;
+        $page->css = $request->css;
         $page->update();
         return redirect()->route('admin.landing_page.index')->with('success', 'Page updated successfully');
     }
@@ -77,11 +77,11 @@ class PageController extends Controller
          /* Delete the Data*/
          $object->delete();
 
-         return response()->json(['success' => 'Deleted Successfully']); 
+         return response()->json(['success' => 'Deleted Successfully']);
     }
     public function view($id){
         $data=Landing_Page::find($id);
-        return view('Backend.Pages.Builder.View',compact('data')); 
+        return view('Backend.Pages.Builder.View',compact('data'));
     }
-    
+
 }

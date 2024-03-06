@@ -174,7 +174,7 @@ class CustomerController extends Controller
             }
 
             $imageName = time() . '.' . $request->file('profile_image')->getClientOriginalExtension();
-            $request->file('profile_image')->move(public_path('Backend/images/customer/'), $imageName);
+            $request->file('profile_image')->move(public_path('Backend/images/customers/'), $imageName);
 
             $object->profile_image = $imageName;
         }

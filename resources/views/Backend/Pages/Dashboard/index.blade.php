@@ -133,85 +133,22 @@
               <div class="card-header bg-transparent pd-20">
                 <h6 class="card-title tx-uppercase tx-12 mg-b-0">Latest Customer</h6>
               </div><!-- card-header -->
-              <table class="table table-responsive mg-b-0 tx-12">
+              <div class="card-body text-center" id="latest_customer">
+              <img class="img-fluid" height="80px" width="100px" src="{{asset('images/Loading_icon.gif')}}" alt="">
+              </div>
+              <table id="table1" class="d-none table table-responsive mg-b-0 tx-12">
                 <thead>
                   <tr class="tx-10">
                     <th class="wd-10p pd-y-5">&nbsp;</th>
-                    <th class="pd-y-5">User</th>
+                    <th class="pd-y-5">Customer Name</th>
                     <th class="pd-y-5">Type</th>
                     <th class="pd-y-5">Date</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="pd-l-20">
-                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
-                    </td>
-                    <td>
-                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Mark K. Peters</a>
-                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
-                    </td>
-                    <td class="tx-12">
-                      <span class="square-8 bg-success mg-r-5 rounded-circle"></span> Email verified
-                    </td>
-                    <td>Just Now</td>
-                  </tr>
-                  <tr>
-                    <td class="pd-l-20">
-                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
-                    </td>
-                    <td>
-                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Karmen F. Brown</a>
-                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
-                    </td>
-                    <td class="tx-12">
-                      <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> Pending verification
-                    </td>
-                    <td>Apr 21, 2017 8:34am</td>
-                  </tr>
-                  <tr>
-                    <td class="pd-l-20">
-                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
-                    </td>
-                    <td>
-                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Gorgonio Magalpok</a>
-                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
-                    </td>
-                    <td class="tx-12">
-                      <span class="square-8 bg-success mg-r-5 rounded-circle"></span> Purchased success
-                    </td>
-                    <td>Apr 10, 2017 4:40pm</td>
-                  </tr>
-                  <tr>
-                    <td class="pd-l-20">
-                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
-                    </td>
-                    <td>
-                      <a href="" class="tx-inverse tx-14 tx-medium d-block">Ariel T. Hall</a>
-                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
-                    </td>
-                    <td class="tx-12">
-                      <span class="square-8 bg-warning mg-r-5 rounded-circle"></span> Payment on hold
-                    </td>
-                    <td>Apr 02, 2017 6:45pm</td>
-                  </tr>
-                  <tr>
-                    <td class="pd-l-20">
-                      <img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image">
-                    </td>
-                    <td>
-                      <a href="" class="tx-inverse tx-14 tx-medium d-block">John L. Goulette</a>
-                      <span class="tx-11 d-block">TRANSID: 1234567890</span>
-                    </td>
-                    <td class="tx-12">
-                      <span class="square-8 bg-pink mg-r-5 rounded-circle"></span> Account deactivated
-                    </td>
-                    <td>Mar 30, 2017 10:30am</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
               <div class="card-footer tx-12 pd-y-15 bg-transparent">
-                <a href=""><i class="fa fa-angle-down mg-r-5"></i>View All Transaction History</a>
+                <a href="{{route('admin.customer.index')}}"><i class="fa fa-angle-down mg-r-5"></i>View All Customer Data</a>
               </div><!-- card-footer -->
             </div><!-- card -->
           </div><!-- col-6 -->
@@ -477,6 +414,10 @@
 @section('script')
   <script type="text/javascript"> 
     $(document).ready(function(){
+      /*get top rated product*/
+      __top_rated_product();
+       /*get Latest Customer Data Dashboard Page*/
+      __customer_data();
 
       function getTodayDate() {
         var today = new Date();
@@ -552,7 +493,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
           },
           success:function(response){
-            
             $('#total_sales_amount').text(response.total_sales_amount);
             $('#total_purchase_amount').text(response.total_purchase_amount);
             $('#total_net_income').text(response.net_income);
@@ -564,6 +504,71 @@
           },
           error: function(xhr, status, error) {
             console.error(xhr.responseText);
+          }
+        });
+      }
+      /*get Latest Customer Data Dashboard Page*/
+      function __customer_data(){
+        $.ajax({
+          url:"{{route('admin.dashboard_get_all_data')}}",
+          type:'POST',
+          data:{data:'customer_data'},
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+          },
+          success:function(response){
+            $("#latest_customer").attr('class','d-none');
+            $("#table1").removeClass('d-none');
+            var __baseUrl = '{{ url("/")}}';
+             var __tbody=$("#table1 tbody");
+             __tbody.empty();
+            for (let i = 0; i < response.length; i++) {
+            var customer = response[i];
+            /*Formate the data*/
+            var formatted_date=new Date(customer.created_at);
+            var __month_names=["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var __formated_string=__month_names[formatted_date.getMonth()] + ' ' +
+            formatted_date.getDate() + ', ' +
+            formatted_date.getFullYear() + ' ' +
+            formatted_date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            var __profile_image=__baseUrl + '/Backend/images/customer/' + customer.profile_image;
+            console.log(__profile_image);
+            /*Create a new table row*/ 
+            var newRow = $("<tr>");
+            newRow.append('<td class="pd-l-20"><img src="https://via.placeholder.com/500" class="wd-36 rounded-circle" alt="Image"></td>');
+            newRow.append('<td><a href="" class="tx-inverse tx-14 tx-medium d-block">' + customer.fullname + '</a></td>');
+            newRow.append('<td class="tx-12"><span class="square-8 bg-success mg-r-5 rounded-circle"></span>Active</td>');
+            newRow.append('<td>' + __formated_string + '</td>'); 
+            
+            // Append the new row to the table body
+            __tbody.append(newRow);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            // Hide loading spinner on error
+            $("#latest_customer").addClass('d-none');
+            $("#table1").removeClass('d-none');
+          }
+        });
+      }
+      /*get Latest Customer Data Dashboard Page*/
+      function  __top_rated_product(){
+        $.ajax({
+          url:"{{route('admin.dashboard_get_all_data')}}",
+          type:'POST',
+          data:{data:'get_top_rated_product'},
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+          },
+          success:function(response){
+            console.log(response);
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            // Hide loading spinner on error
+           // $("#latest_customer").addClass('d-none');
+           // $("#table1").removeClass('d-none');
           }
         });
       }

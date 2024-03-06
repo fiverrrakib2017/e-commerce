@@ -3,7 +3,7 @@
 @section('style')
  <!-- vendor css -->
 		<link href="{{asset('Backend/lib/highlightjs/styles/github.css')}}" rel="stylesheet">
-  
+
     <link href="{{asset('Backend/lib/datatables.net-dt/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('Backend/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css')}}" rel="stylesheet">
 
@@ -18,7 +18,7 @@
           <span class="breadcrumb-item active">List</span>
         </nav>
       </div><!-- br-pageheader -->
-<div class="br-section-wrapper" style="padding: 0px !important;"> 
+<div class="br-section-wrapper" style="padding: 0px !important;">
   <div class="table-wrapper">
     <div class="card">
       <div class="card-header">
@@ -41,7 +41,7 @@
     </table>
       </div>
     </div>
-    
+
   </div><!-- table-wrapper -->
 </div><!-- br-section-wrapper -->
 
@@ -79,7 +79,7 @@
     <script src="{{asset('Backend/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-     
+
       var table=$("#datatable1").DataTable({
          "processing":true,
         "responsive": true,
@@ -116,10 +116,10 @@
 
               return `<a href="${viewUrl}" class="btn btn-primary btn-sm mr-3 " data-id="${row.id}"><i class="fa fa-eye"></i></a>
 
-              <a href="${editUrl}" class="btn btn-success btn-sm mr-3 " data-id="${row.id}"><i class="fa fa-edit"></i></a>
+              <a href="${editUrl}?id=${row.id}" class="btn btn-success btn-sm mr-3 " data-id="${row.id}"><i class="fa fa-edit"></i></a>
 
               <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`;
-            } 
+            }
 
           },
         ],
@@ -133,7 +133,7 @@
 
 
 
-   
+
 
 
 
@@ -145,7 +145,7 @@
   });
 
 
-  
+
   /** Handle form submission for delete **/
   $('#deleteModal form').submit(function(e){
     e.preventDefault();
@@ -188,5 +188,5 @@
         toastr.error("{{ session('error') }}");
     </script>
     @endif
-  
+
 @endsection
