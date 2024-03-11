@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Customer_Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use function App\Helpers\__get_invoice_data;
 
 class CustomerController extends Controller
 {
@@ -131,6 +133,12 @@ class CustomerController extends Controller
         $data = Customer::find($id);
         return view('Backend.Pages.Customer.Update', compact('data'));
     }
+    public function view($id) {
+        $data = Customer::find($id); 
+        $invoice_data= __get_invoice_data($id,'Supplier');
+        return view('Backend.Pages.Customer.Profile', array_merge(compact('data'), $invoice_data));
+    }
+    
     public function update(Request $request, $id)
     {
         // Validate the form data

@@ -115,7 +115,11 @@
             }
           },
           {
-            "data":"fullname"
+            "data":"fullname",
+            render:function(data,type,row){
+              var link ="{{ route('admin.supplier.view', ':id') }}".replace(':id', row.id);
+              return '<a href="'+link+'">'+row.fullname+'</a>';
+            }
           },
           {
             "data":"phone_number"

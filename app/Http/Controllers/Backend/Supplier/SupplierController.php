@@ -5,6 +5,8 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function App\Helpers\__get_invoice_data;
+
 class SupplierController extends Controller
 {
     public function index()
@@ -14,6 +16,11 @@ class SupplierController extends Controller
     public function create()
     {
         return view('Backend.Pages.Supplier.Create');
+    }
+    public function view($id) {
+        $data = Supplier::find($id); 
+        $invoice_data= __get_invoice_data($id,'Supplier');
+        return view('Backend.Pages.Supplier.Profile', array_merge(compact('data'), $invoice_data));
     }
     public function get_all_data(Request $request)
     {

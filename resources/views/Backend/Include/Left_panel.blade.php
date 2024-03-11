@@ -43,7 +43,7 @@ $route = Route::currentRouteName()
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub {{($prefix=='admin/landing_page')?'show-sub':''}}">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
-            <span class="menu-item-label">Landing Page Management </span>
+            <span class="menu-item-label">Landing Page</span>
           </a>
           <ul class="br-menu-sub">
 

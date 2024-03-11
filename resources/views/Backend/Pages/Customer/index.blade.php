@@ -115,7 +115,14 @@
             }
           },
           {
-            "data":"fullname"
+            "data":"fullname",
+            render:function(data,type,row){
+              var link ="{{ route('admin.customer.view', ':id') }}".replace(':id', row.id);
+              // var randomString = Math.random().toString(36).substring(7);
+              // link = link.replace(':slug', randomString);
+
+              return '<a href="'+link+'">'+row.fullname+'</a>';
+            }
           },
           {
             "data":"phone_number"
@@ -153,14 +160,27 @@
             }
           },
           {
-            "data":"created_at"
+            "data":"created_at",
+            render: function (data, type, row) {
+              var formattedDate = moment(row.created_at).format('DD MMM YYYY');
+              return formattedDate;
+            }
           },
           {
             render: function (data, type, row) {
               var editUrl = "{{ route('admin.customer.edit', ':id') }}".replace(':id', row.id);
               
+
+              var viewUrl = "{{ route('admin.customer.view', ':id') }}".replace(':id', row.id);
+              
+              
               return `<a href="${editUrl}" class="btn btn-primary btn-sm mr-3 edit-btn" data-id="${row.id}"><i class="fa fa-edit"></i></a>
-              <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>`;
+              <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+
+              <a href="${viewUrl}" class="btn btn-success btn-sm mr-3 edit-btn"><i class="fa fa-eye"></i></a>
+              
+              
+              `;
             } 
 
           },
