@@ -135,7 +135,7 @@ class CustomerController extends Controller
     }
     public function view($id) {
         $data = Customer::find($id); 
-        $invoice_data= __get_invoice_data($id,'Supplier');
+        $invoice_data= __get_invoice_data($id,'Customer');
         return view('Backend.Pages.Customer.Profile', array_merge(compact('data'), $invoice_data));
     }
     

@@ -371,6 +371,8 @@ Route::group(['middleware'=>'admin'],function(){
 
          Route::get('/invoice/show',[InvoiceController::class,'show_invoice'])->name('admin.customer.invoice.show_invoice');
 
+         Route::post('/invoice/pay',[InvoiceController::class,'pay_due_amount'])->name('admin.customer.invoice.pay_due_amount');
+
         Route::post('/invoice/store',[InvoiceController::class,'store_invoice'])->name('admin.customer.invoice.store_invoice');
 
         Route::get('/invoice/view/{id}',[InvoiceController::class,'view_invoice'])->name('admin.customer.invoice.view_invoice');
@@ -411,6 +413,8 @@ Route::group(['middleware'=>'admin'],function(){
 
         Route::post('/invoice/store',[Supplier_invoiceController::class,'store_invoice'])->name('admin.supplier.invoice.store_invoice');
 
+        Route::post('/invoice/pay',[Supplier_invoiceController::class,'pay_due_amount'])->name('admin.supplier.invoice.pay_due_amount');
+
         Route::get('/invoice/show',[Supplier_invoiceController::class,'show_invoice'])->name('admin.supplier.invoice.show_invoice');
 
         Route::get('/invoice/view/{id}',[Supplier_invoiceController::class,'view_invoice'])->name('admin.supplier.invoice.view_invoice');
@@ -436,7 +440,9 @@ Route::group(['middleware'=>'admin'],function(){
         
         Route::get('/get_note/{id}',[OrderController::class,'get_note'])->name('admin.order.get_note');
 
-        Route::post('/confirm_order/{id}',[OrderController::class,'confirm_order'])->name('admin.order.confirm_order');
+        Route::post('/confirm_order',[OrderController::class,'confirm_order'])->name('admin.order.confirm_order');
+        
+        Route::post('/restart_order',[OrderController::class,'restart_order'])->name('admin.order.restart_order');
 
         Route::post('/delete',[OrderController::class,'delete'])->name('admin.order.delete');
     });

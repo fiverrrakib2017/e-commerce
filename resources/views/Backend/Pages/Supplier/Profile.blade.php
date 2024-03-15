@@ -345,7 +345,6 @@
                <table id="datatable1" class="table display responsive nowrap">
                   <thead>
                      <tr>
-                        <th>S.L</th>
                         <th>Invoice Id</th>
                         <th>Amount</th>
                         <th>Date</th>
@@ -353,13 +352,17 @@
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td>5</td>
-                        <td>Adminox Admin</td>
-                        <td>01/01/2015</td>
-                        <td>07/05/2015</td>
-                        <td><span class="label label-warning">Coming soon</span></td>
-                     </tr>
+                     @if (!empty($transaction_history))
+                        @foreach ($transaction_history as $item)
+                           <tr>
+                              <td>{{$item->invoice_id}}</td>
+                              <td>{{intval($item->amount)}}</td>
+                              <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</td>
+                              <td> <span class="badge badge-success">Completed</span></td>
+                           </tr>
+                        @endforeach
+                     @endif
+                     
                   </tbody>
                </table>
             </div>

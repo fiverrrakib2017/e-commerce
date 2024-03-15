@@ -47,22 +47,46 @@
 </div><!-- br-section-wrapper -->
 
 <!--Start Order Confirm MODAL ---->
-<div id="orderConfirmModal" class="modal fade">
+  <div id="orderConfirmModal" class="modal fade">
     <div class="modal-dialog modal-dialog-top" role="document">
         <div class="modal-content tx-size-sm">
         <div class="modal-body tx-center pd-y-20 pd-x-20">
-            <form action="{{route('admin.order.delete')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.order.confirm_order')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <i class="icon icon ion-ios-close-outline tx-60 tx-danger lh-1 mg-t-20 d-inline-block"></i>
-                <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
+                <i class="icon icon ion-ios-checkmark-outline tx-60 tx-success lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-success  tx-semibold mg-b-20 mt-2">Are you sure! you want to Confirm this?</h4>
                 <input type="hidden" name="id" value="">
-                <button type="submit" class="btn btn-danger mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
+                <button type="submit" class="btn btn-success mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
                     yes
                 </button>
-                <button type="button" class="btn btn-success tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
+                    No
+                </button>
+            </form>
+        </div><!-- modal-body -->
+        </div><!-- modal-content -->
+    </div>
+  </div>
+<!--Start Order Restart MODAL ---->
+  <div id="orderRestartModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-top" role="document">
+        <div class="modal-content tx-size-sm">
+        <div class="modal-body tx-center pd-y-20 pd-x-20">
+            <form action="{{route('admin.order.restart_order')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <i class="icon icon ion-ios-refresh-outline tx-60 tx-primary lh-1 mg-t-20 d-inline-block"></i>
+                <h4 class="tx-primary  tx-semibold mg-b-20 mt-2">Are you sure! you want to Restart this?</h4>
+                <input type="hidden" name="id" value="">
+                <button type="submit" class="btn btn-primary mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
+                    yes
+                </button>
+                <button type="button" class="btn btn-danger tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20" data-dismiss="modal" aria-label="Close">
                     No
                 </button>
             </form>
@@ -80,7 +104,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <i class="icon icon ion-ios-close-outline tx-60 tx-danger lh-1 mg-t-20 d-inline-block"></i>
+                <i class="icon icon ion-ios-trash-outline tx-60 tx-danger lh-1 mg-t-20 d-inline-block"></i>
                 <h4 class="tx-danger  tx-semibold mg-b-20 mt-2">Are you sure! you want to delete this?</h4>
                 <input type="hidden" name="id" value="">
                 <button type="submit" class="btn btn-danger mr-2 text-white tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium mg-b-20">
@@ -341,27 +365,27 @@
           },
           {
             render:function(data,type,row){
+              let __common_button=`
+              <button class="btn btn-secondary btn-sm mr-3 add-note-btn" data-id="${row.id}">Add Note</button>
+
+              <button class="btn btn-success btn-sm mr-3 note-view-btn" data-id="${row.id}">View Note</button>
+
+              <button class="btn btn-primary btn-sm mr-3 invoice-btn" data-id="${row.id}"><i class="fa fa-eye"></i></button>
+              
+              <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+              `; 
               if (row.order_status == 0) {
                 return `
-                <button class="btn btn-success btn-sm mr-3 confirm-btn" data-id="${row.order_status}">Confirm</button>
-                <button class="btn btn-secondary btn-sm mr-3 add-note-btn" data-id="${row.id}">Add Note</button>
-                <button class="btn btn-success btn-sm mr-3 note-view-btn" data-id="${row.id}">View Note</button>
-                <button class="btn btn-primary btn-sm mr-3 invoice-btn" data-id="${row.id}"><i class="fa fa-eye"></i></button>
-                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-success btn-sm mr-3 confirm-btn" data-id="${row.id}">Confirm</button>
+                ${__common_button}
               `;
-              } else if (row.order_status == 1) {
+              } 
+              if (row.order_status == 1) {
                 return `
                 <button class="btn btn-primary btn-sm mr-3 restart-btn" data-id="${row.id}">Restart</button>
-                <button class="btn btn-secondary btn-sm mr-3 add-note-btn" data-id="${row.id}">Add Note</button>
-                <button class="btn btn-success btn-sm mr-3 note-view-btn" data-id="${row.id}">View Note</button>
-                <button class="btn btn-primary btn-sm mr-3 invoice-btn" data-id="${row.id}"><i class="fa fa-eye"></i></button>
-                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+                 ${__common_button}
               `;
-              }else{
-                return 'Error';
               }
-              
-
             }
           },
         ],
@@ -375,11 +399,15 @@
 
   /** Handle Order Confrim button click**/
   $('#datatable1 tbody').on('click', '.confirm-btn', function () {
+    var id = $(this).data('id');
     $('#orderConfirmModal').modal('show');
+    var value_input = $("input[name*='id']").val(id);
   });
   /** Handle Order Restart button click**/
   $('#datatable1 tbody').on('click', '.restart-btn', function () {
-    $('#deleteModal').modal('show');
+    var id = $(this).data('id');
+    $('#orderRestartModal').modal('show');
+    var value_input = $("input[name*='id']").val(id);
   });
   /** Handle Delete button click**/
   $('#datatable1 tbody').on('click', '.delete-btn', function () {
@@ -388,12 +416,12 @@
     var value_input = $("input[name*='id']").val(id);
   });
 
-    /** Handle Add Note button click**/
-    $('#datatable1 tbody').on('click', '.add-note-btn', function () {
-      var id = $(this).data('id');
-      $('#addNoteModal').modal('show');
-      var id = $("input[name*='id']").val(id);
-    });
+  /** Handle Add Note button click**/
+  $('#datatable1 tbody').on('click', '.add-note-btn', function () {
+    var id = $(this).data('id');
+    $('#addNoteModal').modal('show');
+    var id = $("input[name*='id']").val(id);
+  });
     
     /** Handle form submission for delete **/
     $('#addNoteModal form').submit(function(e){
@@ -509,38 +537,93 @@
           }
       });
     });
+    /** Handle form submission for delete **/
+    $('#deleteModal form').submit(function(e){
+      e.preventDefault();
 
+      var form = $(this);
+      var url = form.attr('action');
+      var formData = form.serialize();
+      /** Use Ajax to send the delete request **/
+      $.ajax({
+        type:'POST',
+        'url':url,
+        data: formData,
+        success: function (response) {
+          $('#deleteModal').modal('hide');
+          if (response.success==true) {
+            toastr.success(response.message);
+            $('#datatable1').DataTable().ajax.reload( null , false);
+          } else {
+            /** Handle  errors **/
+            toastr.error("Error!!!");
+          }
+        },
 
-  
-  /** Handle form submission for delete **/
-  $('#deleteModal form').submit(function(e){
-    e.preventDefault();
-
-    var form = $(this);
-    var url = form.attr('action');
-    var formData = form.serialize();
-    /** Use Ajax to send the delete request **/
-    $.ajax({
-      type:'POST',
-      'url':url,
-      data: formData,
-      success: function (response) {
-        $('#deleteModal').modal('hide');
-        if (response.success==true) {
-          toastr.success(response.message);
-          $('#datatable1').DataTable().ajax.reload( null , false);
-        } else {
-           /** Handle  errors **/
-          toastr.error("Error!!!");
+        error: function (xhr, status, error) {
+          /** Handle  errors **/
+          console.error(xhr.responseText);
         }
-      },
-
-      error: function (xhr, status, error) {
-         /** Handle  errors **/
-        console.error(xhr.responseText);
-      }
+      });
     });
-  });
+    /** Handle form submission for Order Confirm **/
+    $('#orderConfirmModal form').submit(function(e){
+      e.preventDefault();
+
+      var form = $(this);
+      var url = form.attr('action');
+      var formData = form.serialize();
+      /** Use Ajax to send the  request **/
+      $.ajax({
+        type:'POST',
+        'url':url,
+        data: formData,
+        success: function (response) {
+          if (response.success==true) { 
+            $('#orderConfirmModal').modal('hide');
+            toastr.success(response.message);
+            $('#datatable1').DataTable().ajax.reload( null , false);
+          } else {
+            /** Handle  errors **/
+            toastr.error("Error!!!");
+          }
+        },
+
+        error: function (xhr, status, error) {
+          /** Handle  errors **/
+          console.error(xhr.responseText);
+        }
+      });
+    });
+    /** Handle form submission for Order Restart **/
+    $('#orderRestartModal form').submit(function(e){
+      e.preventDefault();
+
+      var form = $(this);
+      var url = form.attr('action');
+      var formData = form.serialize();
+      /** Use Ajax to send the  request **/
+      $.ajax({
+        type:'POST',
+        'url':url,
+        data: formData,
+        success: function (response) {
+          if (response.success==true) { 
+            $('#orderRestartModal').modal('hide');
+            toastr.success(response.message);
+            $('#datatable1').DataTable().ajax.reload( null , false);
+          } else {
+            /** Handle  errors **/
+            toastr.error("Error!!!");
+          }
+        },
+
+        error: function (xhr, status, error) {
+          /** Handle  errors **/
+          console.error(xhr.responseText);
+        }
+      });
+    });
 
   function __short_title_name(title){
     var max_length=50; 

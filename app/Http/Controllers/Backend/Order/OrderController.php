@@ -89,7 +89,26 @@ class OrderController extends Controller
             return response()->json(['success' => false, 'message' => 'Error '], 500);
         }
     }
-    public function confirm_order($id){
-        $object=Product_Order::find($id);
+    public function confirm_order(Request $request){
+        $object=Product_Order::find($request->id);
+        $object->order_status=1; 
+        $object->save();
+
+        $notes=new Invoice_Note();
+        $notes->invoice_id =$object->id; 
+        $notes->note="Order Confirm";
+        $notes->save();
+        return response()->json(['success' => true, 'message' => 'Confirm Successfully'], 200);
+    }
+    public function restart_order(Request $request){
+        $object=Product_Order::find($request->id);
+        $object->order_status=0; 
+        $object->save();
+
+        $notes=new Invoice_Note();
+        $notes->invoice_id =$object->id; 
+        $notes->note="Order Restart";
+        $notes->save();
+        return response()->json(['success' => true, 'message' => 'Restart Successfully'], 200); 
     }
 }

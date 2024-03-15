@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Backend\Supplier;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
-use App\Models\Customer_Invoice;
-use App\Models\Customer_Invoice_Details;
 use App\Models\Product;
 use App\Models\Supplier;
 use App\Models\Supplier_Invoice;
 use App\Models\Supplier_Invoice_Details;
+use App\Models\Supplier_Transaction_History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use function App\Helpers\__due_payment_received;
 
 class Supplier_invoiceController extends Controller
 {
@@ -163,20 +163,17 @@ class Supplier_invoiceController extends Controller
             $invoiceItem->price = $request->price[$index];
             $invoiceItem->total_price = $request->qty[$index] * $request->price[$index];
             $invoiceItem->save();
-
-            // Update total amount
-            $invoice->total_amount += $invoiceItem->total_price;
         } 
-
-          /*Calculate and update due amount*/ 
-          $invoice->due_amount = $invoice->total_amount - ($request->paid_amount ?? 0);
-          $invoice->save();
-          return response()->json(['success' =>true, 'message'=> 'Invoice stored successfully'], 201);
+        return response()->json(['success' =>true, 'message'=> 'Invoice stored successfully'], 201);
         
     }
     public function delete_invoice(Request $request){
         $invoice = Supplier_Invoice::find($request->id);
         $invoice->delete();
         return response()->json(['success'=>true,'message' => 'Invoice deleted successfully']);
+    }
+    public function pay_due_amount(Request $request){
+       $response=__due_payment_received($request, new Supplier_Invoice(), new Supplier_Transaction_History(), 'supplier_id');
+       return response()->json($response);
     }
 }

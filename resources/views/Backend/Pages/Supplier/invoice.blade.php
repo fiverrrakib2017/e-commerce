@@ -70,6 +70,53 @@
         </div><!-- modal-content -->
     </div>
   </div>
+<!--Start Pay Now MODAL ---->
+<div id="payModal" class="modal fade effect-scale">
+        <div class="modal-dialog modal-lg modal-dialog-top mt-4" role="document">
+            <div class="modal-content tx-size-sm">
+            <div class="modal-header pd-x-20">
+                <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Payment</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <!----- Start Add  Form ------->
+        <form action="{{route('admin.supplier.invoice.pay_due_amount')}}" method="post">
+        @csrf
+
+        <div class="modal-body ">
+            <!----- Start Add  Form input ------->
+            <div class="col-xl-12">
+                <div class="form-layout form-layout-4">
+
+
+                    <div class="row mb-4 d-none">
+                        <label class="col-sm-3 form-control-label">id: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="number" name="id" class="form-control" required>
+                        </div>
+                    </div><!-- row -->
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 form-control-label">Amount: <span class="tx-danger">*</span></label>
+                        <div class="col-sm-9 mg-t-10 mg-sm-t-0">
+                        <input type="number" name="amount" class="form-control" placeholder="Enter Your Amount" required>
+                        </div>
+                    </div><!-- row -->
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success tx-size-xs">Save changes</button>
+            <button type="button" class="btn btn-danger tx-size-xs" data-dismiss="modal">Close</button>
+        </div>
+
+        </form>
+        <!----- End Add Form ------->
+        </div>
+    </div>
+  </div>
   
 @endsection
 
@@ -116,7 +163,12 @@
           {
             "data":null,
             render:function(data,type,row){
-                return '<span class="badge badge-primary">Processing</span>';
+              if (row.due_amount==0) {
+                return '<span class="badge badge-success">Paid</span>';
+              }else{
+                 return '<span class="badge badge-danger">Not Paid</span>';
+              }
+               
             }
           },
           {
@@ -128,17 +180,31 @@
           },
           {
             render:function(data,type,row){
+              
                 var editUrl = "{{ route('admin.supplier.invoice.edit_invoice', ':id') }}";
                 var viewUrl = "{{ route('admin.supplier.invoice.view_invoice', ':id') }}";
                 editUrl = editUrl.replace(':id', row.id);
                 viewUrl = viewUrl.replace(':id', row.id);
-                return `
-                <a href="${viewUrl}" class="btn btn-success btn-sm mr-3" ><i class="fa fa-eye"></i></a>
 
-                <a href="${editUrl}" class="btn btn-primary btn-sm mr-3 "><i class="fa fa-edit"></i></a>
+                if (row.due_amount==0) {
+                  return `
+                  <a href="${viewUrl}" class="btn btn-success btn-sm mr-3" ><i class="fa fa-eye"></i></a>
 
-                <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
-              `;
+                  <a href="${editUrl}" class="btn btn-primary btn-sm mr-3 "><i class="fa fa-edit"></i></a>
+
+                  <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+                  `;
+                }else{
+                  return `
+                  <button class="btn btn-primary btn-sm mr-3 pay-button"  data-id="${row.id}">Pay Now</button>
+
+                  <a href="${viewUrl}" class="btn btn-success btn-sm mr-3" ><i class="fa fa-eye"></i></a>
+
+                  <a href="${editUrl}" class="btn btn-primary btn-sm mr-3 "><i class="fa fa-edit"></i></a>
+
+                  <button class="btn btn-danger btn-sm mr-3 delete-btn" data-toggle="modal" data-target="#deleteModal" data-id="${row.id}"><i class="fa fa-trash"></i></button>
+                  `;
+                }
             }
           },
         ],
@@ -156,7 +222,6 @@
     $('#deleteModal').modal('show');
     var value_input = $("input[name*='id']").val(id);
   });
-  
   /** Handle form submission for delete **/
   $('#deleteModal form').submit(function(e){
     e.preventDefault();
@@ -184,6 +249,44 @@
          /** Handle  errors **/
         console.error(xhr.responseText);
       }
+    });
+  });
+  
+  /** Handle Pay button click**/
+  $('#datatable1 tbody').on('click', '.pay-button', function () {
+    var id = $(this).data('id');
+    $('#payModal').modal('show');
+    var value_input = $("input[name*='id']").val(id);
+  });
+  /** Handle form submission for Pay **/
+  $('#payModal form').submit(function(e){
+    e.preventDefault();
+
+    var form = $(this);
+    var url = form.attr('action');
+    var formData = form.serialize();
+    /** Use Ajax to send the delete request **/
+    $.ajax({
+      type:'POST',
+      'url':url,
+      data: formData,
+      success: function (response) {
+        if (response.success==true) { 
+          $('#payModal').modal('hide');
+          toastr.success(response.message);
+          $('#datatable1').DataTable().ajax.reload( null , false);
+        }
+        
+      },
+
+      error: function(xhr, status, error) {
+        /** Handle  errors **/
+        console.error(xhr.responseText);
+        var err = eval("(" + xhr.responseText + ")");
+        toastr.error(err.message);
+      }
+
+
     });
   });
 
