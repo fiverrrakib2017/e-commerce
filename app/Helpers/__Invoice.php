@@ -5,6 +5,8 @@ use App\Models\Customer_Invoice;
 use App\Models\Customer_Transaction_History;
 use App\Models\Supplier_Invoice;
 use App\Models\Supplier_Transaction_History;
+use App\Models\Product_Order;
+use App\Models\Invoice_Note;
 
 if (!function_exists('__get_invoice_data')) {
     function __get_invoice_data($id,$type){
@@ -60,5 +62,17 @@ if (!function_exists('__due_payment_received')) {
         $object->save();
 
         return response()->json(['success'=>true,'message' => 'Payment successful'], 200);
+    }
+}
+if (!function_exists('__user_order_update_status')) {
+    function __user_order_update_status($invoice_id,$order_status,$type){
+        $object=Product_Order::find($invoice_id);
+        $object->order_status=$order_status; 
+        $object->save();
+
+        $notes=new Invoice_Note();
+        $notes->invoice_id =$object->id; 
+        $notes->note=$type;
+        $notes->save();
     }
 }

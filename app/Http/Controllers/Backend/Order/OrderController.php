@@ -10,6 +10,8 @@ use App\Models\Product_Order_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function App\Helpers\__user_order_update_status;
+
 class OrderController extends Controller
 {
     public function index(){
@@ -90,25 +92,11 @@ class OrderController extends Controller
         }
     }
     public function confirm_order(Request $request){
-        $object=Product_Order::find($request->id);
-        $object->order_status=1; 
-        $object->save();
-
-        $notes=new Invoice_Note();
-        $notes->invoice_id =$object->id; 
-        $notes->note="Order Confirm";
-        $notes->save();
+        __user_order_update_status($request->id,1,'Order Confirm');
         return response()->json(['success' => true, 'message' => 'Confirm Successfully'], 200);
     }
     public function restart_order(Request $request){
-        $object=Product_Order::find($request->id);
-        $object->order_status=0; 
-        $object->save();
-
-        $notes=new Invoice_Note();
-        $notes->invoice_id =$object->id; 
-        $notes->note="Order Restart";
-        $notes->save();
+        __user_order_update_status($request->id,0,'Order Restart');
         return response()->json(['success' => true, 'message' => 'Restart Successfully'], 200); 
     }
 }
